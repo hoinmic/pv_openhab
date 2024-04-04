@@ -1,0 +1,18 @@
+// Dehumidifier
+String  dehumidifier_relay            "Relais Status [%s]"        <fan>           (gLaundry)           { http="<[http://192.168.0.100/report:60000:JSONPATH($.relay)]" } // Update every 60s
+Number  dehumidifier_power            "Power [%.1f W]"            <fan>           (gLaundry, gPower)   { http="<[http://192.168.0.100/report:60000:JSONPATH($.power)]" } // Update every 60s
+//Number  dehumidifier_temperature      "Temperature [%.1f °C]"     <temperature>   (gLaundry)           { http="<[http://192.168.0.100/temp:3600000:JSONPATH($.compensated)]" } // Update every 1h
+Switch  dehumidifier_network_status   "Network Status [%s]"       <network>       (gLaundry, gNetwork) { channel="network:pingdevice:dehumidifier:online" }
+//Number  dehumidifier_latency          "Latency [%d ms]"           <time>          (gLaundry, gPing)    { channel="network:pingdevice:dehumidifier:latency" }
+
+// Humidity sensor
+Number shellyHT_batt    "Battery level [%d %%]"   <battery>     {channel="shelly:shellyht:e013de:battery#batteryLevel"}
+Number shellyHT_humid   "Humidity [%.1f %%]"      <humidity>    {channel="shelly:shellyht:e013de:sensors#humidity"}
+Number shellyHT_temp    "Temperature [%.2f °C]"   <temperature> {channel="shelly:shellyht:e013de:sensors#temperature"}
+
+// UI
+Switch  dehumidifier_switch           "Remote Control [%s]"       <switch>        (gLaundry, gSwitch)  { http=">[ON:GET:http://192.168.0.100/relay?state=1] >[OFF:GET:http://192.168.0.100/relay?state=0]" }
+
+// Variables
+Number  maxHumidity                   "MaxHumidity [%d %%]"       <humidity>      (gLaundry, gUserDefined)
+String  dehumidifier_status           "Dehumidifier Status [%s]"  <siren>         (gLaundry)

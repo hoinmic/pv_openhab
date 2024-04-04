@@ -1,0 +1,9 @@
+Strategies {
+    everyMinute : "0 * * * * ?"
+    default = everyChange
+}
+
+Items {
+    shellyHT_humid : strategy = everyMinute, everyChange, restoreOnStartup
+    maxHumidity : strategy = everyMinute, everyChange, restoreOnStartup
+}

@@ -1,0 +1,2 @@
+// Shelly H+T
+Thing shelly:shellyht:e013de [ deviceIp="192.168.0.145", userId="", password="", lowBattery=15 , eventsCoIoT=true ]

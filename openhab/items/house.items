@@ -1,0 +1,12 @@
+// Current time
+String  timeOfDay "Current Time of Day [%s]"  <time>      (gHouse)
+
+// Sun times
+DateTime  sunrise_Time       "Sunrise [%1$tH:%1$tM]"  <sunrise>     (gHouse)            { channel="astro:sun:home:rise#start" }
+DateTime  sunset_Time        "Sunset [%1$tH:%1$tM]"   <sunset>      (gHouse)            { channel="astro:sun:home:set#start" }
+
+// Current low tariff
+String  low_tariff        "Low Tariff [%s]"        <moon>         (gHouse)
+
+// Graphics
+Group gHumidity			"Graphics Humidity"
