@@ -1,11 +1,11 @@
 # pv_openhab
-Photovoltaic monitoring and smart control of consumers
+Photovoltaic monitoring and smart control of consumers with openhab 4
 
 ## Add-ons
 
 - Astro Binding
 - Shelly Binding
-- Network Binding
+- mystorm Binding
 
 ## Installations on x86
 
@@ -29,15 +29,17 @@ sudo systemctl start openhab.service
 sudo systemctl enable openhab.service
 ```
 
-Set password for openhab linux user (to copy files)
+Set password and login for openhab linux user (to copy files)
 ```sh
 sudo passwd openhab
-```
-
-Set login for openhab linux user (to copy files)
-```sh
 sudo vi /etc/passwd
 line: openhab .... /bin/false -> /bin/bash
+```
+
+## Set timezone of the system
+
+```sh
+sudo timedatectl set-timezone Europe/Zurich
 ```
 
 ## Test and Debug
@@ -47,6 +49,11 @@ In top foleder is a script to automatic copy the openhab files to remote (file: 
 The following can be used for logs:
 ```sh
 openhab-cli showlogs
+```
+
+Load the sitemap
+```sh
+http://192.168.124.254:8080/basicui/app?sitemap=house
 ```
 
 ## Hardware Setup

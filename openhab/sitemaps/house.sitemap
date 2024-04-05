@@ -3,9 +3,7 @@ sitemap house label="Main Menu"
 	Frame label="Laundry" icon="washingmachine" {
         Text    item=shellyHT_humid
         Setpoint item=maxHumidity minValue=0 maxValue=100 step=1
-        Switch  item=dehumidifier_switch
-        Text    item=dehumidifier_status visibility=[dehumidifier_status != "OK"]
-        Text    item=shellyHT_batt visibility=[shellyHT_batt < 40]
+        Switch  item=mystrom_switch
 	}
     Frame label="Charts" icon="chart" {
         Chart item=shellyHT_humid refresh=60000 period=D

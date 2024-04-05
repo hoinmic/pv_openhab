@@ -4,28 +4,28 @@ val logName = "lowTariff"
 rule "lowTariff Calculate tariff"
 when
   System started or
-  Time cron "0 0/5 * * * ?"   // every five minutes
+  Time cron "0 0/10 * * * ?"   // every ten minutes
 then
-  var Number day = now.getDayOfWeek()
-  var Number hour = now.getHourOfDay()
+  var Number day = ZonedDateTime.now().getDayOfWeek().getValue()
+  var Number hour = ZonedDateTime.now().getHour()
 
-  logInfo(logName, "Weekday: " + day + " Hour: " + hour)
-
-  // Low Tariff EWZ
+  // Low tariff of the electricity company
+  var currentLowTariff = "FALSE"
   if (((day == 1) && ((hour < 7) || (hour >= 20))) ||  // Monday
       ((day == 2) && ((hour < 7) || (hour >= 20))) ||  // Thuesday
       ((day == 3) && ((hour < 7) || (hour >= 20))) ||  // Wednesday
       ((day == 4) && ((hour < 7) || (hour >= 20))) ||  // Thursday
       ((day == 5) && ((hour < 7) || (hour >= 20))) ||  // Friday
       ((day == 6) && ((hour < 7) || (hour >= 13))) ||  // Saturday
-      ((day == 7)))                                   // Sunday
-    {
-      low_tariff.postUpdate("TRUE")
-      logInfo(logName, "Low tariff")
-    }
-    else
-    {
-      low_tariff.postUpdate("FALSE")
-      logInfo(logName, "High tariff")
-    }
+      ((day == 7)))                                    // Sunday
+  {
+    currentLowTariff = "TRUE"
+  }
+
+  if((low_tariff.state != currentLowTariff))
+  {
+    // Publish the updated state
+    logInfo(logName, "Weekday: " + day + " Hour: " + hour + " Low Tariff: " + currentLowTariff)
+    low_tariff.sendCommand(currentLowTariff)
+  } 
 end

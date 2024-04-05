@@ -4,13 +4,8 @@ val logName = "dehumidifier"
 
 var Timer timer = null
 
-val MAX_HUMIDITY = 68
-
+val MAX_HUMIDITY_STARTUP = 68
 val DEHUMIDIFIER_ON_TIME_MIN = 180
-
-val DEHUMIDIFIER_MIN_POWER_CONSUMPTION_W = 400
-val DEHUMIDIFIER_MIN_POWER_WATER_TANK_FULL_W = 50
-
 
 //------------------------------------------------------------
 // Startup
@@ -18,128 +13,40 @@ rule "Dehumidifier Startup"
 when
   System started
 then
-  maxHumidity.postUpdate(MAX_HUMIDITY)
-  dehumidifier_status.postUpdate("OK")
-  dehumidifier_switch.sendCommand(OFF)
-  logInfo(logName, "Variables initialized")
+  maxHumidity.postUpdate(MAX_HUMIDITY_STARTUP)
+  mystrom_switch.sendCommand(OFF)
 end
 
 //------------------------------------------------------------
-// Power switch changes
-rule "Dehumidifier Turn OFF"
+// High humidity automatic start
+rule "Dehumidifier Maximum Humidity"
 when
-  Item dehumidifier_switch changed to OFF
+  Item shellyHT_humid changed or    // measured humidity changed
+  Item maxHumidity changed or       // max humidity changed
+  Item mystrom_switch changed       // timer exeeded / UI modification
 then
-  dehumidifier_switch.sendCommand(OFF)
-  logInfo(logName, "Send command turn off")
-end
-
-rule "Dehumidifier Turn ON"
-when
-  Item dehumidifier_switch changed to ON
-then
-  dehumidifier_switch.sendCommand(ON)
-  logInfo(logName, "Send command turn on")
+  if (shellyHT_humid.state >= maxHumidity.state)
+  {
+    mystrom_switch.sendCommand(ON)
+    logInfo(logName, "Start dehumidifier. Humidity: " + shellyHT_humid.state)
+  }
 end
 
 //------------------------------------------------------------
-// Automatic stop: Dehumidifier stop after defined time
+// Automatic stop after a timeout
 rule "Dehumidifier Timeout"
 when
-  Item dehumidifier_relay changed
+  Item mystrom_switch changed
 then
-  // Check if dehumidifier is turned on
-  if (dehumidifier_relay.state.toString == "true")
+  if (mystrom_switch.state.toString == "ON")
   {
-    // After a timeout, turn the dehumidifier off
     if (timer === null)
     {
       timer = createTimer(now.plusMinutes(DEHUMIDIFIER_ON_TIME_MIN)) [|
-            dehumidifier_switch.postUpdate(OFF)
+            mystrom_switch.sendCommand(OFF)
             logInfo(logName, "Timer expiration, turned OFF")
             timer = null   // reset the timer
         ]
     }
-  }
-end
-
-//------------------------------------------------------------
-// Automatic start: Exceed maximum humidity (low tariff)
-rule "Dehumidifier Maximum Humidity"
-when
-  Item humidity_htShelly_01 changed or
-  Item low_tariff changed or
-  Item maxHumidity changed or
-  Item dehumidifier_relay changed
-then
-  if (humidity_htShelly_01.state >= maxHumidity.state)
-  {
-    if (low_tariff.state.toString == "TRUE")
-    {
-      dehumidifier_switch.postUpdate(ON)
-      logInfo(logName, "Start dehumidifier. Exceed maximum humidity. Low tariff. Humidity: " + humidity_htShelly_01.state)
-    }
-    else
-    {
-      logInfo(logName, "Standby dehumidifier. High tariff. Humidity: " + humidity_htShelly_01.state)
-    }
-  }
-  else
-  {
-    logInfo(logName, "Humidity low. No action required. Humidity: " + humidity_htShelly_01.state)
-  }
-end
-
-//------------------------------------------------------------
-// Automatic stop: low tariff finished
-rule "Dehumidifier Stop in high tariff"
-when
-  Item low_tariff changed
-then
-  if (low_tariff.state.toString == "FALSE")
-  {
-    // High tariff started
-    dehumidifier_switch.postUpdate(OFF)
-    logInfo(logName, "Stop dehumidifier. High tariff started. Humidity: " + humidity_htShelly_01.state)
-  }
-end
-
-//------------------------------------------------------------
-// Dehumidifier Status
-rule "Dehumidifier Status"
-when
-  Item dehumidifier_power changed or
-  Item dehumidifier_switch changed
-then
-  if (dehumidifier_network_status.state.toString == "ON")
-  {
-    if (dehumidifier_switch.state == ON )
-    {
-      if (dehumidifier_power.state > DEHUMIDIFIER_MIN_POWER_CONSUMPTION_W)
-      {
-        dehumidifier_status.postUpdate("OK")
-        logInfo (logName, "Dehumidifier is working in normal range: "+dehumidifier_power.state+"W")
-      } 
-      else if (dehumidifier_power.state > DEHUMIDIFIER_MIN_POWER_WATER_TANK_FULL_W)
-      {
-        dehumidifier_status.postUpdate("Water tank full")
-        logInfo (logName, "Water tank full: "+dehumidifier_power.state+"W")
-      }
-      else
-      {
-        dehumidifier_status.postUpdate("Error")
-        logInfo (logName, "Dehumidifier Error: "+dehumidifier_power.state+"W")
-      }
-    }
-    else
-    {
-      dehumidifier_status.postUpdate("OK")
-      logInfo (logName, "Dehumidifier off: "+dehumidifier_power.state+"W")
-    }
-  }
-  else
-  {
-    dehumidifier_status.postUpdate("Connection problem")
-    logInfo (logName, "No connection to dehumidifier switch")
   }
 end

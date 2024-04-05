@@ -5,7 +5,7 @@ serverUser=openhab
 serverPassword="openhab"
 serverOpenhabPath="/etc/openhab/"
 
-localOpenhabPath="$PWD/openhab2/"
+localOpenhabPath="$PWD/openhab/"
 
 folderArray=(
 #    "html/"
@@ -17,7 +17,7 @@ folderArray=(
 #    "services/"
     "sitemaps/"
 #    "sounds/"
-#    "things/"
+    "things/"
 #    "transform/"
     )
 

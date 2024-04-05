@@ -1,11 +1,11 @@
 val logName = "timeOfDay"
 
-var DateTime morningStart = null
-var DateTime dayStart = null
-var DateTime eveningStart = null
-var DateTime nightStart = null
+var ZonedDateTime morningStart = null
+var ZonedDateTime dayStart = null
+var ZonedDateTime eveningStart = null
+var ZonedDateTime nightStart = null
 
-// MORNING: 06:00 to sunrise; Note during some times of year sunrise is before 06:00
+// MORNING: 06:00 to sunrise (during some times of year sunrise is before 06:00)
 // DAY: Sunrise to sunset
 // EVENING: Sunset to 22:00
 // NIGHT: 22:00 to 06:00
@@ -15,38 +15,36 @@ when
   System started or // run at system start in case the time changed when OH was offline
   Time cron "0 3 0 * * ? *" // three minutes after midnight, to give Astro time to calculate the new day's times
 then
-  logInfo(logName, "Calculating time of day...")
+  // Jump to tomorrow and subtract to avoid problems (summer time / winter time)
+  morningStart = now.withHour(0).withMinute(0).withSecond(0).plusDays(1).minusHours(24).plusHours(6)
+  nightStart = now.withHour(0).withMinute(0).withSecond(0).plusDays(1).minusHours(24).plusHours(22)
 
-  // Jump to tomorrow and subtract to avoid problems at the change over to/from DST
-  morningStart = now.withTimeAtStartOfDay.plusDays(1).minusHours(24).plusHours(6)
-  nightStart = now.withTimeAtStartOfDay.plusDays(1).minusHours(24).plusHours(22)
-
-  // Convert the Astro Items to Joda DateTime
-  dayStart = new DateTime(sunrise_Time.state.toString) 
-  eveningStart = new DateTime(sunset_Time.state.toString)
+  // Convert the Astro Items to ZonedDateTime
+  dayStart = (sunrise_Time.state as DateTimeType).getZonedDateTime()
+  eveningStart = (sunset_Time.state as DateTimeType).getZonedDateTime()
 
   // Publish the current state
-  logInfo(logName, "Calculated morning start: " + morningStart.toString)
-  logInfo(logName, "Calculated day start: " + dayStart.toString)
-  logInfo(logName, "Calculated evening start: " + eveningStart.toString)
-  logInfo(logName, "Calculated night start: " + nightStart.toString)
+  logInfo(logName, "Calculated morning start: " + morningStart)
+  logInfo(logName, "Calculated day start: " + dayStart)
+  logInfo(logName, "Calculated evening start: " + eveningStart)
+  logInfo(logName, "Calculated night start: " + nightStart)
 end
 
 rule "timeOfDay Define the current time segment" 
 when
-  Time cron "0 0/5 * * * ?"   // every five minutes
+  Time cron "0 0/1 * * * ?"   // every minute
 then
-
   // Define the current time segment
-  var curr = "UNKNOWN"
-  switch now {
-  	case now.isAfter(morningStart)   && now.isBefore(dayStart):       curr = "MORNING"
-  	case now.isAfter(dayStart)       && now.isBefore(eveningStart):   curr = "DAY"
-  	case now.isAfter(eveningStart)   && now.isBefore(nightStart):     curr = "EVENING"
-  	default :                                                         curr = "NIGHT"
-  }
+  var currentTimeOfDay = "NIGHT"
+  val currentTime = ZonedDateTime.now()
+  if (currentTime.isAfter(morningStart) && currentTime.isBefore(dayStart)) { currentTimeOfDay = "MORNING" }
+  if (currentTime.isAfter(dayStart) && currentTime.isBefore(eveningStart)) { currentTimeOfDay = "DAY" }
+  if (currentTime.isAfter(eveningStart) && currentTime.isBefore(nightStart)) { currentTimeOfDay = "EVENING" }
 
-  // Publish the current state
-  logInfo(logName, "Calculated time segment of the day: " + curr)
-  timeOfDay.sendCommand(curr)
+  if((timeOfDay.state != currentTimeOfDay))
+  {
+    // Publish the updated state
+    logInfo(logName, "Time of day: " + currentTimeOfDay)
+    timeOfDay.sendCommand(currentTimeOfDay)
+  } 
 end
