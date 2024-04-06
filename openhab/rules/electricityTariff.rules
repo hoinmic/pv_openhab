@@ -1,7 +1,10 @@
-val logName = "lowTariff"
+val logName = "electricityTariff"
+
+val KWH_HIGH_TARIFF  = 0.33
+val KWH_LOW_TARIFF = 0.31
 
 // Check low tariff
-rule "lowTariff Calculate tariff"
+rule "calculate electricity tariff"
 when
   System started or
   Time cron "0 0/10 * * * ?"   // every ten minutes
@@ -11,6 +14,7 @@ then
 
   // Low tariff of the electricity company
   var currentLowTariff = "FALSE"
+  var currentPrice = KWH_HIGH_TARIFF
   if (((day == 1) && ((hour < 7) || (hour >= 20))) ||  // Monday
       ((day == 2) && ((hour < 7) || (hour >= 20))) ||  // Thuesday
       ((day == 3) && ((hour < 7) || (hour >= 20))) ||  // Wednesday
@@ -20,12 +24,14 @@ then
       ((day == 7)))                                    // Sunday
   {
     currentLowTariff = "TRUE"
+    currentPrice = KWH_LOW_TARIFF
   }
 
   if((low_tariff.state != currentLowTariff))
   {
     // Publish the updated state
-    logInfo(logName, "Weekday: " + day + " Hour: " + hour + " Low Tariff: " + currentLowTariff)
+    logInfo(logName, "Weekday: " + day + ", Hour: " + hour + ", Low Tariff: " + currentLowTariff + ", Price: " + currentPrice)
     low_tariff.sendCommand(currentLowTariff)
-  } 
+    kWh_price.sendCommand(currentPrice)
+  }
 end
