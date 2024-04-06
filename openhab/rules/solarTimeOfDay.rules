@@ -1,0 +1,53 @@
+val logName = "solarTimeOfDay"
+
+var ZonedDateTime sunRise = null
+var ZonedDateTime daylight = null
+var ZonedDateTime middaySun = null
+var ZonedDateTime afternoonSun = null
+var ZonedDateTime eveningSun = null
+var ZonedDateTime sunSet = null
+
+rule "timeOfDay Calculate the times of this day" 
+when
+  System started or // run at system start in case the time changed when OH was offline
+  Time cron "0 3 0 * * ? *" // three minutes after midnight, to give Astro time to calculate the new day's times
+then
+  // Convert the Astro Items to ZonedDateTime
+  sunRise = (sunrise_Time.state as DateTimeType).getZonedDateTime()
+  daylight = sunRise.plusHours(1)
+  sunSet = (sunset_Time.state as DateTimeType).getZonedDateTime()
+  eveningSun = sunSet.minusHours(1)
+
+  // Jump to tomorrow and subtract to avoid problems (summer time / winter time)
+  middaySun = now.withHour(0).withMinute(0).withSecond(0).plusDays(1).minusHours(24).plusHours(11)
+  afternoonSun = now.withHour(0).withMinute(0).withSecond(0).plusDays(1).minusHours(24).plusHours(13)
+
+  // Publish the current state
+  logInfo(logName, "Calculated sun rise: " + sunRise)
+  logInfo(logName, "Calculated daylight: " + daylight)
+  logInfo(logName, "Calculated midday sun: " + middaySun)
+  logInfo(logName, "Calculated afternoon sun: " + afternoonSun)
+  logInfo(logName, "Calculated evening sun: " + eveningSun)
+  logInfo(logName, "Calculated sun set: " + sunSet)
+end
+
+rule "timeOfDay Define the current time segment" 
+when
+  Time cron "0 0/1 * * * ?"   // every minute
+then
+  // Define the current time segment
+  var currentTimeOfDay = "NIGHT"
+  val currentTime = ZonedDateTime.now()
+  if (currentTime.isAfter(sunRise) && currentTime.isBefore(daylight)) { currentTimeOfDay = "SUN_RISE" }
+  if (currentTime.isAfter(daylight) && currentTime.isBefore(middaySun)) { currentTimeOfDay = "MORNING_SUN" }
+  if (currentTime.isAfter(middaySun) && currentTime.isBefore(afternoonSun)) { currentTimeOfDay = "MIDDAY_SUN" }
+  if (currentTime.isAfter(afternoonSun) && currentTime.isBefore(eveningSun)) { currentTimeOfDay = "AFTERNOON_SUN" }
+  if (currentTime.isAfter(eveningSun) && currentTime.isBefore(sunSet)) { currentTimeOfDay = "EVENING_SUN" }
+
+  if((timeOfDay.state != currentTimeOfDay))
+  {
+    // Publish the updated state
+    logInfo(logName, "Time of day: " + currentTimeOfDay)
+    timeOfDay.sendCommand(currentTimeOfDay)
+  } 
+end
