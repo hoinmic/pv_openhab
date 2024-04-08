@@ -6,6 +6,7 @@ Photovoltaic monitoring and smart control of consumers with openhab 4
 - Astro Binding
 - Shelly Binding
 - mystorm Binding
+- Fronius Binding
 
 ## Installations on x86
 

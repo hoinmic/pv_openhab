@@ -1,10 +1,21 @@
 Strategies {
     everyMinute : "0 * * * * ?"
-    default = everyChange
 }
 
 Items {
     shellyHT_humid : strategy = everyMinute, everyChange, restoreOnStartup
     maxHumidity : strategy = everyMinute, everyChange, restoreOnStartup
     mystrom_power : strategy = everyMinute, everyChange, restoreOnStartup
+
+    IAC_South : strategy = everyMinute, everyChange, restoreOnStartup
+    IDC_South1 : strategy = everyMinute, everyChange, restoreOnStartup
+    IDC_South2 : strategy = everyMinute, everyChange, restoreOnStartup
+    UDC1_South : strategy = everyMinute, everyChange, restoreOnStartup
+    UDC2_South : strategy = everyMinute, everyChange, restoreOnStartup
+
+    IAC_North : strategy = everyMinute, everyChange, restoreOnStartup
+    IDC_North1 : strategy = everyMinute, everyChange, restoreOnStartup
+    IDC_North2 : strategy = everyMinute, everyChange, restoreOnStartup
+    UDC1_North : strategy = everyMinute, everyChange, restoreOnStartup
+    UDC2_North : strategy = everyMinute, everyChange, restoreOnStartup
 }

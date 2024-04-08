@@ -1,0 +1,7 @@
+Bridge fronius:bridge:southside [hostname="192.168.0.101", refreshInterval=60] {
+    Thing powerinverter myinverter [deviceId=1]
+}
+
+Bridge fronius:bridge:northside [hostname="192.168.0.102", refreshInterval=60] {
+    Thing powerinverter myinverter [deviceId=1]
+}
