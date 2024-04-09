@@ -77,7 +77,6 @@ P[Boiler]
 
 S[MyStrom]
 T[Dehumidifier]
-U([Shelly H&T])
 
 A --> C
 B --> C
@@ -93,7 +92,6 @@ O --> P
 
 J --> S
 S --> T
-U --> S
 ```
 
 ## Additional Informations

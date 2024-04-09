@@ -1,0 +1,7 @@
+// Dehumidifier
+Switch mystrom_switch "Dehumidifier Switch" {channel="mystrom:mystromplug:1245628c:switch"}
+//Number:Temperature  mystrom_temperature "Temperature: [%.1f °C]" {channel="mystrom:mystromplug:1245628c:temperature"}  
+Number:Power mystrom_power "Dehumidifier Power: [%.1f W]" {channel="mystrom:mystromplug:1245628c:power"}
+//Number:Energy mystrom_energyConsumedSinceLastCall "Ws: [%.1f Ws]" {channel="mystrom:mystromplug:1245628c:energy-consumed-since-last-call"} 
+
+Switch trigger_dehumidifier "Dehumidifier Trigger" <rain> (gLaundry)

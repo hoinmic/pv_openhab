@@ -3,8 +3,8 @@ Strategies {
 }
 
 Items {
-    shellyHT_humid : strategy = everyMinute, everyChange, restoreOnStartup
-    maxHumidity : strategy = everyMinute, everyChange, restoreOnStartup
+    trigger_dehumidifier : strategy = everyMinute, everyChange, restoreOnStartup
+    mystrom_switch : strategy = everyMinute, everyChange, restoreOnStartup
     mystrom_power : strategy = everyMinute, everyChange, restoreOnStartup
 
     IAC_South : strategy = everyMinute, everyChange, restoreOnStartup

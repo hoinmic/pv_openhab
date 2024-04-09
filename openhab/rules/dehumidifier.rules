@@ -2,38 +2,35 @@ val logName = "dehumidifier"
 
 var Timer timer = null
 
-val MAX_HUMIDITY_STARTUP = 68
-val DEHUMIDIFIER_ON_TIME_MIN = 30
+val DEHUMIDIFIER_ON_TIME_MIN = 10
 
 rule "Dehumidifier Startup"
 when
   System started
 then
-  maxHumidity.postUpdate(MAX_HUMIDITY_STARTUP)
   mystrom_switch.sendCommand(OFF)
 end
 
 rule "Dehumidifier with Timeout"
 when
-  Item shellyHT_humid changed or    // measured humidity changed
-  Item maxHumidity changed or       // max humidity changed
-  Item mystrom_switch changed       // timer exeeded / UI modification
+  Item trigger_dehumidifier changed or
+  Time cron "0 0/1 * * * ?"   // every minute
 then
-  if (shellyHT_humid.state >= maxHumidity.state)
+  if (trigger_dehumidifier.state == ON)
   {
     mystrom_switch.sendCommand(ON)
-    logInfo(logName, "Dehumidifier ON. Humidity: " + shellyHT_humid.state)
+    //logInfo(logName, "Dehumidifier ON")
 
     if (timer !== null) {
-      logInfo(logName, "Timer rescheduled")
+      //logInfo(logName, "Timer rescheduled")
       timer.reschedule(now.plusMinutes(DEHUMIDIFIER_ON_TIME_MIN))
     } else {
       timer = createTimer(now.plusMinutes(DEHUMIDIFIER_ON_TIME_MIN), [ |
         mystrom_switch.sendCommand(OFF)
-        logInfo(logName, "Timer expiration")
+        //logInfo(logName, "Timer expiration")
         timer = null
       ])
-      logInfo(logName, "Timer created")
+      //logInfo(logName, "Timer created")
     }
   }
 end

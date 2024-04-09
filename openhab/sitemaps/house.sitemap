@@ -1,11 +1,16 @@
 sitemap house label="Main Menu"
 {
 	Frame label="Laundry" icon="washingmachine" {
-        Text    item=shellyHT_humid
-        Setpoint item=maxHumidity minValue=0 maxValue=100 step=1
         Switch  item=mystrom_switch
+        Switch  item=trigger_dehumidifier
 	}
-    Frame label="Charts" icon="chart" {
-        Chart item=shellyHT_humid refresh=60000 period=D
+    Frame label="Power" icon="chart" {
+        Chart item=mystrom_power refresh=60000 period=h legend=true
+    }
+    Frame label="Switch State" icon="chart" {
+        Chart item=mystrom_switch refresh=60000 period=h legend=true
+    }
+    Frame label="Trigger State" icon="chart" {
+        Chart item=trigger_dehumidifier refresh=60000 period=h legend=true
     }
 }
