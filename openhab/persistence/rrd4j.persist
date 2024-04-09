@@ -3,19 +3,19 @@ Strategies {
 }
 
 Items {
-    trigger_dehumidifier : strategy = everyMinute, everyChange, restoreOnStartup
+    trigger_dehumidifier : strategy = everyMinute, everyChange
     mystrom_switch : strategy = everyMinute, everyChange, restoreOnStartup
-    mystrom_power : strategy = everyMinute, everyChange, restoreOnStartup
+    mystrom_power : strategy = everyMinute, everyChange
 
-    IAC_South : strategy = everyMinute, everyChange, restoreOnStartup
-    IDC_South1 : strategy = everyMinute, everyChange, restoreOnStartup
-    IDC_South2 : strategy = everyMinute, everyChange, restoreOnStartup
-    UDC1_South : strategy = everyMinute, everyChange, restoreOnStartup
-    UDC2_South : strategy = everyMinute, everyChange, restoreOnStartup
+    AC_Power_South : strategy = everyMinute, everyChange
+    IDC_South1 : strategy = everyMinute, everyChange
+    IDC_South2 : strategy = everyMinute, everyChange
+    UDC1_South : strategy = everyMinute, everyChange
+    UDC2_South : strategy = everyMinute, everyChange
 
-    IAC_North : strategy = everyMinute, everyChange, restoreOnStartup
-    IDC_North1 : strategy = everyMinute, everyChange, restoreOnStartup
-    IDC_North2 : strategy = everyMinute, everyChange, restoreOnStartup
-    UDC1_North : strategy = everyMinute, everyChange, restoreOnStartup
-    UDC2_North : strategy = everyMinute, everyChange, restoreOnStartup
+    AC_Power_North : strategy = everyMinute, everyChange
+    IDC_North1 : strategy = everyMinute, everyChange
+    IDC_North2 : strategy = everyMinute, everyChange
+    UDC1_North : strategy = everyMinute, everyChange
+    UDC2_North : strategy = everyMinute, everyChange
 }
