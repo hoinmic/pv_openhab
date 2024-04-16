@@ -8,17 +8,17 @@ rule "Dehumidifier Startup"
 when
   System started
 then
-  mystrom_switch.sendCommand(OFF)
+  dehumidifier_switch.sendCommand(OFF)
 end
 
 rule "Dehumidifier with Timeout"
 when
-  Item trigger_dehumidifier changed or
-  Time cron "0 0/1 * * * ?"   // every minute
+  Item dehumidifier_trigger changed or      // state change
+  Time cron "0 0/1 * * * ?"                 // every minute
 then
-  if (trigger_dehumidifier.state == ON)
+  if (dehumidifier_trigger.state == ON)
   {
-    mystrom_switch.sendCommand(ON)
+    dehumidifier_switch.sendCommand(ON)
     //logInfo(logName, "Dehumidifier ON")
 
     if (timer !== null) {
@@ -26,7 +26,7 @@ then
       timer.reschedule(now.plusMinutes(DEHUMIDIFIER_ON_TIME_MIN))
     } else {
       timer = createTimer(now.plusMinutes(DEHUMIDIFIER_ON_TIME_MIN), [ |
-        mystrom_switch.sendCommand(OFF)
+        dehumidifier_switch.sendCommand(OFF)
         //logInfo(logName, "Timer expiration")
         timer = null
       ])

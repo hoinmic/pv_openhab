@@ -1,16 +1,17 @@
 sitemap house label="Main Menu"
 {
 	Frame label="Laundry" icon="washingmachine" {
-        Switch  item=mystrom_switch
-        Switch  item=trigger_dehumidifier
+        Switch  item=dehumidifier_trigger
+        Switch  item=boiler_33_percent_trigger
+        Switch  item=boiler_100_percent_trigger
 	}
     Frame label="Power" icon="chart" {
-        Chart item=mystrom_power refresh=60000 period=h legend=true
+        Chart item=dehumidifier_power refresh=60000 period=h legend=true
     }
     Frame label="Switch State" icon="chart" {
-        Chart item=mystrom_switch refresh=60000 period=h legend=true
+        Chart item=gSwitch refresh=60000 period=h legend=true
     }
     Frame label="Trigger State" icon="chart" {
-        Chart item=trigger_dehumidifier refresh=60000 period=h legend=true
+        Chart item=gTrigger refresh=60000 period=h legend=true
     }
 }

@@ -1,0 +1,8 @@
+/* Relays */
+Switch boiler_phase1_switch "Boiler Phase1 Relay" (gSwitch) {channel="shelly:shellypro3:boiler:relay1#output"}
+Switch boiler_phase2_switch "Boiler Phase2 Relay" (gSwitch) {channel="shelly:shellypro3:boiler:relay2#output"}
+Switch boiler_phase3_switch "Boiler Phase3 Relay" (gSwitch) {channel="shelly:shellypro3:boiler:relay3#output"}
+
+/* Trigger */
+Switch boiler_33_percent_trigger "Boiler Low Power Trigger" <rain> (gTrigger)
+Switch boiler_100_percent_trigger "Boiler High Power Trigger" <rain> (gTrigger)

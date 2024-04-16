@@ -8,3 +8,7 @@ DateTime sunset_Time "Sunset [%1$tH:%1$tM]" <sunset> (gHouse) { channel="astro:s
 // Current low tariff
 String low_tariff "Low Tariff [%s]" <moon> (gHouse)
 Number kWh_price "Price: [%.2f CHF]" <price> (gHouse)
+
+// Groups
+Group gTrigger
+Group gSwitch

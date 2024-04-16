@@ -3,9 +3,15 @@ Strategies {
 }
 
 Items {
-    trigger_dehumidifier : strategy = everyMinute, everyChange
-    mystrom_switch : strategy = everyMinute, everyChange, restoreOnStartup
-    mystrom_power : strategy = everyMinute, everyChange
+    dehumidifier_trigger : strategy = everyMinute, everyChange
+    dehumidifier_switch : strategy = everyMinute, everyChange, restoreOnStartup
+    dehumidifier_power : strategy = everyMinute, everyChange
+
+    boiler_33_percent_trigger : strategy = everyMinute, everyChange
+    boiler_100_percent_trigger : strategy = everyMinute, everyChange
+    boiler_phase1_switch : strategy = everyMinute, everyChange, restoreOnStartup
+    boiler_phase2_switch : strategy = everyMinute, everyChange, restoreOnStartup
+    boiler_phase3_switch : strategy = everyMinute, everyChange, restoreOnStartup
 
     AC_Power_South : strategy = everyMinute, everyChange
     IDC_South1 : strategy = everyMinute, everyChange
