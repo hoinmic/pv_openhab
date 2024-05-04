@@ -1,0 +1,67 @@
+// Energy Meter Inverter
+Number:Power Current_Power_Meter1_Inverter (gPower) {channel="shelly:shellypro3em:pvInverter:meter1#currentWatts"}
+Number:Energy Total_Energy_Consumption_Meter1_Inverter (gEnergy) {channel="shelly:shellypro3em:pvInverter:meter1#totalKWH"}
+Number:Energy Total_Energy_Returned_Meter1_Inverter (gEnergy) {channel="shelly:shellypro3em:pvInverter:meter1#returnedKWH"}
+//Number:Power Reactive_Power_Meter1_Inverter (gPower) {channel="shelly:shellypro3em:pvInverter:meter1#reactiveWatts"}
+//Number:ElectricPotential Voltage_Meter1_Inverter (gVoltage) {channel="shelly:shellypro3em:pvInverter:meter1#voltage"}
+//Number:ElectricCurrent Current_Meter1_Inverter (gCurrent) {channel="shelly:shellypro3em:pvInverter:meter1#current"}
+//Number:Dimensionless Power_Factor_Meter1_Inverter (gCurrent) {channel="shelly:shellypro3em:pvInverter:meter1#powerFactor"}
+// DateTime Last_Update_Meter1_Inverter {channel="shelly:shellypro3em:pvInverter:meter1#lastUpdate"}
+Switch Reset_Total_Meter1_Inverter {channel="shelly:shellypro3em:pvInverter:meter1#resetTotals"}
+
+Number:Power Current_Power_Meter2_Inverter (gPower) {channel="shelly:shellypro3em:pvInverter:meter2#currentWatts"}
+Number:Energy Total_Energy_Consumption_Meter2_Inverter (gEnergy) {channel="shelly:shellypro3em:pvInverter:meter2#totalKWH"}
+Number:Energy Total_Energy_Returned_Meter2_Inverter (gEnergy) {channel="shelly:shellypro3em:pvInverter:meter2#returnedKWH"}
+//Number:Power Reactive_Power_Meter2_Inverter (gPower) {channel="shelly:shellypro3em:pvInverter:meter2#reactiveWatts"}
+//Number:ElectricPotential Voltage_Meter2_Inverter (gVoltage) {channel="shelly:shellypro3em:pvInverter:meter2#voltage"}
+//Number:ElectricCurrent Current_Meter2_Inverter (gCurrent) {channel="shelly:shellypro3em:pvInverter:meter2#current"}
+//Number:Dimensionless Power_Factor_Meter2_Inverter (gCurrent) {channel="shelly:shellypro3em:pvInverter:meter2#powerFactor"}
+// DateTime Last_Update_Meter2_Inverter {channel="shelly:shellypro3em:pvInverter:meter2#lastUpdate"}
+Switch Reset_Total_Meter2_Inverter {channel="shelly:shellypro3em:pvInverter:meter2#resetTotals"}
+
+Number:Power Current_Power_Meter3_Inverter (gPower) {channel="shelly:shellypro3em:pvInverter:meter3#currentWatts"}
+Number:Energy Total_Energy_Consumption_Meter3_Inverter (gEnergy) {channel="shelly:shellypro3em:pvInverter:meter3#totalKWH"}
+Number:Energy Total_Energy_Returned_Meter3_Inverter (gEnergy) {channel="shelly:shellypro3em:pvInverter:meter3#returnedKWH"}
+//Number:Power Reactive_Power_Meter3_Inverter (gPower) {channel="shelly:shellypro3em:pvInverter:meter3#reactiveWatts"}
+//Number:ElectricPotential Voltage_Meter3_Inverter (gVoltage) {channel="shelly:shellypro3em:pvInverter:meter3#voltage"}
+//Number:ElectricCurrent Current_Meter3_Inverter (gCurrent) {channel="shelly:shellypro3em:pvInverter:meter3#current"}
+//Number:Dimensionless Power_Factor_Meter3_Inverter (gCurrent) {channel="shelly:shellypro3em:pvInverter:meter3#powerFactor"}
+// DateTime Last_Update_Meter3_Inverter {channel="shelly:shellypro3em:pvInverter:meter3#lastUpdate"}
+Switch Reset_Total_Meter3_Inverter {channel="shelly:shellypro3em:pvInverter:meter3#resetTotals"}
+
+
+// Energy Meter Power Grid
+Number:Power Current_Power_Meter1_Power_Grid (gPower) {channel="shelly:shellypro3em:powerGrid:meter1#currentWatts"}
+Number:Energy Total_Energy_Consumption_Meter1_Power_Grid (gEnergy) {channel="shelly:shellypro3em:powerGrid:meter1#totalKWH"}
+Number:Energy Total_Energy_Returned_Meter1_Power_Grid (gEnergy) {channel="shelly:shellypro3em:powerGrid:meter1#returnedKWH"}
+//Number:Power Reactive_Power_Meter1_Power_Grid (gPower) {channel="shelly:shellypro3em:powerGrid:meter1#reactiveWatts"}
+//Number:ElectricPotential Voltage_Meter1_Power_Grid (gVoltage) {channel="shelly:shellypro3em:powerGrid:meter1#voltage"}
+//Number:ElectricCurrent Current_Meter1_Power_Grid (gCurrent) {channel="shelly:shellypro3em:powerGrid:meter1#current"}
+//Number:Dimensionless Power_Factor_Meter1_Power_Grid (gCurrent) {channel="shelly:shellypro3em:powerGrid:meter1#powerFactor"}
+// DateTime Last_Update_Meter1_Power_Grid {channel="shelly:shellypro3em:powerGrid:meter1#lastUpdate"}
+Switch Reset_Total_Meter1_Power_Grid {channel="shelly:shellypro3em:powerGrid:meter1#resetTotals"}
+
+Number:Power Current_Power_Meter2_Power_Grid (gPower) {channel="shelly:shellypro3em:powerGrid:meter2#currentWatts"}
+Number:Energy Total_Energy_Consumption_Meter2_Power_Grid (gEnergy) {channel="shelly:shellypro3em:powerGrid:meter2#totalKWH"}
+Number:Energy Total_Energy_Returned_Meter2_Power_Grid (gEnergy) {channel="shelly:shellypro3em:powerGrid:meter2#returnedKWH"}
+//Number:Power Reactive_Power_Meter2_Power_Grid (gPower) {channel="shelly:shellypro3em:powerGrid:meter2#reactiveWatts"}
+//Number:ElectricPotential Voltage_Meter2_Power_Grid (gVoltage) {channel="shelly:shellypro3em:powerGrid:meter2#voltage"}
+//Number:ElectricCurrent Current_Meter2_Power_Grid (gCurrent) {channel="shelly:shellypro3em:powerGrid:meter2#current"}
+//Number:Dimensionless Power_Factor_Meter2_Power_Grid (gCurrent) {channel="shelly:shellypro3em:powerGrid:meter2#powerFactor"}
+// DateTime Last_Update_Meter2_Power_Grid {channel="shelly:shellypro3em:powerGrid:meter2#lastUpdate"}
+Switch Reset_Total_Meter2_Power_Grid {channel="shelly:shellypro3em:powerGrid:meter2#resetTotals"}
+
+Number:Power Current_Power_Meter3_Power_Grid (gPower) {channel="shelly:shellypro3em:powerGrid:meter3#currentWatts"}
+Number:Energy Total_Energy_Consumption_Meter3_Power_Grid (gEnergy) {channel="shelly:shellypro3em:powerGrid:meter3#totalKWH"}
+Number:Energy Total_Energy_Returned_Meter3_Power_Grid (gEnergy) {channel="shelly:shellypro3em:powerGrid:meter3#returnedKWH"}
+//Number:Power Reactive_Power_Meter3_Power_Grid (gPower) {channel="shelly:shellypro3em:powerGrid:meter3#reactiveWatts"}
+//Number:ElectricPotential Voltage_Meter3_Power_Grid (gVoltage) {channel="shelly:shellypro3em:powerGrid:meter3#voltage"}
+//Number:ElectricCurrent Current_Meter3_Power_Grid (gCurrent) {channel="shelly:shellypro3em:powerGrid:meter3#current"}
+//Number:Dimensionless Power_Factor_Meter3_Power_Grid (gCurrent) {channel="shelly:shellypro3em:powerGrid:meter3#powerFactor"}
+// DateTime Last_Update_Meter3_Power_Grid {channel="shelly:shellypro3em:powerGrid:meter3#lastUpdate"}
+Switch Reset_Total_Meter3_Power_Grid {channel="shelly:shellypro3em:powerGrid:meter3#resetTotals"}
+
+
+// Groups
+Group gPower
+Group gEnergy

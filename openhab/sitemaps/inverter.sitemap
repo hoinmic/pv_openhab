@@ -1,4 +1,4 @@
-sitemap fronius label="Fronius Inverter"
+sitemap inverter label="Fronius Inverter"
 {
     Frame label="AC Power" icon="chart" {
         Chart item=gAcPower refresh=60000 period=8h legend=true

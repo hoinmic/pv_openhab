@@ -1,2 +1,6 @@
 // Shelly Pro 3
 Thing shelly:shellypro3:boiler [ deviceIp="192.168.0.146"]
+
+// Shelly Pro 3EM
+Thing shelly:shellypro3em:pvInverter [ deviceIp="192.168.0.147"]
+Thing shelly:shellypro3em:powerGrid [ deviceIp="192.168.0.148"]
