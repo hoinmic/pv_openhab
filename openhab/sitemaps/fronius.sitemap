@@ -1,0 +1,12 @@
+sitemap fronius label="Fronius Inverter"
+{
+    Frame label="AC Power" icon="chart" {
+        Chart item=gAcPower refresh=60000 period=8h legend=true
+    }
+    Frame label="DC Current" icon="chart" {
+        Chart item=gDcCurrent refresh=60000 period=8h legend=true
+    }
+    Frame label="DC Voltage" icon="chart" {
+        Chart item=gDcVoltage refresh=60000 period=8h legend=true
+    }
+}

@@ -1,14 +1,14 @@
-Number:Power AC_Power_South { channel="fronius:powerinverter:mybridge:southside:inverterdatachannelpac" }
+Number:Power AC_Power_South (gAcPower) { channel="fronius:powerinverter:mybridge:southside:inverterdatachannelpac" }
 Number:Energy Day_Energy_South { channel="fronius:powerinverter:mybridge:southside:inverterdatachanneldayenergy" }
-Number:Energy Total_Energy_South { channel="fronius:powerinverter:mybridge:southside:inverterdatachanneltotal" }
 Number:Energy Year_Energy_South { channel="fronius:powerinverter:mybridge:southside:inverterdatachannelyear" }
+Number:Energy Total_Energy_South { channel="fronius:powerinverter:mybridge:southside:inverterdatachanneltotal" }
 //Number:Frequency FAC_South { channel="fronius:powerinverter:mybridge:southside:inverterdatachannelfac" }
 //Number:ElectricCurrent IAC_South { channel="fronius:powerinverter:mybridge:southside:inverterdatachanneliac" }
-Number:ElectricCurrent IDC_South1 { channel="fronius:powerinverter:mybridge:southside:inverterdatachannelidc" }
-Number:ElectricCurrent IDC_South2 { channel="fronius:powerinverter:mybridge:southside:inverterdatachannelidc2" }
+Number:ElectricCurrent IDC_South1 (gDcCurrent) { channel="fronius:powerinverter:mybridge:southside:inverterdatachannelidc" }
+Number:ElectricCurrent IDC_South2 (gDcCurrent) { channel="fronius:powerinverter:mybridge:southside:inverterdatachannelidc2" }
 //Number:ElectricPotential UAC_South { channel="fronius:powerinverter:mybridge:southside:inverterdatachanneluac" }
-Number:ElectricPotential UDC1_South { channel="fronius:powerinverter:mybridge:southside:inverterdatachanneludc" }
-Number:ElectricPotential UDC2_South { channel="fronius:powerinverter:mybridge:southside:inverterdatachanneludc2" }
+Number:ElectricPotential UDC1_South (gDcVoltage) { channel="fronius:powerinverter:mybridge:southside:inverterdatachanneludc" }
+Number:ElectricPotential UDC2_South (gDcVoltage) { channel="fronius:powerinverter:mybridge:southside:inverterdatachanneludc2" }
 //Number ErrorCode_South { channel="fronius:powerinverter:mybridge:southside:inverterdatadevicestatuserrorcode" }
 //Number StatusCode_South { channel="fronius:powerinverter:mybridge:southside:inverterdatadevicestatusstatuscode" }
 //Number:Power Grid_Power_South { channel="fronius:powerinverter:mybridge:southside:powerflowchannelpgrid" }
@@ -20,17 +20,17 @@ Number:ElectricPotential UDC2_South { channel="fronius:powerinverter:mybridge:so
 //Number:Power Inverter1_Power_South { channel="fronius:powerinverter:mybridge:southside:powerflowinverter1power" }
 //Number:Dimensionless Inverter1_SOC_South { channel="fronius:powerinverter:mybridge:southside:powerflowinverter1soc" }
 
-Number:Power AC_Power_North { channel="fronius:powerinverter:mybridge:northside:inverterdatachannelpac" }
+Number:Power AC_Power_North (gAcPower) { channel="fronius:powerinverter:mybridge:northside:inverterdatachannelpac" }
 Number:Energy Day_Energy_North { channel="fronius:powerinverter:mybridge:northside:inverterdatachanneldayenergy" }
-Number:Energy Total_Energy_North { channel="fronius:powerinverter:mybridge:northside:inverterdatachanneltotal" }
 Number:Energy Year_Energy_North { channel="fronius:powerinverter:mybridge:northside:inverterdatachannelyear" }
+Number:Energy Total_Energy_North { channel="fronius:powerinverter:mybridge:northside:inverterdatachanneltotal" }
 //Number:Frequency FAC_North { channel="fronius:powerinverter:mybridge:northside:inverterdatachannelfac" }
 //Number:ElectricCurrent IAC_North { channel="fronius:powerinverter:mybridge:northside:inverterdatachanneliac" }
-Number:ElectricCurrent IDC_North1 { channel="fronius:powerinverter:mybridge:northside:inverterdatachannelidc" }
-Number:ElectricCurrent IDC_North2 { channel="fronius:powerinverter:mybridge:northside:inverterdatachannelidc2" }
+Number:ElectricCurrent IDC_North1 (gDcCurrent){ channel="fronius:powerinverter:mybridge:northside:inverterdatachannelidc" }
+Number:ElectricCurrent IDC_North2 (gDcCurrent) { channel="fronius:powerinverter:mybridge:northside:inverterdatachannelidc2" }
 //Number:ElectricPotential UAC_North { channel="fronius:powerinverter:mybridge:northside:inverterdatachanneluac" }
-Number:ElectricPotential UDC1_North { channel="fronius:powerinverter:mybridge:northside:inverterdatachanneludc" }
-Number:ElectricPotential UDC2_North { channel="fronius:powerinverter:mybridge:northside:inverterdatachanneludc2" }
+Number:ElectricPotential UDC1_North (gDcVoltage) { channel="fronius:powerinverter:mybridge:northside:inverterdatachanneludc" }
+Number:ElectricPotential UDC2_North (gDcVoltage) { channel="fronius:powerinverter:mybridge:northside:inverterdatachanneludc2" }
 //Number ErrorCode_North { channel="fronius:powerinverter:mybridge:northside:inverterdatadevicestatuserrorcode" }
 //Number StatusCode_North { channel="fronius:powerinverter:mybridge:northside:inverterdatadevicestatusstatuscode" }
 //Number:Power Grid_Power_North { channel="fronius:powerinverter:mybridge:northside:powerflowchannelpgrid" }
@@ -41,3 +41,8 @@ Number:ElectricPotential UDC2_North { channel="fronius:powerinverter:mybridge:no
 //Number:Dimensionless Power_SelfConsumption_North { channel="fronius:powerinverter:mybridge:northside:powerflowselfconsumption" }
 //Number:Power Inverter1_Power_North { channel="fronius:powerinverter:mybridge:northside:powerflowinverter1power" }
 //Number:Dimensionless Inverter1_SOC_North { channel="fronius:powerinverter:mybridge:northside:powerflowinverter1soc" }
+
+// Groups
+Group gAcPower
+Group gDcCurrent
+Group gDcVoltage

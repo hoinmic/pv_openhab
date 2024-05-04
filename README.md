@@ -52,9 +52,10 @@ The following can be used for logs:
 openhab-cli showlogs
 ```
 
-Load the sitemap
+Load the sitemaps
 ```sh
-http://192.168.124.254:8080/basicui/app?sitemap=house
+http://192.168.124.254:8080/basicui/app?sitemap=consumers
+http://192.168.124.254:8080/basicui/app?sitemap=fronius
 ```
 
 ## Hardware Setup

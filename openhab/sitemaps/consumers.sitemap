@@ -1,6 +1,6 @@
-sitemap house label="Main Menu"
+sitemap consumers label="Controllable Consumers"
 {
-	Frame label="Laundry" icon="washingmachine" {
+	Frame label="Consumers" icon="washingmachine" {
         Switch  item=dehumidifier_trigger
         Switch  item=boiler_33_percent_trigger
         Switch  item=boiler_100_percent_trigger
