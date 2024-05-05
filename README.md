@@ -71,13 +71,23 @@ G[Shelly Pro EM3]
 
 J[Electricity distribution box]
 
-L[Heat pump]
-
 O[Shelly Pro 3]
-P[Boiler]
+P[Electric boiler]
 
 S[MyStrom]
 T[Dehumidifier]
+
+U[Heat pump]
+
+M[Connection box]
+V[Washing machine]
+W[Tumble dryer]
+
+
+N[Microwave]
+X[Electric cooker]
+Y[Baking oven]
+Z[Dishwasher]
 
 A --> C
 B --> C
@@ -86,13 +96,33 @@ C --> J
 F <--> G
 G <--> J
 
-J --> L
-
 J --> O
-O --> P
-
 J --> S
-S --> T
+
+subgraph Smart Devices
+    O --> P
+    S --> T
+end
+
+J --> U
+J --> M
+J --> Z
+
+subgraph Future Smart Devices
+    U
+    M --> V
+    M --> W
+    Z
+end
+
+J --> N
+J --> X
+J --> Y
+subgraph Non-Smart Devices
+    N
+    X
+    Y
+end
 ```
 
 ## Additional Informations
