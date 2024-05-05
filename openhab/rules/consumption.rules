@@ -1,0 +1,40 @@
+val logName = "consumption"
+
+var Number moving_average_power_consumption
+var Number moving_average_power_purchase
+
+val FORGETTING_FACTOR = 4
+
+rule "Electricity Consumption Startup"
+when
+  System started
+then
+  filtered_power_consumption.sendCommand(0)
+  filtered_power_purchase.sendCommand(0)
+  moving_average_power_consumption = 0
+  moving_average_power_purchase = 0
+end
+
+rule "Total Electricity Consumption"
+when
+  Time cron "0/15 * * * * ?"                // every 15 seconds
+then
+  // val Number Power_Inverter = Current_Power_Meter1_Inverter + Current_Power_Meter2_Inverter + Current_Power_Meter3_Inverter
+  val Number Power_Inverter = TestInverter.state
+  // val Number Power_Power_Grid = Current_Power_Meter1_Power_Grid + Current_Power_Meter2_Power_Grid + Current_Power_Meter3_Power_Grid
+  val Number Power_Power_Grid = TestGrid.state
+  val Number current_power_consumption = Power_Inverter + Power_Power_Grid
+
+  // Filter Electricity Consumption
+  moving_average_power_consumption = moving_average_power_consumption - ( moving_average_power_consumption / FORGETTING_FACTOR ) + current_power_consumption
+  filtered_power_consumption.sendCommand( moving_average_power_consumption / FORGETTING_FACTOR )
+
+  // Filter Electricity Purchase
+  moving_average_power_purchase = moving_average_power_purchase - ( moving_average_power_purchase / FORGETTING_FACTOR ) + Power_Power_Grid
+  filtered_power_purchase.sendCommand( moving_average_power_purchase / FORGETTING_FACTOR )
+
+  // logInfo(logName, "filtered_power_consumption: " + filtered_power_consumption.state.toString)
+  // logInfo(logName, "filtered_power_purchase: " + filtered_power_purchase.state.toString)
+  // logInfo(logName, "moving_average_power_consumption: " + moving_average_power_consumption)
+  // logInfo(logName, "moving_average_power_purchase: " + moving_average_power_purchase)
+end

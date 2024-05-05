@@ -54,8 +54,9 @@ openhab-cli showlogs
 
 Load the sitemaps
 ```sh
-http://192.168.124.254:8080/basicui/app?sitemap=consumers
-http://192.168.124.254:8080/basicui/app?sitemap=fronius
+http://192.168.124.254:8080/basicui/app?sitemap=control
+http://192.168.124.254:8080/basicui/app?sitemap=inverter
+http://192.168.124.254:8080/basicui/app?sitemap=powerDistribution
 ```
 
 ## Hardware Setup

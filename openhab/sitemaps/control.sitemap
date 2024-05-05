@@ -1,4 +1,4 @@
-sitemap consumers label="Controllable Consumers"
+sitemap control label="Controllable Consumers"
 {
 	Frame label="Consumers" icon="washingmachine" {
         Switch  item=dehumidifier_trigger
