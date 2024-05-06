@@ -1,0 +1,12 @@
+sitemap overview label="Overview"
+{
+    Frame label="Consumers" icon="energy" {
+        Slider item=TestGrid minValue=-30000 maxValue=30000
+        Slider item=TestInverter minValue=0 maxValue=30000
+	}
+	Frame label="Power" icon="energy" {
+        Input item=filtered_power_inverter label="Power Inverter [%.0f %unit%]" staticIcon=energy inputHint="number"
+        Input item=filtered_power_grid label="Power Grid [%.0f %unit%]" staticIcon=energy inputHint="number"
+        Input item=filtered_power_consumption label="Power Consumption [%.0f %unit%]" staticIcon=energy inputHint="number"
+	}
+}

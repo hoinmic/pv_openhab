@@ -32,8 +32,9 @@ Items {
     Current_Power_Meter2_Power_Grid : strategy = everyMinute, everyChange
     Current_Power_Meter3_Power_Grid : strategy = everyMinute, everyChange
 
+    filtered_power_inverter : strategy = everyMinute, everyChange
+    filtered_power_grid : strategy = everyMinute, everyChange
     filtered_power_consumption : strategy = everyMinute, everyChange
-    filtered_power_purchase : strategy = everyMinute, everyChange
     TestGrid : strategy = everyMinute, everyChange
     TestInverter : strategy = everyMinute, everyChange
 }

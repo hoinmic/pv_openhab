@@ -1,9 +1,5 @@
 sitemap powerDistribution label="Power distribution"
 {
-    Frame label="Consumers" icon="washingmachine" {
-        Slider item=TestGrid
-        Slider item=TestInverter
-	}
     Frame label="Power distribution" icon="chart" {
         Chart item=gHouseholdPower refresh=60000 period=h legend=true
     }

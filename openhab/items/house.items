@@ -10,10 +10,13 @@ String low_tariff "Low Tariff [%s]" <moon> (gHouse)
 Number kWh_price "Price: [%.2f CHF]" <price> (gHouse)
 
 // Total electricity consumption
+Number:Power filtered_power_inverter "Power Inverter: [%d W]" <power> (gHouseholdPower)
+Number:Power filtered_power_grid "Power Grid: [%d W]" <power> (gHouseholdPower)
 Number:Power filtered_power_consumption "Power Consumption: [%d W]" <power> (gHouseholdPower)
-Number:Power filtered_power_purchase "Power Purchase: [%d W]" <power> (gHouseholdPower)
-Number:Power TestGrid "Test Grid Power: [%d W]" <power> (gHouseholdPower)
-Number:Power TestInverter "Test Inverter Power: [%d W]" <power> (gHouseholdPower)
+
+// Testing
+Number:Power TestGrid "Test Grid Power: [%d W]" <power>
+Number:Power TestInverter "Test Inverter Power: [%d W]" <power>
 
 // Groups
 Group gTrigger
