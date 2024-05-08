@@ -22,11 +22,29 @@ rule "Total Electricity Consumption"
 when
   Time cron "0/15 * * * * ?"                // every 15 seconds
 then
-  // val Number Power_Inverter = Current_Power_Meter1_Inverter + Current_Power_Meter2_Inverter + Current_Power_Meter3_Inverter
-  val Number Power_Inverter = TestInverter.state
-  // val Number Power_Power_Grid = Current_Power_Meter1_Power_Grid + Current_Power_Meter2_Power_Grid + Current_Power_Meter3_Power_Grid
-  val Number Power_Power_Grid = TestGrid.state
-  val Number current_power_consumption = Power_Inverter + Power_Power_Grid
+  var Number Power_Inverter = 0
+  if (((Current_Power_Meter1_Inverter.state != NULL ) && (Current_Power_Meter1_Inverter.state != UNDEF)) &&
+      ((Current_Power_Meter2_Inverter.state != NULL ) && (Current_Power_Meter2_Inverter.state != UNDEF)) &&
+      ((Current_Power_Meter3_Inverter.state != NULL ) && (Current_Power_Meter3_Inverter.state != UNDEF)))
+  {
+    Power_Inverter = Current_Power_Meter1_Inverter + Current_Power_Meter2_Inverter + Current_Power_Meter3_Inverter
+  }
+  if ( (TestInverter.state != NULL ) && (TestInverter.state != UNDEF) )
+  {
+    Power_Inverter = Power_Inverter + TestInverter.state
+  }
+
+  var Number Power_Power_Grid = 0
+  if (((Current_Power_Meter1_Power_Grid.state != NULL) && (Current_Power_Meter1_Power_Grid.state != UNDEF)) &&
+      ((Current_Power_Meter2_Power_Grid.state != NULL) && (Current_Power_Meter2_Power_Grid.state != UNDEF)) &&
+      ((Current_Power_Meter3_Power_Grid.state != NULL) && (Current_Power_Meter3_Power_Grid.state != UNDEF)))
+  {
+    Power_Power_Grid = Current_Power_Meter1_Power_Grid + Current_Power_Meter2_Power_Grid + Current_Power_Meter3_Power_Grid
+  }
+  if ( (TestGrid.state != NULL ) && (TestGrid.state != UNDEF) )
+  {
+    Power_Power_Grid = Power_Power_Grid + TestGrid.state
+  }
 
   // Filter Power Inverter
   moving_average_power_inverter = moving_average_power_inverter - ( moving_average_power_inverter / FORGETTING_FACTOR ) + Power_Inverter

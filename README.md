@@ -131,3 +131,7 @@ end
 
 - In top foleder is a script to automatic copy the openhab files to remote (file: autocopy)
 
+## Restart / Clean Cache
+sudo systemctl stop openhab
+openhab-cli clean-cache
+sudo systemctl start openhab
