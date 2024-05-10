@@ -1,6 +1,6 @@
-sitemap overview label="Overview"
+sitemap powerOverview label="Power Overview"
 {
-    Frame label="Consumers" icon="energy" {
+    Frame label="Test Power" icon="energy" {
         Slider item=TestGrid minValue=-30000 maxValue=30000
         Slider item=TestInverter minValue=0 maxValue=30000
 	}

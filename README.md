@@ -56,8 +56,9 @@ Load the sitemaps
 ```sh
 http://192.168.124.254:8080/basicui/app?sitemap=control
 http://192.168.124.254:8080/basicui/app?sitemap=inverter
-http://192.168.124.254:8080/basicui/app?sitemap=overview
-http://192.168.124.254:8080/basicui/app?sitemap=powerDistribution
+http://192.168.124.254:8080/basicui/app?sitemap=powerGraph
+http://192.168.124.254:8080/basicui/app?sitemap=powerOverview
+http://192.168.124.254:8080/basicui/app?sitemap=energyOverview
 ```
 
 ## Hardware Setup

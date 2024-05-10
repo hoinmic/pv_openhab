@@ -1,0 +1,42 @@
+sitemap energyOverview label="Energy Overview"
+{
+    Frame label="Test Energy" icon="energy" {
+        Slider item=TestInverter_Energy minValue=0 maxValue=100
+        Slider item=TestGrid_Energy minValue=0 maxValue=100
+        Slider item=TestGrid_Energy_Returned minValue=0 maxValue=100
+        Switch item=Reset_Day_Energy_Meter
+        Switch item=Reset_Month_Energy_Meter
+	}
+
+	Frame label="Day Energy Meter" icon="energy" {
+        Input item=Day_Energy_Inverter label="Energy Inverter [%.0f %unit%]" staticIcon=energy inputHint="number"
+	Input item=Day_Energy_Grid label="Energy Grid [%.0f %unit%]" staticIcon=energy inputHint="number"
+	Input item=Day_Energy_Returned_Grid label="Energy Returned Grid [%.0f %unit%]" staticIcon=energy inputHint="number"
+        }
+
+        Frame label="Day Energy" icon="energy" {
+        Input item=Day_Energy_Household_Consumption label="Household Consumption [%.0f %unit%]" staticIcon=energy inputHint="number"
+	Input item=Day_Energy_Self_Consumption label="Self Consumption [%.0f %unit%]" staticIcon=energy inputHint="number"
+        }
+
+        Frame label="Day Autonomy" icon="energy" {
+        Input item=Day_Degree_Of_Autonomy label="Degree Of Autonomy [%.1f %%]" staticIcon=energy inputHint="number"
+        Input item=Day_Rate_Self_Consumption label="Rate Self Consumption [%.1f %%]" staticIcon=energy inputHint="number"
+	}
+
+	Frame label="Month Energy Meter" icon="energy" {
+        Input item=Month_Energy_Inverter label="Energy Inverter [%.0f %unit%]" staticIcon=energy inputHint="number"
+	Input item=Month_Energy_Grid label="Energy Grid [%.0f %unit%]" staticIcon=energy inputHint="number"
+	Input item=Month_Energy_Returned_Grid label="Energy Returned Grid [%.0f %unit%]" staticIcon=energy inputHint="number"
+        }
+
+        Frame label="Month Energy" icon="energy" {
+        Input item=Month_Energy_Household_Consumption label="Household Consumption [%.0f %unit%]" staticIcon=energy inputHint="number"
+	Input item=Month_Energy_Self_Consumption label="Self Consumption [%.0f %unit%]" staticIcon=energy inputHint="number"
+        }
+
+        Frame label="Month Autonomy" icon="energy" {
+        Input item=Month_Degree_Of_Autonomy label="Degree Of Autonomy [%.1f %%]" staticIcon=energy inputHint="number"
+        Input item=Month_Rate_Self_Consumption label="Rate Self Consumption [%.1f %%]" staticIcon=energy inputHint="number"
+	}
+}

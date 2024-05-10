@@ -9,16 +9,46 @@ DateTime sunset_Time "Sunset [%1$tH:%1$tM]" <sunset> (gHouse) { channel="astro:s
 String low_tariff "Low Tariff [%s]" <moon> (gHouse)
 Number kWh_price "Price: [%.2f CHF]" <price> (gHouse)
 
-// Total electricity consumption
+// Electricity consumption
 Number:Power filtered_power_inverter "Power Inverter: [%d W]" <power> (gHouseholdPower)
 Number:Power filtered_power_grid "Power Grid: [%d W]" <power> (gHouseholdPower)
 Number:Power filtered_power_consumption "Power Consumption: [%d W]" <power> (gHouseholdPower)
 
-// Testing
+// Day Energy consumption
+Number:Energy Day_Energy_Inverter "Day Inverter Energy: [%d kWh]" <energy> (gHouseholdEnergy)
+Number:Energy Day_Energy_Grid "Day Grid Energy: [%d kWh]" <energy> (gHouseholdEnergy)
+Number:Energy Day_Energy_Returned_Grid "Day Grid Energy Returned: [%d kWh]" <energy> (gHouseholdEnergy)
+
+Number:Energy Day_Energy_Household_Consumption "Day Household Total Energy Consumption: [%d kWh]" <energy> (gHouseholdEnergy)
+Number:Energy Day_Energy_Self_Consumption "Day Inverter Energy Self Consumption: [%d kWh]" <energy>
+
+Number:Energy Day_Degree_Of_Autonomy "Day Autonomy Rate Self Consumption: [%.1f]" <percent> (gHouseholdPercent)
+Number:Energy Day_Rate_Self_Consumption "Day Inverter Rate Self Consumption: [%.1f]" <percent> (gHouseholdPercent)
+
+// Month Energy consumption
+Number:Energy Month_Energy_Inverter "Month Inverter Energy: [%d kWh]" <energy> (gHouseholdEnergy)
+Number:Energy Month_Energy_Grid "Month Grid Energy: [%d kWh]" <energy> (gHouseholdEnergy)
+Number:Energy Month_Energy_Returned_Grid "Month Grid Energy Returned: [%d kWh]" <energy> (gHouseholdEnergy)
+
+Number:Energy Month_Energy_Household_Consumption "Month Household Total Energy Consumption: [%d kWh]" <energy> (gHouseholdEnergy)
+Number:Energy Month_Energy_Self_Consumption "Month Inverter Energy Self Consumption: [%d kWh]" <energy>
+
+Number:Energy Month_Degree_Of_Autonomy "Month Autonomy Rate Self Consumption: [%.1f]" <percent> (gHouseholdPercent)
+Number:Energy Month_Rate_Self_Consumption "Month Inverter Rate Self Consumption: [%.1f]" <percent> (gHouseholdPercent)
+
+Switch Reset_Day_Energy_Meter "Reset Energy Meter Day" <rain>
+Switch Reset_Month_Energy_Meter "Reset Energy Meter Month" <rain>
+
+// Testing Power
 Number:Power TestGrid "Test Grid Power: [%d W]" <power>
 Number:Power TestInverter "Test Inverter Power: [%d W]" <power>
+// Testing Energy
+Number:Energy TestGrid_Energy "Test Grid Energy: [%d kWh]" <energy>
+Number:Energy TestGrid_Energy_Returned "Test Grid Energy Returned: [%d kWh]" <energy>
+Number:Energy TestInverter_Energy "Test Inverter Energy: [%d kWh]" <energy>
 
 // Groups
 Group gTrigger
 Group gSwitch
 Group gHouseholdPower
+Group gHouseholdEnergy

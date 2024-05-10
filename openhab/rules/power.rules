@@ -1,4 +1,4 @@
-val logName = "consumption"
+val logName = "power"
 
 var Number moving_average_power_inverter
 var Number moving_average_power_grid
@@ -6,7 +6,7 @@ var Number moving_average_power_consumption
 
 val FORGETTING_FACTOR = 4
 
-rule "Electricity Consumption Startup"
+rule "Power Consumption Startup"
 when
   System started
 then
@@ -16,18 +16,19 @@ then
   moving_average_power_inverter = 0
   moving_average_power_grid = 0
   moving_average_power_consumption = 0
+
+  TestInverter.sendCommand(0)
+  TestGrid.sendCommand(0)
 end
 
-rule "Total Electricity Consumption"
+rule "Total Power Consumption"
 when
   Time cron "0/15 * * * * ?"                // every 15 seconds
 then
   var Number Power_Inverter = 0
-  if (((Current_Power_Meter1_Inverter.state != NULL ) && (Current_Power_Meter1_Inverter.state != UNDEF)) &&
-      ((Current_Power_Meter2_Inverter.state != NULL ) && (Current_Power_Meter2_Inverter.state != UNDEF)) &&
-      ((Current_Power_Meter3_Inverter.state != NULL ) && (Current_Power_Meter3_Inverter.state != UNDEF)))
+  if ((Current_Power_Total_Inverter.state != NULL ) && (Current_Power_Total_Inverter.state != UNDEF))
   {
-    Power_Inverter = Current_Power_Meter1_Inverter + Current_Power_Meter2_Inverter + Current_Power_Meter3_Inverter
+    Power_Inverter = Current_Power_Total_Inverter
   }
   if ( (TestInverter.state != NULL ) && (TestInverter.state != UNDEF) )
   {
@@ -35,11 +36,9 @@ then
   }
 
   var Number Power_Power_Grid = 0
-  if (((Current_Power_Meter1_Power_Grid.state != NULL) && (Current_Power_Meter1_Power_Grid.state != UNDEF)) &&
-      ((Current_Power_Meter2_Power_Grid.state != NULL) && (Current_Power_Meter2_Power_Grid.state != UNDEF)) &&
-      ((Current_Power_Meter3_Power_Grid.state != NULL) && (Current_Power_Meter3_Power_Grid.state != UNDEF)))
+  if ((Current_Power_Total_Grid.state != NULL) && (Current_Power_Total_Grid.state != UNDEF))
   {
-    Power_Power_Grid = Current_Power_Meter1_Power_Grid + Current_Power_Meter2_Power_Grid + Current_Power_Meter3_Power_Grid
+    Power_Power_Grid = Current_Power_Total_Grid
   }
   if ( (TestGrid.state != NULL ) && (TestGrid.state != UNDEF) )
   {

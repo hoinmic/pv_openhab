@@ -3,6 +3,7 @@ Strategies {
 }
 
 Items {
+    // Consumers Storage
     dehumidifier_trigger : strategy = everyMinute, everyChange
     dehumidifier_switch : strategy = everyMinute, everyChange, restoreOnStartup
     dehumidifier_power : strategy = everyMinute, everyChange
@@ -13,6 +14,7 @@ Items {
     boiler_phase2_switch : strategy = everyMinute, everyChange, restoreOnStartup
     boiler_phase3_switch : strategy = everyMinute, everyChange, restoreOnStartup
 
+    // Fronius Storage
     AC_Power_South : strategy = everyMinute, everyChange
     IDC_South1 : strategy = everyMinute, everyChange
     IDC_South2 : strategy = everyMinute, everyChange
@@ -25,16 +27,35 @@ Items {
     UDC1_North : strategy = everyMinute, everyChange
     UDC2_North : strategy = everyMinute, everyChange
 
-    Current_Power_Meter1_Inverter : strategy = everyMinute, everyChange
-    Current_Power_Meter2_Inverter : strategy = everyMinute, everyChange
-    Current_Power_Meter3_Inverter : strategy = everyMinute, everyChange
-    Current_Power_Meter1_Power_Grid : strategy = everyMinute, everyChange
-    Current_Power_Meter2_Power_Grid : strategy = everyMinute, everyChange
-    Current_Power_Meter3_Power_Grid : strategy = everyMinute, everyChange
+    // Power Storage
+    Current_Power_Total_Inverter : strategy = everyMinute, everyChange
+    Current_Power_Total_Grid : strategy = everyMinute, everyChange
 
     filtered_power_inverter : strategy = everyMinute, everyChange
     filtered_power_grid : strategy = everyMinute, everyChange
     filtered_power_consumption : strategy = everyMinute, everyChange
     TestGrid : strategy = everyMinute, everyChange
     TestInverter : strategy = everyMinute, everyChange
+
+    // Energy Storage Day
+    Day_Energy_Inverter : strategy = everyMinute, everyChange
+    Day_Energy_Grid : strategy = everyMinute, everyChange
+    Day_Energy_Returned_Grid : strategy = everyMinute, everyChange
+
+    Day_Energy_Household_Consumption : strategy = everyMinute, everyChange
+    Day_Energy_Self_Consumption : strategy = everyMinute, everyChange
+
+    Day_Degree_Of_Autonomy : strategy = everyMinute, everyChange
+    Day_Rate_Self_Consumption : strategy = everyMinute, everyChange
+
+    // Energy Storage Month
+    Month_Energy_Inverter : strategy = everyMinute, everyChange
+    Month_Energy_Grid : strategy = everyMinute, everyChange
+    Month_Energy_Returned_Grid : strategy = everyMinute, everyChange
+
+    Month_Energy_Household_Consumption : strategy = everyMinute, everyChange
+    Month_Energy_Self_Consumption : strategy = everyMinute, everyChange
+
+    Month_Degree_Of_Autonomy : strategy = everyMinute, everyChange
+    Month_Rate_Self_Consumption : strategy = everyMinute, everyChange
 }
