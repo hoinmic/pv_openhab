@@ -28,7 +28,7 @@ then
   var Number Power_Inverter = 0
   if ((Current_Power_Total_Inverter.state != NULL ) && (Current_Power_Total_Inverter.state != UNDEF))
   {
-    Power_Inverter = Current_Power_Total_Inverter
+    Power_Inverter = Current_Power_Total_Inverter.state
   }
   if ( (TestInverter.state != NULL ) && (TestInverter.state != UNDEF) )
   {
@@ -38,7 +38,7 @@ then
   var Number Power_Power_Grid = 0
   if ((Current_Power_Total_Grid.state != NULL) && (Current_Power_Total_Grid.state != UNDEF))
   {
-    Power_Power_Grid = Current_Power_Total_Grid
+    Power_Power_Grid = Current_Power_Total_Grid.state
   }
   if ( (TestGrid.state != NULL ) && (TestGrid.state != UNDEF) )
   {

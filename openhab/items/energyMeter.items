@@ -1,7 +1,8 @@
 // Energy Meter Total Inverter
 Number:Power Current_Power_Total_Inverter (gPower) {channel="shelly:shellypro3em:pvInverter:device#accumulatedWatts"}
-Number:Energy Energy_Inverter (gEnergy) {channel="shelly:shellypro3em:pvInverter:device#accumulatedTotal"}
+Number:Energy Energy_Inverter (gEnergy) {channel="shelly:shellypro3em:pvInverter:device#accumulatedWTotal"}
 //Number:Energy Returned_Energy_Inverter (gEnergy) {channel="shelly:shellypro3em:pvInverter:device#accumulatedReturned"}
+Number Uptime_Inverter {channel="shelly:shellypro3em:pvInverter:device#uptime"}
 
 // // Energy Meter1 Inverter
 // Number:Power Current_Power_Meter1_Inverter (gPower) {channel="shelly:shellypro3em:pvInverter:meter1#currentWatts"}
@@ -39,8 +40,9 @@ Number:Energy Energy_Inverter (gEnergy) {channel="shelly:shellypro3em:pvInverter
 
 // Energy Meter Total Grid
 Number:Power Current_Power_Total_Grid (gPower) {channel="shelly:shellypro3em:powerGrid:device#accumulatedWatts"}
-Number:Energy Energy_Grid (gEnergy) {channel="shelly:shellypro3em:powerGrid:device#accumulatedTotal"}
+Number:Energy Energy_Grid (gEnergy) {channel="shelly:shellypro3em:powerGrid:device#accumulatedWTotal"}
 Number:Energy Returned_Energy_Grid (gEnergy) {channel="shelly:shellypro3em:powerGrid:device#accumulatedReturned"}
+Number Uptime_Grid {channel="shelly:shellypro3em:powerGrid:device#uptime"}
 
 // // Energy Meter1 Grid
 // Number:Power Current_Power_Meter1_Power_Grid (gPower) {channel="shelly:shellypro3em:powerGrid:meter1#currentWatts"}

@@ -1,2 +1,2 @@
 //Mystrom devices
-Thing mystrom:mystromplug:1245628c "Plug" [hostname="192.168.0.100"]
+Thing mystrom:mystromplug:1245628c "Plug" [hostname="192.168.0.163"]

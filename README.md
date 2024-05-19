@@ -12,11 +12,15 @@ Photovoltaic monitoring and smart control of consumers with openhab 4
 
 Install java
 ```sh
+sudo apt install gnupg ca-certificates curl
+curl -s https://repos.azul.com/azul-repo.key | sudo gpg --dearmor -o /usr/share/keyrings/azul.gpg
+echo "deb [signed-by=/usr/share/keyrings/azul.gpg] https://repos.azul.com/zulu/deb stable main" | sudo tee /etc/apt/sources.list.d/zulu.list
 sudo apt install zulu17-jdk
 ```
 
 Install openhab
 ```sh
+sudo apt  install curl
 curl -fsSL "https://openhab.jfrog.io/artifactory/api/gpg/key/public" | gpg --dearmor > openhab.gpg
 sudo mv openhab.gpg /usr/share/keyrings
 sudo chmod u=rw,g=r,o=r /usr/share/keyrings/openhab.gpg
