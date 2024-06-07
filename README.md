@@ -59,10 +59,9 @@ openhab-cli showlogs
 Load the sitemaps
 ```sh
 http://192.168.124.254:8080/basicui/app?sitemap=control
-http://192.168.124.254:8080/basicui/app?sitemap=inverter
-http://192.168.124.254:8080/basicui/app?sitemap=powerGraph
 http://192.168.124.254:8080/basicui/app?sitemap=powerOverview
 http://192.168.124.254:8080/basicui/app?sitemap=energyOverview
+http://192.168.124.254:8080/basicui/app?sitemap=inverter
 ```
 
 ## Hardware Setup
@@ -95,6 +94,7 @@ N[Microwave]
 X[Electric cooker]
 Y[Baking oven]
 Z[Dishwasher]
+CAR[Car]
 
 A --> C
 B --> C
@@ -114,12 +114,14 @@ end
 J --> U
 J --> M
 J --> Z
+J --> CAR
 
 subgraph Future Smart Devices
     U
     M --> V
     M --> W
     Z
+    CAR
 end
 
 J --> N

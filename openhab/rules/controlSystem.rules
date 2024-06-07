@@ -1,0 +1,67 @@
+val logName = "controlSystem"
+
+rule "Control System Startup"
+when
+  System started
+then
+  boiler_33_percent_trigger.sendCommand(OFF)
+  boiler_100_percent_trigger.sendCommand(OFF)
+  dehumidifier_trigger.sendCommand(OFF)
+end
+
+rule "Control System Boiler"
+when
+  Time cron "0 0/1 * * * ?"   // every minute
+then
+  var next_boiler_33_percent_trigger = "OFF"
+  var next_boiler_100_percent_trigger = "OFF"
+
+  logInfo(logName, "Time of day: " + timeOfDay.state)
+  
+  // Morning sun + Afternoon sun (No switching on during food preparation at lunchtime)
+  if((timeOfDay.state.toString == "SUN_RISE") || (timeOfDay.state.toString == "MORNING_SUN") ||
+     (timeOfDay.state.toString == "AFTERNOON_SUN") || (timeOfDay.state.toString == "EVENING_SUN"))
+  {
+    if(((filtered_power_grid.state as Number).intValue <= -1400) ||
+       (boiler_100_percent_trigger.state.toString == "ON"))
+    {
+      next_boiler_33_percent_trigger = "ON"
+    }
+
+    if((boiler_phase1_switch.state.toString == "ON") && ((filtered_power_grid.state as Number).intValue <= -2700))
+    {
+      next_boiler_100_percent_trigger = "ON"
+    }
+  }
+
+  if((boiler_33_percent_trigger.state.toString != next_boiler_33_percent_trigger))
+  { 
+    logInfo(logName, "Boiler 33 percent trigger: " + next_boiler_33_percent_trigger)
+    boiler_33_percent_trigger.sendCommand(next_boiler_33_percent_trigger)
+  }
+  if((boiler_100_percent_trigger.state.toString != next_boiler_100_percent_trigger))
+  {
+    logInfo(logName, "Boiler 100 percent trigger: " + next_boiler_100_percent_trigger)
+    boiler_100_percent_trigger.sendCommand(next_boiler_100_percent_trigger)
+  }
+end
+
+rule "Control System Dehumidifier"
+when
+  Time cron "0 0/1 * * * ?"   // every minute
+then
+  var next_dehumidifier_trigger = "OFF"
+
+  // Morning sun <-> evening sun (No switching on during food preparation at lunchtime)
+  if((timeOfDay.state == "MORNING_SUN") || (timeOfDay.state == "AFTERNOON_SUN") ||
+     (timeOfDay.state == "EVENING_SUN"))
+  {
+    next_dehumidifier_trigger = "ON"
+  }
+
+  if((dehumidifier_trigger.state().toString != next_dehumidifier_trigger))
+  {
+    logInfo(logName, "Dehumidifier trigger: " + next_dehumidifier_trigger)
+    dehumidifier_trigger.sendCommand(next_dehumidifier_trigger)
+  }
+end

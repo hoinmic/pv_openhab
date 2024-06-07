@@ -1,6 +1,0 @@
-sitemap powerGraph label="Power Graph"
-{
-    Frame label="Power distribution" icon="chart" {
-        Chart item=gHouseholdPower refresh=60000 period=h legend=true
-    }
-}
