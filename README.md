@@ -115,11 +115,13 @@ J --> U
 J --> M
 J --> Z
 J --> CAR
+M --> V
+M --> W
 
 subgraph Future Smart Devices
     U
-    M --> V
-    M --> W
+    V
+    W
     Z
     CAR
 end
