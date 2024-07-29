@@ -1,55 +1,14 @@
 # pv_openhab
 Photovoltaic monitoring and smart control of consumers with openhab 4
 
-## Add-ons
+## Installation with ansible
 
-- Astro Binding
-- Shelly Binding
-- mystorm Binding
-- Fronius Binding
+ansible-playbook --ask-become-pass -i ansible/inventory ansible/site.yml --tags "all,never"
 
-## Installations on x86
-
-Install java
-```sh
-sudo apt install gnupg ca-certificates curl
-curl -s https://repos.azul.com/azul-repo.key | sudo gpg --dearmor -o /usr/share/keyrings/azul.gpg
-echo "deb [signed-by=/usr/share/keyrings/azul.gpg] https://repos.azul.com/zulu/deb stable main" | sudo tee /etc/apt/sources.list.d/zulu.list
-sudo apt install zulu17-jdk
-```
-
-Install openhab
-```sh
-sudo apt  install curl
-curl -fsSL "https://openhab.jfrog.io/artifactory/api/gpg/key/public" | gpg --dearmor > openhab.gpg
-sudo mv openhab.gpg /usr/share/keyrings
-sudo chmod u=rw,g=r,o=r /usr/share/keyrings/openhab.gpg
-echo 'deb [signed-by=/usr/share/keyrings/openhab.gpg] https://openhab.jfrog.io/artifactory/openhab-linuxpkg stable main' | sudo tee /etc/apt/sources.list.d/openhab.list
-
-sudo apt-get update
-sudo apt-get install openhab
-sudo apt-get install openhab-addons
-
-sudo systemctl start openhab.service
-sudo systemctl enable openhab.service
-```
-
-Set password and login for openhab linux user (to copy files)
-```sh
-sudo passwd openhab
-sudo vi /etc/passwd
-line: openhab .... /bin/false -> /bin/bash
-```
-
-## Set timezone of the system
-
-```sh
-sudo timedatectl set-timezone Europe/Zurich
-```
+login: smarthome
+pw: smarthome
 
 ## Test and Debug
-
-In top foleder is a script to automatic copy the openhab files to remote (file: autocopy)
 
 The following can be used for logs:
 ```sh
@@ -58,10 +17,10 @@ openhab-cli showlogs
 
 Load the sitemaps
 ```sh
-http://192.168.124.254:8080/basicui/app?sitemap=control
-http://192.168.124.254:8080/basicui/app?sitemap=powerOverview
-http://192.168.124.254:8080/basicui/app?sitemap=energyOverview
-http://192.168.124.254:8080/basicui/app?sitemap=inverter
+http://192.168.124.21:8080/basicui/app?sitemap=control
+http://192.168.124.21:8080/basicui/app?sitemap=powerOverview
+http://192.168.124.21:8080/basicui/app?sitemap=energyOverview
+http://192.168.124.21:8080/basicui/app?sitemap=inverter
 ```
 
 ## Hardware Setup
@@ -138,9 +97,10 @@ end
 
 ## Additional Informations
 
-- In top foleder is a script to automatic copy the openhab files to remote (file: autocopy)
+### Ansible file copy
+ansible-playbook --ask-become-pass -i ansible/inventory ansible/site.yml
 
-## Restart / Clean Cache
+### Restart / Clean Cache
 sudo systemctl stop openhab
 openhab-cli clean-cache
 sudo systemctl start openhab

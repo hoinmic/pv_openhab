@@ -1,0 +1,7 @@
+[all:vars]
+ansible_connection=ssh
+ansible_user=smarthome
+ansible_ssh_pass=smarthome
+
+[openhab_servers]
+192.168.124.21

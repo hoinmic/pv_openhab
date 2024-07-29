@@ -1,0 +1,96 @@
+---
+
+- hosts: all
+  become: true
+  pre_tasks:
+
+  - name: update repository index
+    tags: always
+    apt:
+      update_cache: yes
+    changed_when: false
+
+  - name: Update all Ubuntu packages to their latest version
+    apt:
+      name: "*"
+      state: latest
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: install curl
+    tags: install,never
+    apt:
+      name: 
+        - curl
+      state: latest
+
+  - name: prepare java installation
+    tags: install,never
+    shell: |
+      sudo apt install gnupg ca-certificates curl
+      curl -s https://repos.azul.com/azul-repo.key | sudo gpg --batch --yes --dearmor -o /usr/share/keyrings/azul.gpg
+      echo "deb [signed-by=/usr/share/keyrings/azul.gpg] https://repos.azul.com/zulu/deb stable main" | sudo tee /etc/apt/sources.list.d/zulu.list
+
+
+  - name: prepare openhab installation
+    tags: install,never
+    shell: |
+      curl -fsSL "https://openhab.jfrog.io/artifactory/api/gpg/key/public" | gpg --batch --yes --dearmor > openhab.gpg
+      sudo mv openhab.gpg /usr/share/keyrings
+      sudo chmod u=rw,g=r,o=r /usr/share/keyrings/openhab.gpg
+      echo 'deb [signed-by=/usr/share/keyrings/openhab.gpg] https://openhab.jfrog.io/artifactory/openhab-linuxpkg stable main' | sudo tee /etc/apt/sources.list.d/openhab.list
+
+  - name: update repository index
+    tags: install,never
+    apt:
+      update_cache: yes
+    changed_when: false
+
+  - name: Update all Ubuntu packages to their latest version
+    tags: install,never
+    apt:
+      name: "*"
+      state: latest
+
+  - name: install all required components
+    tags: install,never
+    apt:
+      name: 
+        - zulu17-jdk
+        - openhab=4.2.0-1
+        - openhab-addons=4.2.0-1
+      state: latest
+
+  - name: start openhab
+    tags: install,never
+    service:
+      name: openhab
+      state: started
+      enabled: yes
+  
+  - name: add openhab admin user
+    tags: install,never
+    shell: |
+      openhab-cli console -p habopen openhab:users add smarthome smarthome administrator
+
+  - name: set timezone
+    tags: install,never
+    shell: |
+      sudo timedatectl set-timezone Europe/Zurich
+
+  - name: copy openhab files
+    tags: copy
+    copy:
+      src: ../openhab/
+      dest: /etc/openhab/
+      owner: openhab
+      group: openhab
+      mode: 0644
+
+  - name: restart openhab
+    tags: copy
+    service:
+      name: openhab
+      state: restarted
