@@ -2,112 +2,23 @@
 
 - hosts: all
   become: true
-  tasks:
 
-  - name: Set timezone to Europe/Zurich
-    tags: install,never
-    community.general.timezone:
-      name: Europe/Zurich
+  pre_tasks:
+    - name: Update all packages to their latest version
+      apt:
+        name: "*"
+        state: latest
+        update_cache: yes
 
-  - name: Update all packages to their latest version
-    apt:
-      name: "*"
-      state: latest
-      update_cache: yes
+  roles:
+    - role: system_settings
+      tags: install,never
 
-  - name: check if java certificates exists
-    tags: install,never
-    stat:
-      path: /etc/apt/sources.list.d/zulu.list
-    register: java_key
+    - role: java_install
+      tags: install,never
 
-  - name: install curl
-    tags: install,never
-    apt:
-      name:
-        - curl
-      update_cache: yes
-      state: latest
-    when: java_key.stat.exists == false
+    - role: openhab_install
+      tags: install,never
 
-  - name: add java certificates
-    tags: install,never
-    shell: |
-      sudo apt install gnupg ca-certificates curl
-      curl -s https://repos.azul.com/azul-repo.key | sudo gpg --batch --yes --dearmor -o /usr/share/keyrings/azul.gpg
-      echo "deb [signed-by=/usr/share/keyrings/azul.gpg] https://repos.azul.com/zulu/deb stable main" | sudo tee /etc/apt/sources.list.d/zulu.list
-    when: java_key.stat.exists == false
-
-  - name: install java
-    tags: install,never
-    apt:
-      name:
-        - zulu17-jdk
-      state: latest
-      update_cache: yes
-
-  - name: check if openhab certificates exists
-    tags: install,never
-    stat:
-      path: /etc/apt/sources.list.d/openhab.list
-    register: openhab_key
-
-  - name: install curl
-    tags: install,never
-    apt:
-      name:
-        - curl
-      update_cache: yes
-      state: latest
-    when: openhab_key.stat.exists == false
-
-  - name: add openhab certificates
-    tags: install,never
-    shell: |
-      curl -fsSL "https://openhab.jfrog.io/artifactory/api/gpg/key/public" | gpg --batch --yes --dearmor > openhab.gpg
-      sudo mv openhab.gpg /usr/share/keyrings
-      sudo chmod u=rw,g=r,o=r /usr/share/keyrings/openhab.gpg
-      echo 'deb [signed-by=/usr/share/keyrings/openhab.gpg] https://openhab.jfrog.io/artifactory/openhab-linuxpkg stable main' | sudo tee /etc/apt/sources.list.d/openhab.list
-    when: openhab_key.stat.exists == false
-
-  - name: install openhab
-    tags: install,never
-    apt:
-      name: 
-        - openhab=4.2.0-1
-        - openhab-addons=4.2.0-1
-      state: latest
-      update_cache: yes
-
-  - name: start and enable openhab
-    tags: install,never
-    service:
-      name: openhab
-      state: started
-      enabled: yes
-
-  - name: add openhab admin user
-    tags: install,never
-    shell: |
-      openhab-cli console -p habopen openhab:users add smarthome smarthome administrator
-    retries: 3
-    delay: 5
-    register: result
-    until: result.rc == 0
-
-  - name: copy openhab files
-    tags: copy
-    copy:
-      src: ../openhab/
-      dest: /etc/openhab/
-      owner: openhab
-      group: openhab
-      mode: 0644
-    register: files_copied
-
-  - name: restart openhab
-    tags: copy
-    service:
-      name: openhab
-      state: restarted
-    when: files_copied.changed
+    - role: file_copy
+      tags: copy

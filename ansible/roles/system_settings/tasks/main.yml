@@ -1,0 +1,4 @@
+- name: Set timezone to Europe/Zurich
+  tags: install,never
+  community.general.timezone:
+    name: Europe/Zurich

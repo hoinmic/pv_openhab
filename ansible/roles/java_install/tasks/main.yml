@@ -1,0 +1,26 @@
+- name: check if java certificates exists
+  stat:
+    path: /etc/apt/sources.list.d/zulu.list
+  register: java_key
+
+- name: install curl
+  apt:
+    name:
+      - curl
+    update_cache: yes
+    state: latest
+  when: java_key.stat.exists == false
+
+- name: add java certificates
+  shell: |
+    sudo apt install gnupg ca-certificates curl
+    curl -s https://repos.azul.com/azul-repo.key | sudo gpg --batch --yes --dearmor -o /usr/share/keyrings/azul.gpg
+    echo "deb [signed-by=/usr/share/keyrings/azul.gpg] https://repos.azul.com/zulu/deb stable main" | sudo tee /etc/apt/sources.list.d/zulu.list
+  when: java_key.stat.exists == false
+
+- name: install java
+  apt:
+    name:
+      - zulu17-jdk
+    state: latest
+    update_cache: yes

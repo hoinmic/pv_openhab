@@ -1,0 +1,14 @@
+- name: copy openhab files
+  copy:
+    src: ../openhab/
+    dest: /etc/openhab/
+    owner: openhab
+    group: openhab
+    mode: 0644
+  register: files_copied
+
+- name: restart openhab
+  service:
+    name: openhab
+    state: restarted
+  when: files_copied.changed

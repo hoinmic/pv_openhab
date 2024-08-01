@@ -1,0 +1,47 @@
+- name: check if openhab certificates exists
+  stat:
+    path: /etc/apt/sources.list.d/openhab.list
+  register: openhab_key
+
+- name: install curl
+  apt:
+    name:
+      - curl
+    update_cache: yes
+    state: latest
+  when: openhab_key.stat.exists == false
+
+- name: add openhab certificates
+  shell: |
+    curl -fsSL "https://openhab.jfrog.io/artifactory/api/gpg/key/public" | gpg --batch --yes --dearmor > openhab.gpg
+    sudo mv openhab.gpg /usr/share/keyrings
+    sudo chmod u=rw,g=r,o=r /usr/share/keyrings/openhab.gpg
+    echo 'deb [signed-by=/usr/share/keyrings/openhab.gpg] https://openhab.jfrog.io/artifactory/openhab-linuxpkg stable main' | sudo tee /etc/apt/sources.list.d/openhab.list
+  when: openhab_key.stat.exists == false
+
+- name: install openhab
+  apt:
+    name: 
+      - openhab=4.2.0-1
+      - openhab-addons=4.2.0-1
+    state: latest
+    update_cache: yes
+
+- name: start and enable openhab
+  service:
+    name: openhab
+    state: started
+    enabled: yes
+
+- name: load list of openhab users
+  shell: |
+    openhab-cli console -p habopen openhab:users list
+  retries: 5
+  delay: 5
+  register: result
+  until: result.rc == 0
+
+- name: add openhab admin user
+  shell: |
+    openhab-cli console -p habopen openhab:users add smarthome smarthome administrator
+  when: not result.stdout is search("administrator")
