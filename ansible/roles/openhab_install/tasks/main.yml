@@ -40,8 +40,10 @@
   delay: 5
   register: result
   until: result.rc == 0
+  changed_when: False
 
 - name: add openhab admin user
   shell: |
     openhab-cli console -p habopen openhab:users add smarthome smarthome administrator
   when: not result.stdout is search("administrator")
+  notify: restart_openhab

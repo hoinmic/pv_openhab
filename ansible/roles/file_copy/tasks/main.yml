@@ -5,10 +5,5 @@
     owner: openhab
     group: openhab
     mode: 0644
-  register: files_copied
-
-- name: restart openhab
-  service:
-    name: openhab
-    state: restarted
-  when: files_copied.changed
+  notify: restart_openhab
+  
