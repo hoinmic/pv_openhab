@@ -21,6 +21,11 @@ The following can be used for logs:
 openhab-cli showlogs
 ```
 
+List installed openhab components:
+```sh
+openhab-cli console -p habopen bundle:list
+```
+
 Load the sitemaps
 ```sh
 http://192.168.124.21:8080/basicui/app?sitemap=control
