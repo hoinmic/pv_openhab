@@ -5,12 +5,11 @@
   pre_tasks:
 
   - name: update repository index
-    tags: always
     apt:
       update_cache: yes
     changed_when: false
 
-  - name: Update all Ubuntu packages to their latest version
+  - name: Update all packages to their latest version
     apt:
       name: "*"
       state: latest
@@ -48,7 +47,7 @@
       update_cache: yes
     changed_when: false
 
-  - name: Update all Ubuntu packages to their latest version
+  - name: Update all packages to their latest version
     tags: install,never
     apt:
       name: "*"
@@ -63,22 +62,26 @@
         - openhab-addons=4.2.0-1
       state: latest
 
-  - name: start openhab
+  - name: start and enable openhab
     tags: install,never
     service:
       name: openhab
       state: started
       enabled: yes
-  
+
   - name: add openhab admin user
     tags: install,never
     shell: |
       openhab-cli console -p habopen openhab:users add smarthome smarthome administrator
+    retries: 3
+    delay: 5
+    register: result
+    until: result.rc == 0
 
-  - name: set timezone
+  - name: Set timezone to Europe/Zurich
     tags: install,never
-    shell: |
-      sudo timedatectl set-timezone Europe/Zurich
+    community.general.timezone:
+      name: Europe/Zurich
 
   - name: copy openhab files
     tags: copy

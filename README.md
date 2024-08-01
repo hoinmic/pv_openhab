@@ -3,6 +3,12 @@ Photovoltaic monitoring and smart control of consumers with openhab 4
 
 ## Installation with ansible
 
+### prepare host system (fedora)
+sudo dnf install ansible
+sudo dnf install ansible-collection-community-general
+
+
+### installation on target
 ansible-playbook --ask-become-pass -i ansible/inventory ansible/site.yml --tags "all,never"
 
 login: smarthome
