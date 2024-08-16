@@ -5,7 +5,7 @@ tags:
   - solar
 props:
   parameters:
-    - default: "15000"
+    - default: "30000"
       description: Maximum power in Watts.
       label: Maximum Power
       name: max_power
@@ -47,8 +47,10 @@ props:
       options:
         - label: PV
           value: pv
-        - label: Load
+        - label: Consumption
           value: consumption
+        - label: Grid
+          value: grid
   parameterGroups:
     - name: design
       label: Design elements
@@ -77,7 +79,7 @@ slots:
             (270 / props.max_power), props.exponent) * (270 / Math.pow(270,
             props.exponent))
           switch_color: '=(value) => (Math.abs(value) >= 1) ? {"pv": "#f7c002",
-            "consumption": "#70afcd"}[props.icon] : "grey"'
+            "consumption": "#70afcd","grid": "#ff0000"}[props.icon] : "grey"'
           to_cartesian: =(degree) => (50 + Math.sin(degree * Math.PI / 180) * 41) + " " +
             (50 - Math.cos(degree * Math.PI / 180) * 41)
       slots:
