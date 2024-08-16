@@ -22,8 +22,8 @@
 - name: install openhab
   apt:
     name: 
-      - openhab=4.2.0-1
-      - openhab-addons=4.2.0-1
+      - openhab
+      - openhab-addons
     state: latest
     update_cache: yes
 
@@ -36,8 +36,8 @@
 - name: load list of openhab users
   shell: |
     openhab-cli console -p habopen openhab:users list
-  retries: 5
-  delay: 5
+  retries: 10
+  delay: 10
   register: result
   until: result.rc == 0
   changed_when: False

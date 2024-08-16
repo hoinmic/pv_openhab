@@ -1,9 +1,5 @@
 sitemap powerOverview label="Power Overview"
 {
-    Frame label="Test Power" icon="energy" {
-        Slider item=TestInverter minValue=0 maxValue=5000
-        Slider item=TestGrid minValue=-5000 maxValue=5000
-	}
 	Frame label="Power" icon="energy" {
         Input item=filtered_power_inverter label="Power Inverter [%.0f %unit%]" staticIcon=energy inputHint="number"
         Input item=filtered_power_grid label="Power Grid [%.0f %unit%]" staticIcon=energy inputHint="number"
@@ -12,4 +8,8 @@ sitemap powerOverview label="Power Overview"
         Frame label="Power distribution" icon="chart" {
         Chart item=gHouseholdPower refresh=60000 period=h legend=true
     }
+    Frame label="Test Power" icon="energy" {
+        Slider item=TestInverter minValue=0 maxValue=5000 staticIcon=none
+        Slider item=TestGrid minValue=-5000 maxValue=5000 staticIcon=none
+	}
 }

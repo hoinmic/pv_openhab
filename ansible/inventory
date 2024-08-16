@@ -3,5 +3,8 @@ ansible_connection=ssh
 ansible_user=smarthome
 ansible_ssh_pass=smarthome
 
-[openhab_servers]
+[staging]
 192.168.124.21
+
+[productive]
+192.168.251.128

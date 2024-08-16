@@ -8,7 +8,8 @@ sudo dnf install ansible
 sudo dnf install ansible-collection-community-general
 
 ### installation on target
-ansible-playbook --ask-become-pass -i ansible/inventory ansible/site.yml --tags "all,never"
+ansible-playbook --ask-become-pass -i ansible/inventory ansible/site.yml --tags "all,never" --limit staging
+ansible-playbook --ask-become-pass -i ansible/inventory ansible/site.yml --tags "all,never" --limit productive
 
 login: smarthome
 pw: smarthome
@@ -25,12 +26,20 @@ List installed openhab components:
 openhab-cli console -p habopen bundle:list
 ```
 
-Load the sitemaps
+Staging sitemaps
 ```sh
 http://192.168.124.21:8080/basicui/app?sitemap=control
 http://192.168.124.21:8080/basicui/app?sitemap=powerOverview
 http://192.168.124.21:8080/basicui/app?sitemap=energyOverview
 http://192.168.124.21:8080/basicui/app?sitemap=inverter
+```
+
+Productive sitemaps
+```sh
+http://192.168.251.128:8080/basicui/app?sitemap=control
+http://192.168.251.128:8080/basicui/app?sitemap=powerOverview
+http://192.168.251.128:8080/basicui/app?sitemap=energyOverview
+http://192.168.251.128:8080/basicui/app?sitemap=inverter
 ```
 
 ## Hardware Setup
