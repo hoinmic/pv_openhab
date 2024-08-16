@@ -38,9 +38,9 @@ Items {
     TestInverter : strategy = everyMinute, everyChange
 
     // Energy Storage Day
-    Day_Energy_Inverter : strategy = everyMinute, everyChange
-    Day_Energy_Grid : strategy = everyMinute, everyChange
-    Day_Energy_Returned_Grid : strategy = everyMinute, everyChange
+    Day_Energy_Inverter : strategy = everyMinute, everyChange, restoreOnStartup
+    Day_Energy_Grid : strategy = everyMinute, everyChange, restoreOnStartup
+    Day_Energy_Returned_Grid : strategy = everyMinute, everyChange, restoreOnStartup
 
     Day_Energy_Household_Consumption : strategy = everyMinute, everyChange
     Day_Energy_Self_Consumption : strategy = everyMinute, everyChange
@@ -49,9 +49,9 @@ Items {
     Day_Rate_Self_Consumption : strategy = everyMinute, everyChange
 
     // Energy Storage Month
-    Month_Energy_Inverter : strategy = everyMinute, everyChange
-    Month_Energy_Grid : strategy = everyMinute, everyChange
-    Month_Energy_Returned_Grid : strategy = everyMinute, everyChange
+    Month_Energy_Inverter : strategy = everyMinute, everyChange, restoreOnStartup
+    Month_Energy_Grid : strategy = everyMinute, everyChange, restoreOnStartup
+    Month_Energy_Returned_Grid : strategy = everyMinute, everyChange, restoreOnStartup
 
     Month_Energy_Household_Consumption : strategy = everyMinute, everyChange
     Month_Energy_Self_Consumption : strategy = everyMinute, everyChange

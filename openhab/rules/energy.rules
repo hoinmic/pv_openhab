@@ -38,7 +38,14 @@ then
                                                (Day_Energy_Returned_Grid.state as Number).doubleValue)
   Day_Energy_Self_Consumption.sendCommand((Day_Energy_Inverter.state as Number).doubleValue -
                                           (Day_Energy_Returned_Grid.state as Number).doubleValue)
+end
 
+rule "Day Energy Autonomy"
+when
+  Item Day_Energy_Self_Consumption changed or
+  Item Day_Energy_Household_Consumption changed or
+  Item Day_Energy_Inverter changed
+then
   Day_Degree_Of_Autonomy.sendCommand((Day_Energy_Self_Consumption.state as Number).doubleValue /
                                      (Day_Energy_Household_Consumption.state as Number).doubleValue *
                                       100)
@@ -68,7 +75,14 @@ then
                                                  (Month_Energy_Returned_Grid.state as Number).doubleValue)
   Month_Energy_Self_Consumption.sendCommand((Month_Energy_Inverter.state as Number).doubleValue -
                                             (Month_Energy_Returned_Grid.state as Number).doubleValue)
+end
 
+rule "Month Energy Autonomy"
+when
+  Item Month_Energy_Self_Consumption changed or
+  Item Month_Energy_Household_Consumption changed or
+  Item Month_Energy_Inverter changed
+then
   Month_Degree_Of_Autonomy.sendCommand((Month_Energy_Self_Consumption.state as Number).doubleValue /
                                        (Month_Energy_Household_Consumption.state as Number).doubleValue *
                                         100)
