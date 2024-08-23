@@ -14,6 +14,15 @@
     - role: system_settings
       tags: install,never
 
+    - role: influxdb_install
+      tags: install,never
+
+    - role: prometheus_install
+      tags: install,never
+
+    - role: grafana_install
+      tags: install,never
+
     - role: java_install
       tags: install,never
 

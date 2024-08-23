@@ -1,0 +1,14 @@
+- name: Install prometheus packages
+  apt:
+    name: 
+      - prometheus
+    state: present
+
+- name: Copy prometheus configuration
+  copy:
+    src: prometheus.yml
+    dest: /etc/prometheus/prometheus.yml
+    owner: root
+    group: root
+    mode: '0644'
+  notify: restart_prometheus

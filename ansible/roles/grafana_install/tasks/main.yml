@@ -1,0 +1,30 @@
+- name: Import Grafana GPG signing key
+  apt_key: 
+    url: https://apt.grafana.com/gpg.key
+    state: present
+
+- name: Add Grafana repository
+  apt_repository: 
+    repo: "deb https://apt.grafana.com stable main"
+    state: present
+
+- name: Install grafana packages
+  apt:
+    name: 
+      - grafana
+    state: present
+
+- name: enable grafana
+  service:
+    name: grafana-server
+    enabled: yes
+  notify: restart_grafana
+
+- name: Copy grafana data sources
+  copy:
+    src: datasources/
+    dest: /etc/grafana/provisioning/datasources/
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart_grafana

@@ -1,0 +1,58 @@
+- name: Import InfluxDB GPG signing key
+  apt_key: 
+    url: https://repos.influxdata.com/influxdata-archive_compat.key
+    state: present
+
+- name: Add InfluxDB repository
+  apt_repository: 
+    repo: "deb https://repos.influxdata.com/ubuntu trusty stable"
+    state: present
+
+- name: Install InfluxDB packages
+  apt:
+    name: 
+      - influxdb
+      - influxctl
+    state: present
+
+- name: Modify InfluxDB hostname
+  replace:
+    dest=/etc/influxdb/influxdb.conf
+    regexp='hostname = "localhost"'
+    replace='hostname = "smarthome"'
+    backup=yes
+
+- name: start and enable influxdb
+  service:
+    name: influxdb
+    state: started
+    enabled: yes
+
+- name: load list of database
+  shell: |
+    influx -execute 'SHOW DATABASES'
+  retries: 10
+  delay: 10
+  register: result
+  until: result.rc == 0
+  changed_when: False
+
+- name: Create database
+  command: /usr/bin/influx -execute 'CREATE DATABASE openhab'
+  when: not result.stdout is search("openhab")
+
+- name: load list of users
+  shell: |
+    influx -execute 'SHOW USERS'
+  retries: 10
+  delay: 10
+  register: result
+  until: result.rc == 0
+  changed_when: False
+
+- name: Create InfluxDB user
+  command: 'influx -database {{item.database}} -execute "CREATE USER {{item.user}} WITH PASSWORD
+            {{item.pass}} WITH ALL PRIVILEGES"'
+  with_items:
+    - { database: "openhab", user: "smarthome", pass: "'smarthome'" }
+  when: not result.stdout is search("smarthome")
