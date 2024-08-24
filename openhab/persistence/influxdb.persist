@@ -15,17 +15,17 @@ Items {
     boiler_phase3_switch : strategy = everyMinute, everyChange, restoreOnStartup
 
     // Fronius Storage
-    AC_Power_South : strategy = everyMinute, everyChange
-    IDC_South1 : strategy = everyMinute, everyChange
-    IDC_South2 : strategy = everyMinute, everyChange
-    UDC1_South : strategy = everyMinute, everyChange
-    UDC2_South : strategy = everyMinute, everyChange
+    AC_Power_South : strategy = everyMinute
+    IDC_South1 : strategy = everyMinute
+    IDC_South2 : strategy = everyMinute
+    UDC1_South : strategy = everyMinute
+    UDC2_South : strategy = everyMinute
 
-    AC_Power_North : strategy = everyMinute, everyChange
-    IDC_North1 : strategy = everyMinute, everyChange
-    IDC_North2 : strategy = everyMinute, everyChange
-    UDC1_North : strategy = everyMinute, everyChange
-    UDC2_North : strategy = everyMinute, everyChange
+    AC_Power_North : strategy = everyMinute
+    IDC_North1 : strategy = everyMinute
+    IDC_North2 : strategy = everyMinute
+    UDC1_North : strategy = everyMinute
+    UDC2_North : strategy = everyMinute
 
     // Power Storage
     Current_Power_Total_Inverter : strategy = everyMinute, everyChange

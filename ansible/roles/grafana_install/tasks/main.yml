@@ -20,10 +20,19 @@
     enabled: yes
   notify: restart_grafana
 
-- name: Copy grafana data sources
+- name: Copy grafana data sources provisioning
   copy:
-    src: datasources/
+    src: datasources_provisioning/
     dest: /etc/grafana/provisioning/datasources/
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart_grafana
+
+- name: Copy grafana dashboards provisioning
+  copy:
+    src: dashboards_provisioning/
+    dest: /etc/grafana/provisioning/dashboards/
     owner: root
     group: root
     mode: 0644

@@ -2,3 +2,8 @@
   service:
     name: openhab
     state: restarted
+
+- name: restart_grafana
+  service:
+    name: grafana-server
+    state: restarted

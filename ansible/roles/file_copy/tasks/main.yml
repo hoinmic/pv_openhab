@@ -6,4 +6,12 @@
     group: openhab
     mode: 0644
   notify: restart_openhab
-  
+
+- name: Copy grafana dashboards
+  copy:
+    src: dashboards/
+    dest: /var/lib/grafana/dashboards/
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart_grafana
