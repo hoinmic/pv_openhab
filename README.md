@@ -36,6 +36,7 @@ http://192.168.124.21:8080/basicui/app?sitemap=inverter
 Promethious
 ```sh
 http://192.168.124.21:9090/
+http://192.168.124.21:9100/metrics
 http://192.168.124.21:8080/rest/metrics/prometheus
 ```
 

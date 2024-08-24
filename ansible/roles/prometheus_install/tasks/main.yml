@@ -2,6 +2,7 @@
   apt:
     name: 
       - prometheus
+      - prometheus-node-exporter
     state: present
 
 - name: Copy prometheus configuration

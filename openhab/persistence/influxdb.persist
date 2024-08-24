@@ -58,4 +58,7 @@ Items {
 
     Month_Degree_Of_Autonomy : strategy = everyMinute, everyChange
     Month_Rate_Self_Consumption : strategy = everyMinute, everyChange
+
+    // Day information
+    timeOfDay : strategy = everyMinute
 }
