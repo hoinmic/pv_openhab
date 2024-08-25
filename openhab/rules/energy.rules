@@ -1,16 +1,16 @@
 val logName = "energy"
 
-var Number previous_energy_inverter
-var Number previous_energy_grid
-var Number previous_energy_grid_returned
+var QuantityType<Energy> previous_energy_inverter
+var QuantityType<Energy> previous_energy_grid
+var QuantityType<Energy> previous_energy_grid_returned
 
 rule "Energy Consumption Startup"
 when
   System started
 then
-  previous_energy_inverter = 0
-  previous_energy_grid = 0
-  previous_energy_grid_returned = 0
+  previous_energy_inverter = 0|Wh
+  previous_energy_grid = 0|Wh
+  previous_energy_grid_returned = 0|Wh
 
   TestGrid_Energy.sendCommand(0)
   TestGrid_Energy_Returned.sendCommand(0)
@@ -34,11 +34,11 @@ when
   Item Day_Energy_Grid changed or
   Item Day_Energy_Returned_Grid changed
 then
-  Day_Energy_Household_Consumption.sendCommand((Day_Energy_Inverter.state as Number).doubleValue +
-                                               (Day_Energy_Grid.state as Number).doubleValue -
-                                               (Day_Energy_Returned_Grid.state as Number).doubleValue)
-  Day_Energy_Self_Consumption.sendCommand((Day_Energy_Inverter.state as Number).doubleValue -
-                                          (Day_Energy_Returned_Grid.state as Number).doubleValue)
+  Day_Energy_Household_Consumption.sendCommand((Day_Energy_Inverter.state as QuantityType<Energy>) +
+                                               (Day_Energy_Grid.state as QuantityType<Energy>) -
+                                               (Day_Energy_Returned_Grid.state as QuantityType<Energy>))
+  Day_Energy_Self_Consumption.sendCommand((Day_Energy_Inverter.state as QuantityType<Energy>).doubleValue -
+                                          (Day_Energy_Returned_Grid.state as QuantityType<Energy>).doubleValue)
 end
 
 rule "Day Energy Autonomy"
@@ -73,11 +73,11 @@ when
   Item Month_Energy_Grid changed or
   Item Month_Energy_Returned_Grid changed
 then
-  Month_Energy_Household_Consumption.sendCommand((Month_Energy_Inverter.state as Number).doubleValue +
-                                                 (Month_Energy_Grid.state as Number).doubleValue -
-                                                 (Month_Energy_Returned_Grid.state as Number).doubleValue)
-  Month_Energy_Self_Consumption.sendCommand((Month_Energy_Inverter.state as Number).doubleValue -
-                                            (Month_Energy_Returned_Grid.state as Number).doubleValue)
+  Month_Energy_Household_Consumption.sendCommand((Month_Energy_Inverter.state as QuantityType<Energy>) +
+                                                 (Month_Energy_Grid.state as QuantityType<Energy>) -
+                                                 (Month_Energy_Returned_Grid.state as QuantityType<Energy>))
+  Month_Energy_Self_Consumption.sendCommand((Month_Energy_Inverter.state as QuantityType<Energy>) -
+                                            (Month_Energy_Returned_Grid.state as QuantityType<Energy>))
 end
 
 rule "Month Energy Autonomy"
@@ -100,30 +100,31 @@ rule "Total Energy Inverter"
 when
   Time cron "0/15 * * * * ?" // every 15 seconds
 then
-  var Number Current_Energy_Inverter = 0
-  var Number delta_Inverter = 0
-  var Number test_energy = 0
+  var QuantityType<Energy> Current_Energy_Inverter = 0|Wh
+  var QuantityType<Energy> delta_Inverter = 0|Wh
+  var QuantityType<Energy> test_energy = 0|Wh
 
   if ((Energy_Inverter.state != NULL ) && (Energy_Inverter.state != UNDEF))
   {
-    Current_Energy_Inverter = Energy_Inverter.state
+    Current_Energy_Inverter = Energy_Inverter.state as QuantityType<Energy>
+  }
+
+  // Test energy
+  if ( (TestInverter_Energy.state != NULL ) && (TestInverter_Energy.state != UNDEF) )
+  {
+    test_energy = TestInverter_Energy.state as QuantityType<Energy>
   }
 
   // Ignore the first run, as no delta can yet be calculated
-  if(previous_energy_inverter != 0 || (TestInverter_Energy.state  as Number).doubleValue != 0)
+  if(previous_energy_inverter != ( 0|Wh as QuantityType<Energy>) || test_energy != ( 0|Wh as QuantityType<Energy>))
   {
-    // Add simulated test energy
-    if ( (TestInverter_Energy.state != NULL ) && (TestInverter_Energy.state != UNDEF) )
-    {
-      test_energy = (TestInverter_Energy.state  as Number).doubleValue
-    }
 
     delta_Inverter = Current_Energy_Inverter - previous_energy_inverter + test_energy
     // Check whether energy meter has been reseted
-    if((delta_Inverter) > 0)
+    if((delta_Inverter) > ( 0|Wh as QuantityType<Energy>))
     {
-      Day_Energy_Inverter.sendCommand( (Day_Energy_Inverter.state as Number).doubleValue + delta_Inverter )
-      Month_Energy_Inverter.sendCommand( (Month_Energy_Inverter.state as Number).doubleValue + delta_Inverter )
+      Day_Energy_Inverter.sendCommand( (Day_Energy_Inverter.state as QuantityType<Energy>) + delta_Inverter )
+      Month_Energy_Inverter.sendCommand( (Month_Energy_Inverter.state as QuantityType<Energy>) + delta_Inverter )
     }
   }
   previous_energy_inverter = Current_Energy_Inverter
@@ -139,30 +140,30 @@ rule "Total Energy Grid"
 when
   Time cron "0/15 * * * * ?" // every 15 seconds
 then
-  var Number Current_Energy_Grid = 0
-  var Number delta_grid = 0
-  var Number test_energy = 0
+  var QuantityType<Energy> Current_Energy_Grid = 0|Wh
+  var QuantityType<Energy> delta_grid = 0|Wh
+  var QuantityType<Energy> test_energy = 0|Wh
 
   if ((Energy_Grid.state != NULL ) && (Energy_Grid.state != UNDEF))
   {
-    Current_Energy_Grid = Energy_Grid.state
+    Current_Energy_Grid = Energy_Grid.state as QuantityType<Energy>
+  }
+
+  // Test energy
+  if ( (TestGrid_Energy.state != NULL ) && (TestGrid_Energy.state != UNDEF) )
+  {
+    test_energy = TestGrid_Energy.state as QuantityType<Energy>
   }
 
   // Ignore the first run, as no delta can yet be calculated
-  if(previous_energy_grid != 0 || (TestGrid_Energy.state  as Number).doubleValue != 0)
+  if(previous_energy_grid != ( 0|Wh as QuantityType<Energy>) || test_energy != ( 0|Wh as QuantityType<Energy>))
   {
-    // Add simulated test energy
-    if ( (TestGrid_Energy.state != NULL ) && (TestGrid_Energy.state != UNDEF) )
-    {
-      test_energy = (TestGrid_Energy.state  as Number).doubleValue
-    }
-
     delta_grid = Current_Energy_Grid - previous_energy_grid + test_energy
     // Check whether energy meter has been reseted
-    if((delta_grid) > 0)
+    if((delta_grid) > ( 0|Wh as QuantityType<Energy>))
     {
-      Day_Energy_Grid.sendCommand( (Day_Energy_Grid.state as Number).doubleValue + delta_grid )
-      Month_Energy_Grid.sendCommand( (Month_Energy_Grid.state as Number).doubleValue + delta_grid )
+      Day_Energy_Grid.sendCommand( (Day_Energy_Grid.state as QuantityType<Energy>) + delta_grid )
+      Month_Energy_Grid.sendCommand( (Month_Energy_Grid.state as QuantityType<Energy>) + delta_grid )
     }
   }
   previous_energy_grid = Current_Energy_Grid
@@ -178,37 +179,39 @@ rule "Total Energy Grid Returned"
 when
   Time cron "0/15 * * * * ?" // every 15 seconds
 then
-  var Number Current_Returned_Energy_Grid = 0
-  var Number delta_grid_returned = 0
-  var Number test_energy = 0
+  var QuantityType<Energy> Current_Returned_Energy_Grid = 0|Wh
+  var QuantityType<Energy> delta_grid_returned = 0|Wh
+  var QuantityType<Energy> test_energy = 0|Wh
 
   if ((Returned_Energy_Grid.state != NULL ) && (Returned_Energy_Grid.state != UNDEF))
   {
-    Current_Returned_Energy_Grid = Returned_Energy_Grid.state
+    Current_Returned_Energy_Grid = Returned_Energy_Grid.state as QuantityType<Energy>
+  }
+
+  // Test energy
+  if ( (TestGrid_Energy_Returned.state != NULL ) && (TestGrid_Energy_Returned.state != UNDEF) )
+  {
+    test_energy = TestGrid_Energy_Returned.state as QuantityType<Energy>
   }
 
   // Ignore the first run, as no delta can yet be calculated
-  if(previous_energy_grid_returned != 0 || (TestGrid_Energy_Returned.state  as Number).doubleValue != 0)
+  if(previous_energy_grid_returned != ( 0|Wh as QuantityType<Energy>) || test_energy != ( 0|Wh as QuantityType<Energy>))
   {
-    // Add simulated test energy
-    if ( (TestGrid_Energy_Returned.state != NULL ) && (TestGrid_Energy_Returned.state != UNDEF) )
-    {
-      test_energy = (TestGrid_Energy_Returned.state  as Number).doubleValue
-    }
-    
     delta_grid_returned = Current_Returned_Energy_Grid - previous_energy_grid_returned + test_energy
     // Check whether energy meter has been reseted
-    if((delta_grid_returned) > 0)
+    if((delta_grid_returned) > ( 0|Wh as QuantityType<Energy>))
     {
-      Day_Energy_Returned_Grid.sendCommand( (Day_Energy_Returned_Grid.state as Number).doubleValue + delta_grid_returned )
-      Month_Energy_Returned_Grid.sendCommand( (Month_Energy_Returned_Grid.state as Number).doubleValue + delta_grid_returned )
+      Day_Energy_Returned_Grid.sendCommand( (Day_Energy_Returned_Grid.state as QuantityType<Energy>) + delta_grid_returned )
+      Month_Energy_Returned_Grid.sendCommand( (Month_Energy_Returned_Grid.state as QuantityType<Energy>) + delta_grid_returned )
     }
   }
-  previous_energy_grid_returned = Current_Returned_Energy_Grid
 
-  // logInfo(logName, "TestGrid_Energy_Returned: " + TestGrid_Energy_Returned.state)
   // logInfo(logName, "Current_Returned_Energy_Grid: " + Current_Returned_Energy_Grid)
+  // logInfo(logName, "TestGrid_Energy_Returned: " + TestGrid_Energy_Returned.state)
+  // logInfo(logName, "previous_energy_grid_returned: " + previous_energy_grid_returned)
   // logInfo(logName, "delta_grid_returned: " + delta_grid_returned)
   // logInfo(logName, "Day_Energy_Returned_Grid: " + Day_Energy_Returned_Grid.state)
   // logInfo(logName, "Month_Energy_Returned_Grid: " + Month_Energy_Returned_Grid.state)
+
+  previous_energy_grid_returned = Current_Returned_Energy_Grid
 end

@@ -60,5 +60,15 @@ Items {
     Month_Rate_Self_Consumption : strategy = everyMinute, everyChange
 
     // Day information
-    timeOfDay : strategy = everyMinute
+    timeOfDay : strategy = everyChange
+
+    // Shelly information
+    Uptime_Inverter : strategy = everyMinute, everyChange
+    Energy_Inverter : strategy = everyMinute, everyChange
+    Current_Power_Total_Inverter : strategy = everyMinute, everyChange
+
+    Uptime_Grid : strategy = everyMinute, everyChange
+    Energy_Grid : strategy = everyMinute, everyChange
+    Returned_Energy_Grid : strategy = everyMinute, everyChange
+    Current_Power_Total_Grid : strategy = everyMinute, everyChange
 }
