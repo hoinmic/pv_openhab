@@ -1,5 +1,6 @@
 Strategies {
     everyMinute : "0 * * * * ?"
+    everyTenMinute : "0 */10 * * * ?"
 }
 
 Items {
@@ -60,7 +61,7 @@ Items {
     Month_Rate_Self_Consumption : strategy = everyMinute, everyChange
 
     // Day information
-    timeOfDay : strategy = everyChange
+    timeOfDay : strategy = everyChange, everyTenMinute
 
     // Shelly information
     Uptime_Inverter : strategy = everyMinute, everyChange
