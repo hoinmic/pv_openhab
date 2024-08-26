@@ -1,31 +1,53 @@
-# pv_openhab
-Photovoltaic monitoring and smart control of consumers with openhab 4
+# Photovoltaic control and visualisation
+Photovoltaic monitoring and smart control of consumers. The control is done with Openhab. The evaluation is displayed with Grafana. Setting up the target system can be done with Ansible.
 
-## Installation with ansible
+## Screenshots
 
-### prepare host system
+### Daily report
+![image info](./Screenshot_day_overview.png)
+
+### Consumer monitoring
+![image info](./Screenshot_consumer.png)
+
+## Installation with Ansible
+
+### Prepare host system
 sudo dnf install ansible
 sudo dnf install ansible-collection-community-general
 
-### installation on target
-ansible-playbook --ask-become-pass -i ansible/inventory ansible/site.yml --tags "all,never" --limit staging
+### Installation on target system
 
-login: smarthome
-pw: smarthome
+1) Installation of an OS on the target system. An ssh access must be given. Tested with Ubuntu server 22.04 LTS.
+
+2) Installation of all components with ansible. (Modify user and password in inventory file (ansible/inventory).
+
+```sh
+ansible-playbook --ask-become-pass -i ansible/inventory ansible/site.yml --tags "all,never" --limit staging
+```
+
+### Login Grafana
+login: admin  
+pw: admin  
+```sh
+http://192.168.124.21:3000/
+```
+
+### Login Openhab
+login: smarthome  
+pw: smarthome  
+```sh
+http://192.168.124.21:8080/
+```
 
 ## Test and Debug
 
-The following can be used for logs:
+Openhab debug / list components:
 ```sh
 openhab-cli showlogs
-```
-
-List installed openhab components:
-```sh
 openhab-cli console -p habopen bundle:list
 ```
 
-Sitemaps
+Openhab sitemaps
 ```sh
 http://192.168.124.21:8080/basicui/app?sitemap=control
 http://192.168.124.21:8080/basicui/app?sitemap=powerOverview
@@ -36,16 +58,15 @@ http://192.168.124.21:8080/basicui/app?sitemap=inverter
 Promethious
 ```sh
 http://192.168.124.21:9090/
+```
+
+Promethious node exporter
+```sh
 http://192.168.124.21:9100/metrics
 http://192.168.124.21:8080/rest/metrics/prometheus
 ```
 
-Grafana
-```sh
-http://192.168.124.21:3000/
-```
-
-Influxdb
+Influxdb informations
 ```sh
 influx -execute "SHOW DATABASES"
 influx -execute "SHOW USERS"
@@ -123,12 +144,29 @@ subgraph Non-Smart Devices
 end
 ```
 
+## Data flow
+
+```mermaid
+graph LR
+Sensors[Sensors]
+Openhab[Openhab]
+InfluxDB[InfluxDB]
+Prometheus[Prometheus]
+OS[Operating System]
+Grafana[Grafana]
+
+Sensors --> Openhab
+Openhab --> InfluxDB
+Openhab --> Prometheus
+OS --> Prometheus
+Prometheus --> Grafana
+InfluxDB --> Grafana
+```
+
 ## Additional Informations
 
 ### Ansible file copy
+This command copies the user data from openhab and grafana. The entire installation of software components does not take place.
+```sh
 ansible-playbook --ask-become-pass -i ansible/inventory ansible/site.yml
-
-### Restart / Clean Cache
-sudo systemctl stop openhab
-openhab-cli clean-cache
-sudo systemctl start openhab
+```
