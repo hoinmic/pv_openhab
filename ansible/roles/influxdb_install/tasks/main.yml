@@ -41,6 +41,19 @@
   command: /usr/bin/influx -execute 'CREATE DATABASE openhab'
   when: not result.stdout is search("openhab")
 
+- name: load list of retention policies
+  shell: |
+    influx -execute 'SHOW RETENTION POLICIES ON "openhab"'
+  retries: 10
+  delay: 10
+  register: result
+  until: result.rc == 0
+  changed_when: False
+
+- name: Create policy for 90 days retention time
+  command: /usr/bin/influx -execute 'CREATE RETENTION POLICY "three_months" ON "openhab" DURATION 90d REPLICATION 1 DEFAULT'
+  when: not result.stdout is search("three_months")
+
 - name: load list of users
   shell: |
     influx -execute 'SHOW USERS'
