@@ -10,15 +10,15 @@ rule "Power Consumption Startup"
 when
   System started
 then
-  filtered_power_inverter.sendCommand(0)
-  filtered_power_grid.sendCommand(0)
-  filtered_power_consumption.sendCommand(0)
+  filtered_power_inverter.postUpdate(0)
+  filtered_power_grid.postUpdate(0)
+  filtered_power_consumption.postUpdate(0)
   moving_average_power_inverter = 0
   moving_average_power_grid = 0
   moving_average_power_consumption = 0
 
-  TestInverter.sendCommand(0)
-  TestGrid.sendCommand(0)
+  TestInverter.postUpdate(0)
+  TestGrid.postUpdate(0)
 end
 
 rule "Total Power Consumption"
@@ -47,15 +47,15 @@ then
 
   // Filter Power Inverter
   moving_average_power_inverter = moving_average_power_inverter - ( moving_average_power_inverter / FORGETTING_FACTOR ) + Power_Inverter
-  filtered_power_inverter.sendCommand( moving_average_power_inverter / FORGETTING_FACTOR )
+  filtered_power_inverter.postUpdate( moving_average_power_inverter / FORGETTING_FACTOR )
 
   // Filter Electricity Grid
   moving_average_power_grid = moving_average_power_grid - ( moving_average_power_grid / FORGETTING_FACTOR ) + Power_Power_Grid
-  filtered_power_grid.sendCommand( moving_average_power_grid / FORGETTING_FACTOR )
+  filtered_power_grid.postUpdate( moving_average_power_grid / FORGETTING_FACTOR )
 
   // Filter Electricity Consumption
   moving_average_power_consumption = moving_average_power_inverter + moving_average_power_grid
-  filtered_power_consumption.sendCommand( moving_average_power_consumption / FORGETTING_FACTOR )
+  filtered_power_consumption.postUpdate( moving_average_power_consumption / FORGETTING_FACTOR )
 
   // logInfo(logName, "moving_average_power_grid: " + moving_average_power_grid)
   // logInfo(logName, "moving_average_power_inverter: " + moving_average_power_inverter)

@@ -4,9 +4,9 @@ rule "Control System Startup"
 when
   System started
 then
-  boiler_33_percent_trigger.sendCommand(OFF)
-  boiler_100_percent_trigger.sendCommand(OFF)
-  dehumidifier_trigger.sendCommand(OFF)
+  boiler_33_percent_trigger.postUpdate(OFF)
+  boiler_100_percent_trigger.postUpdate(OFF)
+  dehumidifier_trigger.postUpdate(OFF)
 end
 
 rule "Control System Boiler"
@@ -37,12 +37,12 @@ then
   if((boiler_33_percent_trigger.state.toString != next_boiler_33_percent_trigger))
   { 
     logInfo(logName, "Boiler 33 percent trigger: " + next_boiler_33_percent_trigger)
-    boiler_33_percent_trigger.sendCommand(next_boiler_33_percent_trigger)
+    boiler_33_percent_trigger.postUpdate(next_boiler_33_percent_trigger)
   }
   if((boiler_100_percent_trigger.state.toString != next_boiler_100_percent_trigger))
   {
     logInfo(logName, "Boiler 100 percent trigger: " + next_boiler_100_percent_trigger)
-    boiler_100_percent_trigger.sendCommand(next_boiler_100_percent_trigger)
+    boiler_100_percent_trigger.postUpdate(next_boiler_100_percent_trigger)
   }
 end
 
@@ -62,6 +62,6 @@ then
   if((dehumidifier_trigger.state().toString != next_dehumidifier_trigger))
   {
     logInfo(logName, "Dehumidifier trigger: " + next_dehumidifier_trigger)
-    dehumidifier_trigger.sendCommand(next_dehumidifier_trigger)
+    dehumidifier_trigger.postUpdate(next_dehumidifier_trigger)
   }
 end

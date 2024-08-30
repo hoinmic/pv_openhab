@@ -50,7 +50,7 @@ then
   {
     // Publish the updated state
     logInfo(logName, "Time of day: " + currentTimeOfDay)
-    timeOfDay.sendCommand(currentTimeOfDay)
+    timeOfDay.postUpdate(currentTimeOfDay)
   } 
   previousTimeOfDay = currentTimeOfDay
 end

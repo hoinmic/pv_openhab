@@ -31,7 +31,7 @@ then
   {
     // Publish the updated state
     logInfo(logName, "Weekday: " + day + ", Hour: " + hour + ", Low Tariff: " + currentLowTariff + ", Price: " + currentPrice)
-    low_tariff.sendCommand(currentLowTariff)
-    kWh_price.sendCommand(currentPrice)
+    low_tariff.postUpdate(currentLowTariff)
+    kWh_price.postUpdate(currentPrice)
   }
 end
