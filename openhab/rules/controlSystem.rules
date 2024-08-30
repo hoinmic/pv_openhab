@@ -16,7 +16,7 @@ then
   var next_boiler_33_percent_trigger = "OFF"
   var next_boiler_100_percent_trigger = "OFF"
 
-  logInfo(logName, "Time of day: " + timeOfDay.state)
+  //logInfo(logName, "Time of day: " + timeOfDay.state)
   
   // Morning sun + Afternoon sun (No switching on during food preparation at lunchtime)
   if((timeOfDay.state.toString == "SUN_RISE") || (timeOfDay.state.toString == "MORNING_SUN") ||

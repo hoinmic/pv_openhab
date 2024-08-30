@@ -7,6 +7,8 @@ var ZonedDateTime afternoonSun = null
 var ZonedDateTime eveningSun = null
 var ZonedDateTime sunSet = null
 
+var String previousTimeOfDay = "NIGHT"
+
 rule "timeOfDay Calculate the times of this day" 
 when
   System started or // run at system start in case the time changed when OH was offline
@@ -36,7 +38,7 @@ when
   Time cron "0 0/1 * * * ?"   // every minute
 then
   // Define the current time segment
-  var currentTimeOfDay = "NIGHT"
+  var String currentTimeOfDay = "NIGHT"
   val currentTime = ZonedDateTime.now()
   if (currentTime.isAfter(sunRise) && currentTime.isBefore(daylight)) { currentTimeOfDay = "SUN_RISE" }
   if (currentTime.isAfter(daylight) && currentTime.isBefore(middaySun)) { currentTimeOfDay = "MORNING_SUN" }
@@ -44,10 +46,11 @@ then
   if (currentTime.isAfter(afternoonSun) && currentTime.isBefore(eveningSun)) { currentTimeOfDay = "AFTERNOON_SUN" }
   if (currentTime.isAfter(eveningSun) && currentTime.isBefore(sunSet)) { currentTimeOfDay = "EVENING_SUN" }
 
-  if((timeOfDay.state != currentTimeOfDay))
+  if(previousTimeOfDay != currentTimeOfDay)
   {
     // Publish the updated state
     logInfo(logName, "Time of day: " + currentTimeOfDay)
     timeOfDay.sendCommand(currentTimeOfDay)
   } 
+  previousTimeOfDay = currentTimeOfDay
 end
