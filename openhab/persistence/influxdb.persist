@@ -40,6 +40,13 @@ Items {
     TestGrid : strategy = everyTenMinute, everyChange
     TestInverter : strategy = everyTenMinute, everyChange
 
+    // Tariff Storage continous
+    tariff : strategy = everyTenMinute, everyChange
+    Energy_Returned_Grid_High_Tariff : strategy = everyTenMinute, everyChange, restoreOnStartup
+    Energy_Returned_Grid_Low_Tariff : strategy = everyTenMinute, everyChange, restoreOnStartup
+    Energy_Consumed_Grid_High_Tariff : strategy = everyTenMinute, everyChange, restoreOnStartup
+    Energy_Consumed_Grid_Low_Tariff : strategy = everyTenMinute, everyChange, restoreOnStartup
+
     // Energy Storage Day
     Day_Energy_Inverter : strategy = everyTenMinute, everyChange, restoreOnStartup
     Day_Energy_Grid : strategy = everyTenMinute, everyChange, restoreOnStartup

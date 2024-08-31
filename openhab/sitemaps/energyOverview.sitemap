@@ -6,6 +6,7 @@ sitemap energyOverview label="Energy Overview"
         Slider item=TestGrid_Energy_Returned minValue=0 maxValue=100
         Switch item=Reset_Day_Energy_Meter
         Switch item=Reset_Month_Energy_Meter
+        Switch item=Reset_Tariff_Energy_Meter
 	}
 
 	Frame label="Day Energy Meter" icon="energy" {
@@ -38,5 +39,12 @@ sitemap energyOverview label="Energy Overview"
         Frame label="Month Autonomy" icon="energy" {
         Input item=Month_Degree_Of_Autonomy label="Degree Of Autonomy [%.1f %%]" staticIcon=energy inputHint="number"
         Input item=Month_Rate_Self_Consumption label="Rate Self Consumption [%.1f %%]" staticIcon=energy inputHint="number"
+	}
+
+        Frame label="Tariff" icon="energy" {
+        Input item=Energy_Returned_Grid_Low_Tariff label="Energy Returned Low [%.0f %unit%]" staticIcon=energy inputHint="number"
+        Input item=Energy_Returned_Grid_High_Tariff label="Energy Returned High [%.0f %unit%]" staticIcon=energy inputHint="number"
+        Input item=Energy_Consumed_Grid_Low_Tariff label="Energy Consumed Low [%.0f %unit%]" staticIcon=energy inputHint="number"
+        Input item=Energy_Consumed_Grid_High_Tariff label="Energy Consumed High [%.0f %unit%]" staticIcon=energy inputHint="number"
 	}
 }

@@ -17,6 +17,16 @@ then
   TestInverter_Energy.postUpdate(0)
 end
 
+rule "Tariff counter Reset"
+when
+  Item Reset_Tariff_Energy_Meter changed
+then
+  Energy_Returned_Grid_Low_Tariff.postUpdate(0)
+  Energy_Returned_Grid_High_Tariff.postUpdate(0)
+  Energy_Consumed_Grid_Low_Tariff.postUpdate(0)
+  Energy_Consumed_Grid_High_Tariff.postUpdate(0)
+end
+
 rule "Day Energy Reset"
 when
   Item Reset_Day_Energy_Meter changed or
@@ -164,6 +174,15 @@ then
     {
       Day_Energy_Grid.postUpdate( delta_grid + Day_Energy_Grid.state )
       Month_Energy_Grid.postUpdate( delta_grid + Month_Energy_Grid.state )
+
+      if(tariff.state == "LOW")
+      {
+        Energy_Consumed_Grid_Low_Tariff.postUpdate( delta_grid + Energy_Consumed_Grid_Low_Tariff.state )
+      }
+      else
+      {
+        Energy_Consumed_Grid_High_Tariff.postUpdate( delta_grid + Energy_Consumed_Grid_High_Tariff.state )
+      }
     }
   }
   previous_energy_grid = Current_Energy_Grid
@@ -203,6 +222,15 @@ then
     {
       Day_Energy_Returned_Grid.postUpdate( delta_grid_returned + Day_Energy_Returned_Grid.state )
       Month_Energy_Returned_Grid.postUpdate( delta_grid_returned + Month_Energy_Returned_Grid.state )
+      
+      if(tariff.state == "LOW")
+      {
+        Energy_Returned_Grid_Low_Tariff.postUpdate( delta_grid_returned + Energy_Returned_Grid_Low_Tariff.state )
+      }
+      else
+      {
+        Energy_Returned_Grid_High_Tariff.postUpdate( delta_grid_returned + Energy_Returned_Grid_High_Tariff.state )
+      }
     }
   }
 

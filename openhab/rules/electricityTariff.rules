@@ -1,7 +1,10 @@
 val logName = "electricityTariff"
 
-val KWH_HIGH_TARIFF  = 0.33
-val KWH_LOW_TARIFF = 0.31
+val KWH_HIGH_TARIFF_RETURNED_GRID  = 0.33
+val KWH_LOW_TARIFF_RETURNED_GRID = 0.31
+
+val KWH_HIGH_TARIFF_GRID  = 0.19
+val KWH_LOW_TARIFF_GRID = 0.18
 
 // Check low tariff
 rule "calculate electricity tariff"
@@ -13,8 +16,9 @@ then
   var Number hour = ZonedDateTime.now().getHour()
 
   // Low tariff of the electricity company
-  var currentLowTariff = "FALSE"
-  var currentPrice = KWH_HIGH_TARIFF
+  var currentTariff = "HIGH"
+  var currentPriceReturnedGrid = KWH_HIGH_TARIFF_RETURNED_GRID
+  var currentPriceGrid = KWH_HIGH_TARIFF_GRID
   if (((day == 1) && ((hour < 7) || (hour >= 20))) ||  // Monday
       ((day == 2) && ((hour < 7) || (hour >= 20))) ||  // Thuesday
       ((day == 3) && ((hour < 7) || (hour >= 20))) ||  // Wednesday
@@ -23,15 +27,18 @@ then
       ((day == 6) && ((hour < 7) || (hour >= 13))) ||  // Saturday
       ((day == 7)))                                    // Sunday
   {
-    currentLowTariff = "TRUE"
-    currentPrice = KWH_LOW_TARIFF
+    currentTariff = "LOW"
+    currentPriceReturnedGrid = KWH_LOW_TARIFF_RETURNED_GRID
+    currentPriceGrid = KWH_LOW_TARIFF_GRID
   }
 
-  if((low_tariff.state != currentLowTariff))
+  if(tariff.state != currentTariff)
   {
     // Publish the updated state
-    logInfo(logName, "Weekday: " + day + ", Hour: " + hour + ", Low Tariff: " + currentLowTariff + ", Price: " + currentPrice)
-    low_tariff.postUpdate(currentLowTariff)
-    kWh_price.postUpdate(currentPrice)
+    //logInfo(logName, "Weekday: " + day + ", Hour: " + hour + ", Low Tariff: " + currentTariff)
+    logInfo(logName, "Low Tariff: " + currentTariff)
+    tariff.postUpdate(currentTariff)
+    kWh_price_returned_grid.postUpdate(currentPriceReturnedGrid)
+    kWh_price_consumption_grid.postUpdate(currentPriceGrid)
   }
 end
