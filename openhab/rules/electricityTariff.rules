@@ -1,10 +1,10 @@
 val logName = "electricityTariff"
 
-val KWH_HIGH_TARIFF_RETURNED_GRID  = 0.33
-val KWH_LOW_TARIFF_RETURNED_GRID = 0.31
+val KWH_HIGH_TARIFF_RETURNED_GRID  = 0.19
+val KWH_LOW_TARIFF_RETURNED_GRID = 0.18
 
-val KWH_HIGH_TARIFF_GRID  = 0.19
-val KWH_LOW_TARIFF_GRID = 0.18
+val KWH_HIGH_TARIFF_GRID  = 0.33
+val KWH_LOW_TARIFF_GRID = 0.31
 
 // Check low tariff
 rule "calculate electricity tariff"

@@ -47,4 +47,9 @@ sitemap energyOverview label="Energy Overview"
         Input item=Energy_Consumed_Grid_Low_Tariff label="Energy Consumed Low [%.0f %unit%]" staticIcon=energy inputHint="number"
         Input item=Energy_Consumed_Grid_High_Tariff label="Energy Consumed High [%.0f %unit%]" staticIcon=energy inputHint="number"
 	}
+
+        Frame label="Money" icon="price" {
+        Input item=received_money_returned_grid label="Received Money [%.0f %unit%]" staticIcon=price inputHint="number"
+        Input item=paid_money_consumption_grid label="Paid Money [%.0f %unit%]" staticIcon=price inputHint="number"
+	}
 }

@@ -46,6 +46,8 @@ Items {
     Energy_Returned_Grid_Low_Tariff : strategy = everyTenMinute, everyChange, restoreOnStartup
     Energy_Consumed_Grid_High_Tariff : strategy = everyTenMinute, everyChange, restoreOnStartup
     Energy_Consumed_Grid_Low_Tariff : strategy = everyTenMinute, everyChange, restoreOnStartup
+    received_money_returned_grid : strategy = everyTenMinute, everyChange, restoreOnStartup
+    paid_money_consumption_grid : strategy = everyTenMinute, everyChange, restoreOnStartup
 
     // Energy Storage Day
     Day_Energy_Inverter : strategy = everyTenMinute, everyChange, restoreOnStartup

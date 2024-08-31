@@ -815,6 +815,7 @@
     },
     {
       "datasource": {
+        "default": true,
         "type": "influxdb",
         "uid": "P951FEA4DE68E13C5"
       },
@@ -989,7 +990,7 @@
           "groupBy": [
             {
               "params": [
-                "10m"
+                "1h"
               ],
               "type": "time"
             },
@@ -1035,7 +1036,7 @@
           "groupBy": [
             {
               "params": [
-                "10m"
+                "1h"
               ],
               "type": "time"
             },
@@ -1081,7 +1082,7 @@
           "groupBy": [
             {
               "params": [
-                "10m"
+                "1h"
               ],
               "type": "time"
             },
@@ -1124,6 +1125,7 @@
     },
     {
       "datasource": {
+        "default": true,
         "type": "influxdb",
         "uid": "P951FEA4DE68E13C5"
       },
@@ -1224,7 +1226,7 @@
           "groupBy": [
             {
               "params": [
-                "10m"
+                "1h"
               ],
               "type": "time"
             },
@@ -1270,7 +1272,7 @@
           "groupBy": [
             {
               "params": [
-                "10m"
+                "1h"
               ],
               "type": "time"
             },
@@ -1319,7 +1321,7 @@
     "list": []
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {},

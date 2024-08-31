@@ -9,6 +9,8 @@ DateTime sunset_Time "Sunset [%1$tH:%1$tM]" <sunset> (gHouse) { channel="astro:s
 String tariff "Low Tariff [%s]" <moon> (gHouse)
 Number kWh_price_returned_grid "Price: [%.2f CHF]" <price> (gHouse)
 Number kWh_price_consumption_grid "Price: [%.2f CHF]" <price> (gHouse)
+Number received_money_returned_grid "Price: [%.2f CHF]" <price> (gHouse)
+Number paid_money_consumption_grid "Price: [%.2f CHF]" <price> (gHouse)
 Number:Energy Energy_Returned_Grid_Low_Tariff "Day Grid Energy Returned Low Tariff: [%d kWh]" <energy> (gHouseholdEnergy)
 Number:Energy Energy_Returned_Grid_High_Tariff "Day Grid Energy Returned High Tariff: [%d kWh]" <energy> (gHouseholdEnergy)
 Number:Energy Energy_Consumed_Grid_Low_Tariff "Day Grid Energy Consumed Low Tariff: [%d kWh]" <energy> (gHouseholdEnergy)

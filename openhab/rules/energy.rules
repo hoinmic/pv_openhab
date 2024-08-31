@@ -25,6 +25,8 @@ then
   Energy_Returned_Grid_High_Tariff.postUpdate(0)
   Energy_Consumed_Grid_Low_Tariff.postUpdate(0)
   Energy_Consumed_Grid_High_Tariff.postUpdate(0)
+  received_money_returned_grid.postUpdate(0)
+  paid_money_consumption_grid.postUpdate(0)
 end
 
 rule "Day Energy Reset"
@@ -175,6 +177,9 @@ then
       Day_Energy_Grid.postUpdate( delta_grid + Day_Energy_Grid.state )
       Month_Energy_Grid.postUpdate( delta_grid + Month_Energy_Grid.state )
 
+      var deltaMoney = (kWh_price_consumption_grid.state as Number).doubleValue * delta_grid
+      paid_money_consumption_grid.postUpdate((paid_money_consumption_grid.state as Number).doubleValue + deltaMoney)
+
       if(tariff.state == "LOW")
       {
         Energy_Consumed_Grid_Low_Tariff.postUpdate( delta_grid + Energy_Consumed_Grid_Low_Tariff.state )
@@ -223,6 +228,9 @@ then
       Day_Energy_Returned_Grid.postUpdate( delta_grid_returned + Day_Energy_Returned_Grid.state )
       Month_Energy_Returned_Grid.postUpdate( delta_grid_returned + Month_Energy_Returned_Grid.state )
       
+      var deltaMoney = (kWh_price_returned_grid.state as Number).doubleValue * delta_grid_returned
+      received_money_returned_grid.postUpdate((received_money_returned_grid.state as Number).doubleValue + deltaMoney)
+
       if(tariff.state == "LOW")
       {
         Energy_Returned_Grid_Low_Tariff.postUpdate( delta_grid_returned + Energy_Returned_Grid_Low_Tariff.state )

@@ -122,7 +122,7 @@
     },
     {
       "datasource": {
-        "default": true,
+        "default": false,
         "type": "influxdb",
         "uid": "P951FEA4DE68E13C5"
       },
@@ -282,7 +282,7 @@
     },
     {
       "datasource": {
-        "default": true,
+        "default": false,
         "type": "influxdb",
         "uid": "P951FEA4DE68E13C5"
       },
@@ -442,6 +442,246 @@
     },
     {
       "datasource": {
+        "default": false,
+        "type": "influxdb",
+        "uid": "P951FEA4DE68E13C5"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 50
+              },
+              {
+                "color": "red",
+                "value": 100
+              }
+            ]
+          },
+          "unit": "currencyCHF"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Autonomy"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percent"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 11,
+        "x": 0,
+        "y": 10
+      },
+      "id": 5,
+      "options": {
+        "displayMode": "gradient",
+        "maxVizHeight": 300,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "auto",
+        "valueMode": "color"
+      },
+      "pluginVersion": "11.2.0",
+      "targets": [
+        {
+          "alias": "High Tariff",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P951FEA4DE68E13C5"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "1d"
+              ],
+              "type": "time"
+            }
+          ],
+          "hide": false,
+          "measurement": "received_money_returned_grid",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "Grid_High",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "max"
+              },
+              {
+                "params": [],
+                "type": "non_negative_difference"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "title": "Received Money Today",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "influxdb",
+        "uid": "P951FEA4DE68E13C5"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 50
+              },
+              {
+                "color": "red",
+                "value": 100
+              }
+            ]
+          },
+          "unit": "currencyCHF"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Autonomy"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percent"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 11,
+        "x": 11,
+        "y": 10
+      },
+      "id": 6,
+      "options": {
+        "displayMode": "gradient",
+        "maxVizHeight": 300,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "auto",
+        "valueMode": "color"
+      },
+      "pluginVersion": "11.2.0",
+      "targets": [
+        {
+          "alias": "High Tariff",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P951FEA4DE68E13C5"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "1d"
+              ],
+              "type": "time"
+            }
+          ],
+          "hide": false,
+          "measurement": "paid_money_consumption_grid",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "Grid_High",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "max"
+              },
+              {
+                "params": [],
+                "type": "non_negative_difference"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "title": "Paid Money Today",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
         "default": true,
         "type": "influxdb",
         "uid": "P951FEA4DE68E13C5"
@@ -508,7 +748,7 @@
         "h": 8,
         "w": 22,
         "x": 0,
-        "y": 10
+        "y": 13
       },
       "id": 4,
       "options": {
@@ -645,6 +885,6 @@
   "timezone": "browser",
   "title": "Tariff",
   "uid": "fdvttsujqpybkb",
-  "version": 1,
+  "version": 8,
   "weekStart": ""
 }
