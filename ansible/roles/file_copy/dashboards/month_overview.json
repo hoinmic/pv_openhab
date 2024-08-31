@@ -18,6 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
+  "id": 8,
   "links": [],
   "panels": [
     {
@@ -108,7 +109,7 @@
             }
           ],
           "hide": false,
-          "measurement": "Day_Energy_Inverter",
+          "measurement": "Month_Energy_Inverter",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "Inverter",
@@ -150,7 +151,7 @@
             }
           ],
           "hide": false,
-          "measurement": "Day_Energy_Returned_Grid",
+          "measurement": "Month_Energy_Returned_Grid",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "Returned",
@@ -192,7 +193,7 @@
             }
           ],
           "hide": false,
-          "measurement": "Day_Energy_Grid",
+          "measurement": "Month_Energy_Grid",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "Grid",
@@ -214,7 +215,7 @@
           "tags": []
         }
       ],
-      "title": "Energy Today",
+      "title": "Energy Month",
       "type": "bargauge"
     },
     {
@@ -373,10 +374,10 @@
             }
           ],
           "hide": false,
-          "measurement": "Day_Energy_Household_Consumption",
+          "measurement": "Month_Energy_Household_Consumption",
           "orderByTime": "ASC",
           "policy": "default",
-          "refId": "Inverter",
+          "refId": "Consumption",
           "resultFormat": "time_series",
           "select": [
             [
@@ -415,7 +416,7 @@
             }
           ],
           "hide": false,
-          "measurement": "Day_Energy_Self_Consumption",
+          "measurement": "Month_Energy_Self_Consumption",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "Returned",
@@ -457,7 +458,7 @@
             }
           ],
           "hide": false,
-          "measurement": "Day_Degree_Of_Autonomy",
+          "measurement": "Month_Degree_Of_Autonomy",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "Autonomy",
@@ -499,7 +500,7 @@
             }
           ],
           "hide": false,
-          "measurement": "Day_Rate_Self_Consumption",
+          "measurement": "Month_Rate_Self_Consumption",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "Self Consumption",
@@ -521,7 +522,7 @@
           "tags": []
         }
       ],
-      "title": "Household Today",
+      "title": "Household Month",
       "type": "bargauge"
     },
     {
@@ -815,6 +816,7 @@
     },
     {
       "datasource": {
+        "default": true,
         "type": "influxdb",
         "uid": "P951FEA4DE68E13C5"
       },
@@ -989,7 +991,7 @@
           "groupBy": [
             {
               "params": [
-                "10m"
+                "1d"
               ],
               "type": "time"
             },
@@ -1001,7 +1003,7 @@
             }
           ],
           "hide": false,
-          "measurement": "Day_Energy_Inverter",
+          "measurement": "Month_Energy_Inverter",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "Inverter",
@@ -1035,7 +1037,7 @@
           "groupBy": [
             {
               "params": [
-                "10m"
+                "1d"
               ],
               "type": "time"
             },
@@ -1047,7 +1049,7 @@
             }
           ],
           "hide": false,
-          "measurement": "Day_Energy_Grid",
+          "measurement": "Month_Energy_Grid",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "Grid",
@@ -1081,7 +1083,7 @@
           "groupBy": [
             {
               "params": [
-                "10m"
+                "1d"
               ],
               "type": "time"
             },
@@ -1093,7 +1095,7 @@
             }
           ],
           "hide": false,
-          "measurement": "Day_Energy_Returned_Grid",
+          "measurement": "Month_Energy_Returned_Grid",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "Returned",
@@ -1124,6 +1126,7 @@
     },
     {
       "datasource": {
+        "default": true,
         "type": "influxdb",
         "uid": "P951FEA4DE68E13C5"
       },
@@ -1224,7 +1227,7 @@
           "groupBy": [
             {
               "params": [
-                "10m"
+                "1d"
               ],
               "type": "time"
             },
@@ -1236,7 +1239,7 @@
             }
           ],
           "hide": false,
-          "measurement": "Day_Energy_Household_Consumption",
+          "measurement": "Month_Energy_Household_Consumption",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "Inverter",
@@ -1270,7 +1273,7 @@
           "groupBy": [
             {
               "params": [
-                "10m"
+                "1d"
               ],
               "type": "time"
             },
@@ -1282,7 +1285,7 @@
             }
           ],
           "hide": false,
-          "measurement": "Day_Energy_Self_Consumption",
+          "measurement": "Month_Energy_Self_Consumption",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "Grid",
@@ -1312,20 +1315,20 @@
       "type": "barchart"
     }
   ],
-  "refresh": "5s",
+  "refresh": "1m",
   "schemaVersion": 39,
   "tags": [],
   "templating": {
     "list": []
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-7d",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "Day Overview",
-  "uid": "edvtfh9qyw2rkc",
-  "version": 1,
+  "title": "Month Overview",
+  "uid": "edvtfh9qyw2rkt",
+  "version": 2,
   "weekStart": ""
 }
