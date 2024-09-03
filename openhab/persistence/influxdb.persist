@@ -54,22 +54,22 @@ Items {
     Day_Energy_Grid : strategy = everyTenMinute, everyChange, restoreOnStartup
     Day_Energy_Returned_Grid : strategy = everyTenMinute, everyChange, restoreOnStartup
 
-    Day_Energy_Household_Consumption : strategy = everyTenMinute, everyChange
-    Day_Energy_Self_Consumption : strategy = everyTenMinute, everyChange
+    Day_Energy_Household_Consumption : strategy = everyTenMinute, everyChange, restoreOnStartup
+    Day_Energy_Self_Consumption : strategy = everyTenMinute, everyChange, restoreOnStartup
 
-    Day_Degree_Of_Autonomy : strategy = everyTenMinute, everyChange
-    Day_Rate_Self_Consumption : strategy = everyTenMinute, everyChange
+    Day_Degree_Of_Autonomy : strategy = everyTenMinute, everyChange, restoreOnStartup
+    Day_Rate_Self_Consumption : strategy = everyTenMinute, everyChange, restoreOnStartup
 
     // Energy Storage Month
     Month_Energy_Inverter : strategy = everyTenMinute, everyChange, restoreOnStartup
     Month_Energy_Grid : strategy = everyTenMinute, everyChange, restoreOnStartup
     Month_Energy_Returned_Grid : strategy = everyTenMinute, everyChange, restoreOnStartup
 
-    Month_Energy_Household_Consumption : strategy = everyTenMinute, everyChange
-    Month_Energy_Self_Consumption : strategy = everyTenMinute, everyChange
+    Month_Energy_Household_Consumption : strategy = everyTenMinute, everyChange, restoreOnStartup
+    Month_Energy_Self_Consumption : strategy = everyTenMinute, everyChange, restoreOnStartup
 
-    Month_Degree_Of_Autonomy : strategy = everyTenMinute, everyChange
-    Month_Rate_Self_Consumption : strategy = everyTenMinute, everyChange
+    Month_Degree_Of_Autonomy : strategy = everyTenMinute, everyChange, restoreOnStartup
+    Month_Rate_Self_Consumption : strategy = everyTenMinute, everyChange, restoreOnStartup
 
     // Day information
     timeOfDay : strategy = everyTenMinute, everyChange
