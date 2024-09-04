@@ -9,7 +9,14 @@ var ZonedDateTime sunSet = null
 
 var String previousTimeOfDay = "NIGHT"
 
-rule "timeOfDay Calculate the times of this day" 
+rule "times of this day startup"
+when
+  System started
+then
+  timeOfDay.postUpdate(previousTimeOfDay)
+end
+
+rule "timeOfDay Calculate the times of this day"
 when
   System started or // run at system start in case the time changed when OH was offline
   Time cron "0 3 0 * * ? *" // three minutes after midnight, to give Astro time to calculate the new day's times

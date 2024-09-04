@@ -22,6 +22,7 @@
   "panels": [
     {
       "datasource": {
+        "default": false,
         "type": "influxdb",
         "uid": "P951FEA4DE68E13C5"
       },
@@ -121,7 +122,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "Returned_Energy_Grid",
+          "measurement": "Shelly_Returned_Energy_Grid",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "Retruned Grid",
@@ -163,7 +164,7 @@
             }
           ],
           "hide": false,
-          "measurement": "Energy_Grid",
+          "measurement": "Shelly_Energy_Grid",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "Energy Grid",
@@ -205,7 +206,7 @@
             }
           ],
           "hide": false,
-          "measurement": "Energy_Inverter",
+          "measurement": "Shelly_Energy_Inverter",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "Energy Inverter",

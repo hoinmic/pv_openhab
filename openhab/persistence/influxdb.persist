@@ -31,9 +31,6 @@ Items {
     UDC2_North : strategy = everyMinute
 
     // Power Storage
-    Current_Power_Total_Inverter : strategy = everyTenMinute, everyChange
-    Current_Power_Total_Grid : strategy = everyTenMinute, everyChange
-
     filtered_power_inverter : strategy = everyTenMinute, everyChange
     filtered_power_grid : strategy = everyTenMinute, everyChange
     filtered_power_consumption : strategy = everyTenMinute, everyChange
@@ -48,6 +45,14 @@ Items {
     Energy_Consumed_Grid_Low_Tariff : strategy = everyTenMinute, everyChange, restoreOnStartup
     received_money_returned_grid : strategy = everyTenMinute, everyChange, restoreOnStartup
     paid_money_consumption_grid : strategy = everyTenMinute, everyChange, restoreOnStartup
+
+    // Energy Storage Continuous
+    Energy_Inverter : strategy = everyTenMinute, everyChange, restoreOnStartup
+    Energy_Grid : strategy = everyTenMinute, everyChange, restoreOnStartup
+    Energy_Returned_Grid : strategy = everyTenMinute, everyChange, restoreOnStartup
+
+    Energy_Household_Consumption : strategy = everyTenMinute, everyChange, restoreOnStartup
+    Energy_Self_Consumption : strategy = everyTenMinute, everyChange, restoreOnStartup
 
     // Energy Storage Day
     Day_Energy_Inverter : strategy = everyTenMinute, everyChange, restoreOnStartup
@@ -75,12 +80,12 @@ Items {
     timeOfDay : strategy = everyTenMinute, everyChange
 
     // Shelly information
-    Uptime_Inverter : strategy = everyHour
-    Energy_Inverter : strategy = everyTenMinute, everyChange
-    Current_Power_Total_Inverter : strategy = everyTenMinute, everyChange
+    Shelly_Uptime_Inverter : strategy = everyHour
+    Shelly_Energy_Inverter : strategy = everyTenMinute, everyChange
+    Shelly_Current_Power_Total_Inverter : strategy = everyTenMinute, everyChange
 
-    Uptime_Grid : strategy = everyHour
-    Energy_Grid : strategy = everyTenMinute, everyChange
-    Returned_Energy_Grid : strategy = everyTenMinute, everyChange
-    Current_Power_Total_Grid : strategy = everyTenMinute, everyChange
+    Shelly_Uptime_Grid : strategy = everyHour
+    Shelly_Energy_Grid : strategy = everyTenMinute, everyChange
+    Shelly_Returned_Energy_Grid : strategy = everyTenMinute, everyChange
+    Shelly_Current_Power_Total_Grid : strategy = everyTenMinute, everyChange
 }

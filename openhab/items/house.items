@@ -21,6 +21,22 @@ Number:Power filtered_power_inverter "Power Inverter: [%d W]" <power> (gHousehol
 Number:Power filtered_power_grid "Power Grid: [%d W]" <power> (gHouseholdPower)
 Number:Power filtered_power_consumption "Power Consumption: [%d W]" <power> (gHouseholdPower)
 
+// Energy consumption
+Number:Energy Energy_Inverter "Inverter Energy: [%d kWh]" <energy> (gHouseholdEnergy)
+Number:Energy Energy_Inverter_Midnight "Inverter Energy at midnight: [%d kWh]" <energy> (gHouseholdEnergy)
+Number:Energy Energy_Inverter_Month "Inverter Energy at month start: [%d kWh]" <energy> (gHouseholdEnergy)
+
+Number:Energy Energy_Grid "Grid Energy: [%d kWh]" <energy> (gHouseholdEnergy)
+Number:Energy Energy_Grid_Midnight "Grid Energy at midnight: [%d kWh]" <energy> (gHouseholdEnergy)
+Number:Energy Energy_Grid_Month "Grid Energy at month start: [%d kWh]" <energy> (gHouseholdEnergy)
+
+Number:Energy Energy_Returned_Grid "Grid Energy Returned: [%d kWh]" <energy> (gHouseholdEnergy)
+Number:Energy Energy_Returned_Grid_Midnight "Grid Energy Returned at midnight: [%d kWh]" <energy> (gHouseholdEnergy)
+Number:Energy Energy_Returned_Grid_Month "Grid Energy Returned at month start: [%d kWh]" <energy> (gHouseholdEnergy)
+
+Number:Energy Energy_Household_Consumption "Household Total Energy Consumption: [%d kWh]" <energy> (gHouseholdEnergy)
+Number:Energy Energy_Self_Consumption "Inverter Energy Self Consumption: [%d kWh]" <energy>
+
 // Day Energy consumption
 Number:Energy Day_Energy_Inverter "Day Inverter Energy: [%d kWh]" <energy> (gHouseholdEnergy)
 Number:Energy Day_Energy_Grid "Day Grid Energy: [%d kWh]" <energy> (gHouseholdEnergy)

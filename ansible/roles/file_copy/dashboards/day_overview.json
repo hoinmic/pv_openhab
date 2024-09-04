@@ -815,7 +815,7 @@
     },
     {
       "datasource": {
-        "default": true,
+        "default": false,
         "type": "influxdb",
         "uid": "P951FEA4DE68E13C5"
       },
@@ -1002,7 +1002,7 @@
             }
           ],
           "hide": false,
-          "measurement": "Day_Energy_Inverter",
+          "measurement": "Energy_Inverter",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "Inverter",
@@ -1048,7 +1048,7 @@
             }
           ],
           "hide": false,
-          "measurement": "Day_Energy_Grid",
+          "measurement": "Energy_Grid",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "Grid",
@@ -1094,7 +1094,7 @@
             }
           ],
           "hide": false,
-          "measurement": "Day_Energy_Returned_Grid",
+          "measurement": "Energy_Returned_Grid",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "Returned",
@@ -1125,7 +1125,7 @@
     },
     {
       "datasource": {
-        "default": true,
+        "default": false,
         "type": "influxdb",
         "uid": "P951FEA4DE68E13C5"
       },
@@ -1238,7 +1238,7 @@
             }
           ],
           "hide": false,
-          "measurement": "Day_Energy_Household_Consumption",
+          "measurement": "Energy_Household_Consumption",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "Inverter",
@@ -1284,7 +1284,7 @@
             }
           ],
           "hide": false,
-          "measurement": "Day_Energy_Self_Consumption",
+          "measurement": "Energy_Self_Consumption",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "Grid",
@@ -1328,6 +1328,6 @@
   "timezone": "browser",
   "title": "Day Overview",
   "uid": "edvtfh9qyw2rkc",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }

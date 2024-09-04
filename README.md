@@ -17,7 +17,7 @@ sudo dnf install ansible-collection-community-general
 
 ### Installation on target system
 
-1) Installation of an OS on the target system. An ssh access must be given. Tested with Ubuntu server 22.04 LTS.
+1) Installation of an OS on the target system. An ssh access must be given. Tested with Ubuntu server 22.04 and Ubuntu server 24.04.
 
 2) Installation of all components with ansible. (Modify user and password in inventory file (ansible/inventory).
 

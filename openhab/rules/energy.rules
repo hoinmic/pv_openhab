@@ -12,6 +12,21 @@ then
   if (TestGrid_Energy_Returned.state == NULL ) TestGrid_Energy_Returned.postUpdate(0)
   if (TestInverter_Energy.state == NULL ) TestInverter_Energy.postUpdate(0)
 
+  if (Energy_Inverter.state == NULL ) Energy_Inverter.postUpdate(0)
+  if (Energy_Inverter_Midnight.state == NULL ) Energy_Inverter_Midnight.postUpdate(0)
+  if (Energy_Inverter_Month.state == NULL ) Energy_Inverter_Month.postUpdate(0)
+
+  if (Energy_Grid.state == NULL ) Energy_Grid.postUpdate(0)
+  if (Energy_Grid_Midnight.state == NULL ) Energy_Grid_Midnight.postUpdate(0)
+  if (Energy_Grid_Month.state == NULL ) Energy_Grid_Month.postUpdate(0)
+
+  if (Energy_Returned_Grid.state == NULL ) Energy_Returned_Grid.postUpdate(0)
+  if (Energy_Returned_Grid_Midnight.state == NULL ) Energy_Returned_Grid_Midnight.postUpdate(0)
+  if (Energy_Returned_Grid_Month.state == NULL ) Energy_Returned_Grid_Month.postUpdate(0)
+
+  if (Energy_Household_Consumption.state == NULL ) Energy_Household_Consumption.postUpdate(0)
+  if (Energy_Self_Consumption.state == NULL ) Energy_Self_Consumption.postUpdate(0)
+
   if (Day_Energy_Inverter.state == NULL ) Day_Energy_Inverter.postUpdate(0)
   if (Day_Energy_Grid.state == NULL ) Day_Energy_Grid.postUpdate(0)
   if (Day_Energy_Returned_Grid.state == NULL ) Day_Energy_Returned_Grid.postUpdate(0)
@@ -53,29 +68,93 @@ when
   Item Reset_Day_Energy_Meter changed or
   Time cron "0 0 0 * * ? *" // midnight
 then
-  Day_Energy_Inverter.postUpdate(0)
-  Day_Energy_Grid.postUpdate(0)
-  Day_Energy_Returned_Grid.postUpdate(0)
+  Energy_Inverter_Midnight.postUpdate(Energy_Inverter.state)
+  Energy_Grid_Midnight.postUpdate(Energy_Grid.state)
+  Energy_Returned_Grid_Midnight.postUpdate(Energy_Returned_Grid.state)
 end
 
-rule "Day Energy Self Consumption"
+rule "Month Energy Counter Reset"
 when
-  Item Day_Energy_Inverter changed or
-  Item Day_Energy_Grid changed or
-  Item Day_Energy_Returned_Grid changed
+  Item Reset_Month_Energy_Meter changed or
+  Time cron "0 0 0 1 * ? *" // First day of month
 then
-  Day_Energy_Household_Consumption.postUpdate((Day_Energy_Inverter.state as QuantityType<Energy>) +
-                                               (Day_Energy_Grid.state as QuantityType<Energy>) -
-                                               (Day_Energy_Returned_Grid.state as QuantityType<Energy>))
-  Day_Energy_Self_Consumption.postUpdate((Day_Energy_Inverter.state as QuantityType<Energy>).doubleValue -
-                                          (Day_Energy_Returned_Grid.state as QuantityType<Energy>).doubleValue)
+  Energy_Inverter_Month.postUpdate(Energy_Inverter.state)
+  Energy_Grid_Month.postUpdate(Energy_Grid.state)
+  Energy_Returned_Grid_Month.postUpdate(Energy_Returned_Grid.state)
+end
+
+rule "Continous Energy Calculation"
+when
+  Item Energy_Inverter changed or
+  Item Energy_Grid changed or
+  Item Energy_Returned_Grid changed
+then
+  Energy_Household_Consumption.postUpdate( ( Energy_Inverter.state as QuantityType<Energy> ) +
+                                           ( Energy_Grid.state as QuantityType<Energy> ) -
+                                           ( Energy_Returned_Grid.state as QuantityType<Energy> ))
+
+  Energy_Self_Consumption.postUpdate( ( Energy_Inverter.state as QuantityType<Energy> ) -
+                                      ( Energy_Returned_Grid.state as QuantityType<Energy> ))
+end
+
+rule "Day Energy Calculation"
+when
+  Item Energy_Inverter changed or
+  Item Energy_Grid changed or
+  Item Energy_Returned_Grid changed
+then
+  var QuantityType<Energy> day_energy_inverter = ( Energy_Inverter.state as QuantityType<Energy> ) -
+                                                 ( Energy_Inverter_Midnight.state as QuantityType<Energy> )
+
+  var QuantityType<Energy> day_energy_grid = ( Energy_Grid.state as QuantityType<Energy> ) -
+                                             ( Energy_Grid_Midnight.state as QuantityType<Energy> )
+
+  var QuantityType<Energy> day_energy_returned_grid = ( Energy_Returned_Grid.state as QuantityType<Energy> ) -
+                                                      ( Energy_Returned_Grid_Midnight.state as QuantityType<Energy> )
+
+  Day_Energy_Inverter.postUpdate( day_energy_inverter )
+  Day_Energy_Grid.postUpdate( day_energy_grid )
+  Day_Energy_Returned_Grid.postUpdate( day_energy_returned_grid )
+
+  Day_Energy_Household_Consumption.postUpdate( day_energy_inverter +
+                                               day_energy_grid -
+                                               day_energy_returned_grid)
+
+  Day_Energy_Self_Consumption.postUpdate( day_energy_inverter -
+                                          day_energy_returned_grid)
+end
+
+rule "Month Energy Calculation"
+when
+  Item Energy_Inverter changed or
+  Item Energy_Grid changed or
+  Item Energy_Returned_Grid changed
+then
+  var QuantityType<Energy> month_energy_inverter = ( Energy_Inverter.state as QuantityType<Energy> ) -
+                                                 ( Energy_Inverter_Month.state as QuantityType<Energy> )
+
+  var QuantityType<Energy> month_energy_grid = ( Energy_Grid.state as QuantityType<Energy> ) -
+                                             ( Energy_Grid_Month.state as QuantityType<Energy> )
+
+  var QuantityType<Energy> month_energy_returned_grid = ( Energy_Returned_Grid.state as QuantityType<Energy> ) -
+                                                      ( Energy_Returned_Grid_Month.state as QuantityType<Energy> )
+
+  Month_Energy_Inverter.postUpdate( month_energy_inverter )
+  Month_Energy_Grid.postUpdate( month_energy_grid )
+  Month_Energy_Returned_Grid.postUpdate( month_energy_returned_grid )
+
+  Month_Energy_Household_Consumption.postUpdate( month_energy_inverter +
+                                               month_energy_grid -
+                                               month_energy_returned_grid)
+
+  Month_Energy_Self_Consumption.postUpdate( month_energy_inverter -
+                                          month_energy_returned_grid)
 end
 
 rule "Day Energy Autonomy"
 when
   Item Day_Energy_Self_Consumption changed or
-  Item Day_Energy_Household_Consumption changed or
-  Item Day_Energy_Inverter changed
+  Item Day_Energy_Household_Consumption changed
 then
   Day_Degree_Of_Autonomy.postUpdate((Day_Energy_Self_Consumption.state as Number).doubleValue /
                                      (Day_Energy_Household_Consumption.state as Number).doubleValue *
@@ -85,34 +164,10 @@ then
                                          100)
 end
 
-rule "Month Energy Counter Reset"
-when
-  Item Reset_Month_Energy_Meter changed or
-  Time cron "0 0 0 1 * ? *" // First day of month
-then
-  Month_Energy_Inverter.postUpdate(0)
-  Month_Energy_Grid.postUpdate(0)
-  Month_Energy_Returned_Grid.postUpdate(0)
-end
-
-rule "Month Energy Self Consumption"
-when
-  Item Month_Energy_Inverter changed or
-  Item Month_Energy_Grid changed or
-  Item Month_Energy_Returned_Grid changed
-then
-  Month_Energy_Household_Consumption.postUpdate((Month_Energy_Inverter.state as QuantityType<Energy>) +
-                                                 (Month_Energy_Grid.state as QuantityType<Energy>) -
-                                                 (Month_Energy_Returned_Grid.state as QuantityType<Energy>))
-  Month_Energy_Self_Consumption.postUpdate((Month_Energy_Inverter.state as QuantityType<Energy>) -
-                                            (Month_Energy_Returned_Grid.state as QuantityType<Energy>))
-end
-
 rule "Month Energy Autonomy"
 when
   Item Month_Energy_Self_Consumption changed or
-  Item Month_Energy_Household_Consumption changed or
-  Item Month_Energy_Inverter changed
+  Item Month_Energy_Household_Consumption changed
 then
   Month_Degree_Of_Autonomy.postUpdate((Month_Energy_Self_Consumption.state as Number).doubleValue /
                                        (Month_Energy_Household_Consumption.state as Number).doubleValue *
@@ -131,9 +186,9 @@ then
   var QuantityType<Energy> delta_Inverter = 0|Wh
   var QuantityType<Energy> test_energy = 0|Wh
 
-  if ((Energy_Inverter.state != NULL ) && (Energy_Inverter.state != UNDEF))
+  if ((Shelly_Energy_Inverter.state != NULL ) && (Shelly_Energy_Inverter.state != UNDEF))
   {
-    Current_Energy_Inverter = Energy_Inverter.state as QuantityType<Energy>
+    Current_Energy_Inverter = Shelly_Energy_Inverter.state as QuantityType<Energy>
   }
 
   // Test energy
@@ -150,8 +205,7 @@ then
     // Check whether energy meter has been reseted
     if(delta_Inverter > 0|Wh )
     {
-      Day_Energy_Inverter.postUpdate( delta_Inverter + Day_Energy_Inverter.state )
-      Month_Energy_Inverter.postUpdate( delta_Inverter + Month_Energy_Inverter.state )
+      Energy_Inverter.postUpdate( delta_Inverter + Energy_Inverter.state )
     }
   }
   previous_energy_inverter = Current_Energy_Inverter
@@ -159,8 +213,7 @@ then
   // logInfo(logName, "TestInverter_Energy: " + TestInverter_Energy.state)
   // logInfo(logName, "Current_Energy_Inverter: " + Current_Energy_Inverter)
   // logInfo(logName, "delta_Inverter: " + delta_Inverter)
-  // logInfo(logName, "Day_Energy_Inverter: " + Day_Energy_Inverter.state)
-  // logInfo(logName, "Month_Energy_Inverter: " + Month_Energy_Inverter.state)
+  // logInfo(logName, "Energy_Inverter: " + Energy_Inverter.state)
 end
 
 rule "Total Energy Grid"
@@ -171,9 +224,9 @@ then
   var QuantityType<Energy> delta_grid = 0|Wh
   var QuantityType<Energy> test_energy = 0|Wh
 
-  if ((Energy_Grid.state != NULL ) && (Energy_Grid.state != UNDEF))
+  if ((Shelly_Energy_Grid.state != NULL ) && (Shelly_Energy_Grid.state != UNDEF))
   {
-    Current_Energy_Grid = Energy_Grid.state as QuantityType<Energy>
+    Current_Energy_Grid = Shelly_Energy_Grid.state as QuantityType<Energy>
   }
 
   // Test energy
@@ -189,8 +242,7 @@ then
     // Check whether energy meter has been reseted
     if(delta_grid > 0|Wh )
     {
-      Day_Energy_Grid.postUpdate( delta_grid + Day_Energy_Grid.state )
-      Month_Energy_Grid.postUpdate( delta_grid + Month_Energy_Grid.state )
+      Energy_Grid.postUpdate( delta_grid + Energy_Grid.state )
 
       var deltaMoney = (kWh_price_consumption_grid.state as Number).doubleValue * delta_grid
       paid_money_consumption_grid.postUpdate((paid_money_consumption_grid.state as Number).doubleValue + deltaMoney)
@@ -222,9 +274,9 @@ then
   var QuantityType<Energy> delta_grid_returned = 0|Wh
   var QuantityType<Energy> test_energy = 0|Wh
 
-  if ((Returned_Energy_Grid.state != NULL ) && (Returned_Energy_Grid.state != UNDEF))
+  if ((Shelly_Returned_Energy_Grid.state != NULL ) && (Shelly_Returned_Energy_Grid.state != UNDEF))
   {
-    Current_Returned_Energy_Grid = Returned_Energy_Grid.state as QuantityType<Energy>
+    Current_Returned_Energy_Grid = Shelly_Returned_Energy_Grid.state as QuantityType<Energy>
   }
 
   // Test energy
@@ -240,8 +292,7 @@ then
     // Check whether energy meter has been reseted
     if(delta_grid_returned >  0|Wh )
     {
-      Day_Energy_Returned_Grid.postUpdate( delta_grid_returned + Day_Energy_Returned_Grid.state )
-      Month_Energy_Returned_Grid.postUpdate( delta_grid_returned + Month_Energy_Returned_Grid.state )
+      Energy_Returned_Grid.postUpdate( delta_grid_returned + Energy_Returned_Grid.state )
       
       var deltaMoney = (kWh_price_returned_grid.state as Number).doubleValue * delta_grid_returned
       received_money_returned_grid.postUpdate((received_money_returned_grid.state as Number).doubleValue + deltaMoney)

@@ -18,7 +18,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 8,
   "links": [],
   "panels": [
     {
@@ -816,7 +815,7 @@
     },
     {
       "datasource": {
-        "default": true,
+        "default": false,
         "type": "influxdb",
         "uid": "P951FEA4DE68E13C5"
       },
@@ -1003,7 +1002,7 @@
             }
           ],
           "hide": false,
-          "measurement": "Month_Energy_Inverter",
+          "measurement": "Energy_Inverter",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "Inverter",
@@ -1049,7 +1048,7 @@
             }
           ],
           "hide": false,
-          "measurement": "Month_Energy_Grid",
+          "measurement": "Energy_Grid",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "Grid",
@@ -1095,7 +1094,7 @@
             }
           ],
           "hide": false,
-          "measurement": "Month_Energy_Returned_Grid",
+          "measurement": "Energy_Returned_Grid",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "Returned",
@@ -1126,7 +1125,7 @@
     },
     {
       "datasource": {
-        "default": true,
+        "default": false,
         "type": "influxdb",
         "uid": "P951FEA4DE68E13C5"
       },
@@ -1239,7 +1238,7 @@
             }
           ],
           "hide": false,
-          "measurement": "Month_Energy_Household_Consumption",
+          "measurement": "Energy_Household_Consumption",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "Inverter",
@@ -1285,7 +1284,7 @@
             }
           ],
           "hide": false,
-          "measurement": "Month_Energy_Self_Consumption",
+          "measurement": "Energy_Self_Consumption",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "Grid",
@@ -1329,6 +1328,6 @@
   "timezone": "browser",
   "title": "Month Overview",
   "uid": "edvtfh9qyw2rkt",
-  "version": 2,
+  "version": 1,
   "weekStart": ""
 }

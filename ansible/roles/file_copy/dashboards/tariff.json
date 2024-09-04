@@ -682,7 +682,7 @@
     },
     {
       "datasource": {
-        "default": true,
+        "default": false,
         "type": "influxdb",
         "uid": "P951FEA4DE68E13C5"
       },
@@ -795,7 +795,7 @@
             }
           ],
           "hide": false,
-          "measurement": "Day_Energy_Grid",
+          "measurement": "Energy_Grid",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "Inverter",
@@ -841,7 +841,7 @@
             }
           ],
           "hide": false,
-          "measurement": "Day_Energy_Returned_Grid",
+          "measurement": "Energy_Returned_Grid",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "Grid",
@@ -885,6 +885,6 @@
   "timezone": "browser",
   "title": "Tariff",
   "uid": "fdvttsujqpybkb",
-  "version": 8,
+  "version": 1,
   "weekStart": ""
 }
