@@ -43,7 +43,7 @@
               }
             ]
           },
-          "unit": "kwatth"
+          "unit": "watth"
         },
         "overrides": [
           {
@@ -240,7 +240,7 @@
               }
             ]
           },
-          "unit": "kwatth"
+          "unit": "watth"
         },
         "overrides": [
           {
@@ -856,7 +856,7 @@
               }
             ]
           },
-          "unit": "kwatth"
+          "unit": "watth"
         },
         "overrides": [
           {
@@ -1167,7 +1167,7 @@
               }
             ]
           },
-          "unit": "kwatth"
+          "unit": "watth"
         },
         "overrides": [
           {
@@ -1328,6 +1328,6 @@
   "timezone": "browser",
   "title": "Day Overview",
   "uid": "edvtfh9qyw2rkc",
-  "version": 2,
+  "version": 3,
   "weekStart": ""
 }
