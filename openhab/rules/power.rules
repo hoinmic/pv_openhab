@@ -4,7 +4,7 @@ var Number moving_average_power_inverter
 var Number moving_average_power_grid
 var Number moving_average_power_consumption
 
-val FORGETTING_FACTOR = 4
+val FORGETTING_FACTOR = 3
 
 rule "Power Consumption Startup"
 when

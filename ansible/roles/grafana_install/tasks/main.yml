@@ -37,3 +37,11 @@
     group: root
     mode: 0644
   notify: restart_grafana
+
+- name: Set default home screen
+  replace:
+    dest=/etc/grafana/grafana.ini
+    regexp='^;default_home_dashboard_path =$'
+    replace='default_home_dashboard_path = /var/lib/grafana/dashboards/day_overview.json'
+    backup=yes
+  notify: restart_grafana
