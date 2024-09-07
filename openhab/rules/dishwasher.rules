@@ -1,0 +1,45 @@
+val logName = "dishwasher"
+
+var String previousMachineStatus = "OFF"
+
+rule "machine status startup"
+when
+  System started
+then
+  dishwasherMachineStatus.postUpdate(previousMachineStatus)
+end
+
+rule "Define Machine Status"
+when
+  Time cron "0/15 * * * * ?"                // every 15 seconds
+then
+  // Define the machine status
+  var String currentMachineStatus = "OFF"
+
+  if((dishwasherInactiveStatus.state.toString == "false") &&
+     (dishwasherSmartStartStatus.state.toString == "true")) { currentMachineStatus = "SMART_START_READY" }
+
+  if((dishwasherInactiveStatus.state.toString == "false") &&
+     (dishwasherStatus.state.toString != "") &&
+     (dishwasherSmartStartStatus.state.toString == "false")) { currentMachineStatus = "ON" }
+
+  if(previousMachineStatus != currentMachineStatus)
+  {
+    // Publish the updated state
+    logInfo(logName, "Machine Status: " + currentMachineStatus)
+    dishwasherMachineStatus.postUpdate(currentMachineStatus)
+  } 
+  previousMachineStatus = currentMachineStatus
+end
+
+rule "Start Machine"
+when
+  Item dishwasher_trigger changed or        // state change
+  Time cron "0 0/1 * * * ?"                 // every minute
+then
+  if (dishwasher_trigger.state == ON)
+  {
+    dishwasher_startMachine.sendCommand(0)
+    logInfo(logName, "Dishwasher Started")
+  }
+end

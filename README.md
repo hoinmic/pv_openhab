@@ -23,6 +23,9 @@ sudo dnf install ansible-collection-community-general
 
 ```sh
 ansible-playbook --ask-become-pass -i ansible/inventory ansible/site.yml --tags "all,never" --limit staging
+or
+ansible-playbook --ask-become-pass -i ansible/inventory ansible/site.yml --tags "all,never" --limit productive
+
 ```
 
 ### Login Grafana
@@ -113,18 +116,19 @@ G <--> J
 
 J --> O
 J --> S
+J --> V
+J --> Z
 
 subgraph Smart Devices
     O --> P
     S --> T
+    V
+    Z
 end
 
 J --> U
-J --> M
-J --> Z
+J --> W
 J --> CAR
-M --> V
-M --> W
 
 subgraph Future Smart Devices
     U

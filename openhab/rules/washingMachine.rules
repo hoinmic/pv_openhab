@@ -1,0 +1,44 @@
+val logName = "washingMachine"
+
+var String previousMachineStatus = "OFF"
+
+rule "machine status startup"
+when
+  System started
+then
+  washingMachineStatus.postUpdate(previousMachineStatus)
+end
+
+rule "Define Machine Status"
+when
+  Time cron "0/15 * * * * ?"                // every 15 seconds
+then
+  // Define the machine status
+  var String currentMachineStatus = "OFF"
+
+  if((washingMachineInactiveStatus.state.toString == "false") &&
+     (washingMachineSmartStartStatus.state.toString == "true")) { currentMachineStatus = "SMART_START_READY" }
+
+  if((washingMachineInactiveStatus.state.toString == "false") &&
+     (washingMachineSmartStartStatus.state.toString == "false")) { currentMachineStatus = "ON" }
+
+  if(previousMachineStatus != currentMachineStatus)
+  {
+    // Publish the updated state
+    logInfo(logName, "Machine Status: " + currentMachineStatus)
+    washingMachineStatus.postUpdate(currentMachineStatus)
+  } 
+  previousMachineStatus = currentMachineStatus
+end
+
+rule "Start Machine"
+when
+  Item washingMachine_trigger changed or        // state change
+  Time cron "0 0/1 * * * ?"                 // every minute
+then
+  if (washingMachine_trigger.state == ON)
+  {
+    washingMachine_startMachine.sendCommand(0)
+    logInfo(logName, "Dishwasher Started")
+  }
+end

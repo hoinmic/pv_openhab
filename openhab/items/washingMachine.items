@@ -1,0 +1,8 @@
+// Washing Machine
+String washingMachineStatus "Washing Machine Status"
+Switch washingMachine_trigger "Washing Machine Trigger" <rain> (gTrigger)
+
+Number washingMachine_startMachine "Washing Machine Smart Start" { channel="http:url:AdoraWashV2000:startMachine" }
+
+String washingMachineInactiveStatus "Washing Machine Inactive Ready" { channel="http:url:AdoraWashV2000:inactiveStatus" }
+String washingMachineSmartStartStatus "Washing Machine Smart Start Ready" { channel="http:url:AdoraWashV2000:smartStartStatus" }

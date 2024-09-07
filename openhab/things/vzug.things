@@ -1,0 +1,35 @@
+Thing http:url:AdoraDishV4000 "AdoraDishV4000" [
+    baseURL="http://192.168.0.132/",
+    refresh=15] {
+        Channels:
+            Type string : inactiveStatus "Inactive Status" [ 
+                stateExtension="ai?command=getDeviceStatus", 
+                stateTransformation="JSONPATH:$.Inactive" ]
+            Type string : machineStatus "Machine Status" [ 
+                stateExtension="ai?command=getDeviceStatus", 
+                stateTransformation="JSONPATH:$.Status" ]
+            Type string : smartStartStatus "Smart Start Status" [ 
+                stateExtension="hh?command=getSmartStart", 
+                stateTransformation="JSONPATH:$.active" ]
+            Type number : startMachine "Start Machine" [ 
+                commandExtension="hh?command=setSmartStart&value={\"starttime\": %2$s}",
+                mode="WRITEONLY"]
+}
+
+Thing http:url:AdoraWashV2000 "AdoraWashV2000" [
+    baseURL="http://192.168.0.250/",
+    refresh=15] {
+        Channels:
+            Type string : inactiveStatus "Inactive Status" [ 
+                stateExtension="ai?command=getDeviceStatus", 
+                stateTransformation="JSONPATH:$.Inactive" ]
+            Type string : machineStatus "Machine Status" [ 
+                stateExtension="ai?command=getDeviceStatus", 
+                stateTransformation="JSONPATH:$.Status" ]
+            Type string : smartStartStatus "Smart Start Status" [ 
+                stateExtension="hh?command=getSmartStart", 
+                stateTransformation="JSONPATH:$.active" ]
+            Type number : startMachine "Start Machine" [ 
+                commandExtension="hh?command=setSmartStart&value={\"starttime\": %2$s}",
+                mode="WRITEONLY"]
+}

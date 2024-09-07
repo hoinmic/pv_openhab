@@ -152,6 +152,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": -1,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 8,
             "gradientMode": "none",
@@ -425,13 +426,14 @@
     },
     {
       "datasource": {
+        "default": false,
         "type": "influxdb",
         "uid": "P951FEA4DE68E13C5"
       },
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "fixed"
           },
           "custom": {
             "fillOpacity": 70,
@@ -448,12 +450,26 @@
             {
               "options": {
                 "0": {
+                  "color": "blue",
                   "index": 1,
                   "text": "OFF"
                 },
                 "1": {
+                  "color": "red",
                   "index": 0,
                   "text": "ON"
+                },
+                "OFF": {
+                  "color": "blue",
+                  "index": 3
+                },
+                "ON": {
+                  "color": "red",
+                  "index": 2
+                },
+                "SMART_START_READY": {
+                  "color": "yellow",
+                  "index": 4
                 }
               },
               "type": "value"
@@ -467,196 +483,17 @@
               {
                 "color": "transparent",
                 "value": null
-              },
-              {
-                "color": "#102e5b",
-                "value": 0
-              },
-              {
-                "color": "red",
-                "value": 1
               }
             ]
-          },
-          "unit": "bool_on_off"
+          }
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 6,
+        "h": 8,
         "w": 22,
         "x": 0,
         "y": 13
-      },
-      "id": 2,
-      "options": {
-        "alignValue": "left",
-        "legend": {
-          "displayMode": "list",
-          "placement": "right",
-          "showLegend": false
-        },
-        "mergeValues": true,
-        "rowHeight": 0.9,
-        "showValue": "auto",
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "alias": "Dehumidifier",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "P951FEA4DE68E13C5"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "value::field"
-              ],
-              "type": "tag"
-            }
-          ],
-          "hide": false,
-          "measurement": "dehumidifier_trigger",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT \"value\" FROM \"dehumidifier_trigger\" WHERE $timeFilter",
-          "rawQuery": false,
-          "refId": "Dehumidifier",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              }
-            ]
-          ],
-          "tags": []
-        },
-        {
-          "alias": "Boiler LOW",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "P951FEA4DE68E13C5"
-          },
-          "groupBy": [],
-          "hide": false,
-          "measurement": "boiler_33_percent_trigger",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "Boiler 33 Percent",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              }
-            ]
-          ],
-          "tags": []
-        },
-        {
-          "alias": "Boiler FULL",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "P951FEA4DE68E13C5"
-          },
-          "groupBy": [],
-          "hide": false,
-          "measurement": "boiler_100_percent_trigger",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "Boiler 100 Percent",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              }
-            ]
-          ],
-          "tags": []
-        }
-      ],
-      "title": "Trigger",
-      "type": "state-timeline"
-    },
-    {
-      "datasource": {
-        "type": "influxdb",
-        "uid": "P951FEA4DE68E13C5"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "fillOpacity": 70,
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineWidth": 0,
-            "spanNulls": false
-          },
-          "mappings": [
-            {
-              "options": {
-                "0": {
-                  "index": 1,
-                  "text": "OFF"
-                },
-                "1": {
-                  "index": 0,
-                  "text": "ON"
-                }
-              },
-              "type": "value"
-            }
-          ],
-          "max": 1,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "transparent",
-                "value": null
-              },
-              {
-                "color": "#102e5b",
-                "value": 0
-              },
-              {
-                "color": "red",
-                "value": 1
-              }
-            ]
-          },
-          "unit": "bool_on_off"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 6,
-        "w": 22,
-        "x": 0,
-        "y": 19
       },
       "id": 4,
       "options": {
@@ -676,19 +513,62 @@
       },
       "targets": [
         {
+          "alias": "Dishwasher",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P951FEA4DE68E13C5"
+          },
+          "groupBy": [],
+          "hide": false,
+          "measurement": "dishwasherMachineStatus",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "dishwasher",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": []
+        },
+        {
+          "alias": "Washing Machine",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P951FEA4DE68E13C5"
+          },
+          "groupBy": [],
+          "hide": false,
+          "measurement": "washingMachineStatus",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "WashingMachine",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": []
+        },
+        {
           "alias": "Dehumidifier",
           "datasource": {
             "type": "influxdb",
             "uid": "P951FEA4DE68E13C5"
           },
-          "groupBy": [
-            {
-              "params": [
-                "value::field"
-              ],
-              "type": "tag"
-            }
-          ],
+          "groupBy": [],
           "hide": false,
           "measurement": "dehumidifier_switch",
           "orderByTime": "ASC",
@@ -787,6 +667,220 @@
       ],
       "title": "Consumer",
       "type": "state-timeline"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "influxdb",
+        "uid": "P951FEA4DE68E13C5"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed"
+          },
+          "custom": {
+            "fillOpacity": 70,
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineWidth": 0,
+            "spanNulls": false
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "blue",
+                  "index": 1,
+                  "text": "OFF"
+                },
+                "1": {
+                  "color": "red",
+                  "index": 0,
+                  "text": "ON"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "max": 1,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "transparent",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 22,
+        "x": 0,
+        "y": 21
+      },
+      "id": 2,
+      "options": {
+        "alignValue": "left",
+        "legend": {
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": false
+        },
+        "mergeValues": true,
+        "rowHeight": 0.9,
+        "showValue": "auto",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "alias": "Dishwasher",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P951FEA4DE68E13C5"
+          },
+          "groupBy": [],
+          "hide": false,
+          "measurement": "dishwasher_trigger",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "Dishwasher",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": []
+        },
+        {
+          "alias": "Washing Machine",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P951FEA4DE68E13C5"
+          },
+          "groupBy": [],
+          "hide": false,
+          "measurement": "washingMachine_trigger",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "WashingMachine",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": []
+        },
+        {
+          "alias": "Dehumidifier",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P951FEA4DE68E13C5"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "value::field"
+              ],
+              "type": "tag"
+            }
+          ],
+          "hide": false,
+          "measurement": "dehumidifier_trigger",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT \"value\" FROM \"dehumidifier_trigger\" WHERE $timeFilter",
+          "rawQuery": false,
+          "refId": "Dehumidifier",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": []
+        },
+        {
+          "alias": "Boiler LOW",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P951FEA4DE68E13C5"
+          },
+          "groupBy": [],
+          "hide": false,
+          "measurement": "boiler_33_percent_trigger",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "Boiler 33 Percent",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": []
+        },
+        {
+          "alias": "Boiler FULL",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P951FEA4DE68E13C5"
+          },
+          "groupBy": [],
+          "hide": false,
+          "measurement": "boiler_100_percent_trigger",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "Boiler 100 Percent",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "title": "Trigger",
+      "type": "state-timeline"
     }
   ],
   "refresh": "10s",
@@ -803,6 +897,6 @@
   "timezone": "browser",
   "title": "Consumer",
   "uid": "fdvttsujqpybka",
-  "version": 4,
+  "version": 1,
   "weekStart": ""
 }

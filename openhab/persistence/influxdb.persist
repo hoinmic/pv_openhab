@@ -88,4 +88,12 @@ Items {
     Shelly_Energy_Grid : strategy = everyTenMinute, everyChange
     Shelly_Returned_Energy_Grid : strategy = everyTenMinute, everyChange
     Shelly_Current_Power_Total_Grid : strategy = everyTenMinute, everyChange
+
+    // Dishwasher
+    dishwasherMachineStatus : strategy = everyTenMinute, everyChange
+    dishwasher_trigger : strategy = everyTenMinute, everyChange
+
+    // Washing Machine
+    washingMachineStatus : strategy = everyTenMinute, everyChange
+    washingMachine_trigger : strategy = everyTenMinute, everyChange
 }

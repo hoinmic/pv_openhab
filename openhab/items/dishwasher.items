@@ -1,0 +1,9 @@
+// Dishwasher
+String dishwasherMachineStatus "Dishwasher Machine Status"
+Switch dishwasher_trigger "Dishwasher Trigger" <rain> (gTrigger)
+
+Number dishwasher_startMachine "Dishwasher Smart Start" { channel="http:url:AdoraDishV4000:startMachine" }
+
+String dishwasherInactiveStatus "Dishwasher Inactive Ready" { channel="http:url:AdoraDishV4000:inactiveStatus" }
+String dishwasherSmartStartStatus "Dishwasher Smart Start Ready" { channel="http:url:AdoraDishV4000:smartStartStatus" }
+String dishwasherStatus "Dishwasher Status" { channel="http:url:AdoraDishV4000:machineStatus" }

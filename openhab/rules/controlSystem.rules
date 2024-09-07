@@ -65,3 +65,41 @@ then
     dehumidifier_trigger.postUpdate(next_dehumidifier_trigger)
   }
 end
+
+rule "Control Dishwasher"
+when
+  Time cron "0 0/1 * * * ?"   // every minute
+then
+  var next_dishwasher_trigger = "OFF"
+
+  if(((filtered_power_grid.state as Number).intValue <= -1000) &&
+      (dishwasherMachineStatus.state.toString == "SMART_START_READY"))
+  {
+    next_dishwasher_trigger = "ON"
+  }
+
+  if((dishwasher_trigger.state().toString != next_dishwasher_trigger))
+  {
+    logInfo(logName, "Dishwasher trigger: " + next_dishwasher_trigger)
+    dishwasher_trigger.postUpdate(next_dishwasher_trigger)
+  }
+end
+
+rule "Control Dishwasher"
+when
+  Time cron "0 0/1 * * * ?"   // every minute
+then
+  var next_washingmachine_trigger = "OFF"
+
+  if(((filtered_power_grid.state as Number).intValue <= -1000) &&
+      (washingMachineStatus.state.toString == "SMART_START_READY"))
+  {
+    next_washingmachine_trigger = "ON"
+  }
+
+  if((washingMachine_trigger.state().toString != next_washingmachine_trigger))
+  {
+    logInfo(logName, "Dishwasher trigger: " + next_washingmachine_trigger)
+    washingMachine_trigger.postUpdate(next_washingmachine_trigger)
+  }
+end

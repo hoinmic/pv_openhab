@@ -4,14 +4,13 @@ sitemap control label="Controllable Consumers"
         Switch  item=dehumidifier_trigger
         Switch  item=boiler_33_percent_trigger
         Switch  item=boiler_100_percent_trigger
+        Switch  item=dishwasher_trigger
+        Switch  item=washingMachine_trigger
 	}
-    Frame label="Power" icon="chart" {
-        Chart item=dehumidifier_power refresh=60000 period=h legend=true
+    Frame label="Trigger State" icon="chart" {
+        Chart item=gTrigger refresh=60000 period=h legend=true
     }
     Frame label="Switch State" icon="chart" {
         Chart item=gSwitch refresh=60000 period=h legend=true
-    }
-    Frame label="Trigger State" icon="chart" {
-        Chart item=gTrigger refresh=60000 period=h legend=true
     }
 }
