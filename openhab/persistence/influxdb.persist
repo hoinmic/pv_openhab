@@ -18,17 +18,17 @@ Items {
     boiler_phase3_switch : strategy = everyTenMinute, everyChange, restoreOnStartup
 
     // Fronius Storage
-    AC_Power_South : strategy = everyMinute
-    IDC_South1 : strategy = everyMinute
-    IDC_South2 : strategy = everyMinute
-    UDC1_South : strategy = everyMinute
-    UDC2_South : strategy = everyMinute
+    AC_Power_South : strategy = everyTenMinute
+    IDC_South1 : strategy = everyTenMinute
+    IDC_South2 : strategy = everyTenMinute
+    UDC1_South : strategy = everyTenMinute
+    UDC2_South : strategy = everyTenMinute
 
-    AC_Power_North : strategy = everyMinute
-    IDC_North1 : strategy = everyMinute
-    IDC_North2 : strategy = everyMinute
-    UDC1_North : strategy = everyMinute
-    UDC2_North : strategy = everyMinute
+    AC_Power_North : strategy = everyTenMinute
+    IDC_North1 : strategy = everyTenMinute
+    IDC_North2 : strategy = everyTenMinute
+    UDC1_North : strategy = everyTenMinute
+    UDC2_North : strategy = everyTenMinute
 
     // Power Storage
     filtered_power_inverter : strategy = everyTenMinute, everyChange
@@ -81,13 +81,13 @@ Items {
 
     // Shelly information
     Shelly_Uptime_Inverter : strategy = everyHour
-    Shelly_Energy_Inverter : strategy = everyTenMinute, everyChange
-    Shelly_Current_Power_Total_Inverter : strategy = everyTenMinute, everyChange
+    Shelly_Energy_Inverter : strategy = everyTenMinute
+    Shelly_Current_Power_Total_Inverter : strategy = everyTenMinute
 
     Shelly_Uptime_Grid : strategy = everyHour
-    Shelly_Energy_Grid : strategy = everyTenMinute, everyChange
-    Shelly_Returned_Energy_Grid : strategy = everyTenMinute, everyChange
-    Shelly_Current_Power_Total_Grid : strategy = everyTenMinute, everyChange
+    Shelly_Energy_Grid : strategy = everyTenMinute
+    Shelly_Returned_Energy_Grid : strategy = everyTenMinute
+    Shelly_Current_Power_Total_Grid : strategy = everyTenMinute
 
     // Dishwasher
     dishwasherMachineStatus : strategy = everyTenMinute, everyChange
