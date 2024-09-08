@@ -28,8 +28,12 @@ then
   eveningSun = sunSet.minusHours(1)
 
   // Jump to tomorrow and subtract to avoid problems (summer time / winter time)
+  // Must be corrected!
+  var ZoneId localZone = ZoneId.of("Europe/Zurich")
   middaySun = now.withHour(0).withMinute(0).withSecond(0).plusDays(1).minusHours(24).plusHours(11)
+  middaySun = middaySun.withZoneSameInstant(localZone)
   afternoonSun = now.withHour(0).withMinute(0).withSecond(0).plusDays(1).minusHours(24).plusHours(13)
+  afternoonSun = afternoonSun.withZoneSameInstant(localZone)
 
   // Publish the current state
   logInfo(logName, "Calculated sun rise: " + sunRise)
