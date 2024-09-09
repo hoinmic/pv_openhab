@@ -1,5 +1,12 @@
-# Photovoltaic control and visualisation
-Photovoltaic monitoring and smart control of consumers. The control is done with Openhab. The evaluation is displayed with Grafana. Setting up the target system can be done with Ansible.
+# Smarthome control and visualisation
+
+Photovoltaic monitoring and smart control of consumers.
+
+Key features:
+- Control with Openhab
+- Visualisation with Grafana
+- Automated setup and maintenance of devices with ansible
+- Remote control of v-zug devices
 
 ## Screenshots
 

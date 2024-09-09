@@ -47,3 +47,11 @@
     openhab-cli console -p habopen openhab:users add smarthome smarthome administrator
   when: not result.stdout is search("administrator")
   notify: restart_openhab
+
+- name: Set openhab java timezone
+  replace:
+    dest=/etc/default/openhab
+    regexp='^EXTRA_JAVA_OPTS=""$'
+    replace='EXTRA_JAVA_OPTS="-Duser.timezone=Europe/Zurich"'
+    backup=yes
+  notify: restart_openhab
