@@ -9,3 +9,9 @@
     lv: ubuntu-lv
     size: +100%FREE
     resizefs: true
+
+- name: Stop/disable service openipmi
+  systemd_service:
+    name: openipmi
+    state: stopped
+    enabled: false
