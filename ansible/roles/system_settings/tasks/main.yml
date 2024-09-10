@@ -1,4 +1,4 @@
-- name: Set timezone to Europe/Zurich
+- name: Set timezone
   tags: install,never
   community.general.timezone:
-    name: Europe/Zurich
+    name: "{{ system_timezone }}"

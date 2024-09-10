@@ -4,7 +4,7 @@ ansible_user=smarthome
 ansible_ssh_pass=smarthome
 
 [staging]
-192.168.124.21
+192.168.124.21 system_timezone=Europe/Zurich
 
 [productive]
-192.168.251.128
+192.168.251.103 system_timezone=Europe/Zurich

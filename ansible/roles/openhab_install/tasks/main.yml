@@ -52,6 +52,6 @@
   replace:
     dest=/etc/default/openhab
     regexp='^EXTRA_JAVA_OPTS=""$'
-    replace='EXTRA_JAVA_OPTS="-Duser.timezone=Europe/Zurich"'
+    replace='EXTRA_JAVA_OPTS="-Duser.timezone={{ system_timezone }}"'
     backup=yes
   notify: restart_openhab
