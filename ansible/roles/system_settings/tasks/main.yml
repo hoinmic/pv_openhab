@@ -2,3 +2,10 @@
   tags: install,never
   community.general.timezone:
     name: "{{ system_timezone }}"
+
+- name: Extend the logical volume to consume all remaining space in the volume group
+  community.general.lvol:
+    vg: ubuntu-vg
+    lv: ubuntu-lv
+    size: +100%FREE
+    resizefs: true
