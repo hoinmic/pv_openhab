@@ -452,6 +452,7 @@
           "color": {
             "mode": "thresholds"
           },
+          "decimals": 2,
           "mappings": [],
           "max": 100,
           "min": 0,
@@ -572,6 +573,7 @@
           "color": {
             "mode": "thresholds"
           },
+          "decimals": 2,
           "mappings": [],
           "max": 100,
           "min": 0,
@@ -885,6 +887,6 @@
   "timezone": "browser",
   "title": "Tariff",
   "uid": "fdvttsujqpybkb",
-  "version": 4,
+  "version": 1,
   "weekStart": ""
 }

@@ -1,6 +1,6 @@
 Thing http:url:AdoraDishV4000 "AdoraDishV4000" [
     baseURL="http://192.168.0.132/",
-    refresh=15] {
+    refresh=60] {
         Channels:
             Type string : inactiveStatus "Inactive Status" [ 
                 stateExtension="ai?command=getDeviceStatus", 
@@ -18,7 +18,7 @@ Thing http:url:AdoraDishV4000 "AdoraDishV4000" [
 
 Thing http:url:AdoraWashV2000 "AdoraWashV2000" [
     baseURL="http://192.168.0.250/",
-    refresh=15] {
+    refresh=60] {
         Channels:
             Type string : inactiveStatus "Inactive Status" [ 
                 stateExtension="ai?command=getDeviceStatus", 
