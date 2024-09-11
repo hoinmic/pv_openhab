@@ -15,3 +15,10 @@
     name: openipmi
     state: stopped
     enabled: false
+
+- name: Stop/disable service systemd-networkd-wait-online
+  systemd_service:
+    name: systemd-networkd-wait-online
+    state: stopped
+    enabled: false
+    masked: true
