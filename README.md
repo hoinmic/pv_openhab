@@ -39,14 +39,14 @@ ansible-playbook --ask-become-pass -i ansible/inventory ansible/site.yml --tags 
 login: admin  
 pw: admin  
 ```sh
-http://192.168.124.21:3000/
+http://<ip>:3000/
 ```
 
 ### Login Openhab
 login: smarthome  
 pw: smarthome  
 ```sh
-http://192.168.124.21:8080/
+http://<ip>:8080/
 ```
 
 ## Test and Debug
@@ -59,21 +59,21 @@ openhab-cli console -p habopen bundle:list
 
 Openhab sitemaps
 ```sh
-http://192.168.124.21:8080/basicui/app?sitemap=control
-http://192.168.124.21:8080/basicui/app?sitemap=powerOverview
-http://192.168.124.21:8080/basicui/app?sitemap=energyOverview
-http://192.168.124.21:8080/basicui/app?sitemap=inverter
+http://<ip>:8080/basicui/app?sitemap=control
+http://<ip>:8080/basicui/app?sitemap=powerOverview
+http://<ip>:8080/basicui/app?sitemap=energyOverview
+http://<ip>:8080/basicui/app?sitemap=inverter
 ```
 
 Promethious
 ```sh
-http://192.168.124.21:9090/
+http://<ip>:9090/
 ```
 
 Promethious node exporter
 ```sh
-http://192.168.124.21:9100/metrics
-http://192.168.124.21:8080/rest/metrics/prometheus
+http://<ip>:9100/metrics
+http://<ip>:8080/rest/metrics/prometheus
 ```
 
 Influxdb informations
@@ -86,8 +86,8 @@ influx -execute "SHOW USERS"
 
 ```mermaid
 graph TD
-A[Fronius Inverter Roof North Side]
-B[Fronius Inverter Roof South Side]
+A[Fronius Inverter North Side]
+B[Fronius Inverter South Side]
 C[Shelly Pro EM3]
 
 F[House Electricity Connection]
