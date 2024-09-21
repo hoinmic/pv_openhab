@@ -571,19 +571,7 @@
             }
           },
           "fieldMinMax": false,
-          "mappings": [
-            {
-              "options": {
-                "from": 100,
-                "result": {
-                  "color": "dark-red",
-                  "index": 0
-                },
-                "to": 2000
-              },
-              "type": "range"
-            }
-          ],
+          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1328,6 +1316,6 @@
   "timezone": "browser",
   "title": "Day Overview",
   "uid": "edvtfh9qyw2rkc",
-  "version": 3,
+  "version": 2,
   "weekStart": ""
 }

@@ -270,7 +270,7 @@ then
     {
       Energy_Grid.postUpdate( delta_grid + Energy_Grid.state )
 
-      var deltaMoney = (kWh_price_consumption_grid.state as Number).doubleValue * delta_grid
+      var deltaMoney = (kWh_price_consumption_grid.state as Number).doubleValue * delta_grid / 1000
       paid_money_consumption_grid.postUpdate((paid_money_consumption_grid.state as Number).doubleValue + deltaMoney)
 
       if(tariff.state == "LOW")
@@ -333,7 +333,7 @@ then
     {
       Energy_Returned_Grid.postUpdate( delta_grid_returned + Energy_Returned_Grid.state )
       
-      var deltaMoney = (kWh_price_returned_grid.state as Number).doubleValue * delta_grid_returned
+      var deltaMoney = (kWh_price_returned_grid.state as Number).doubleValue * delta_grid_returned / 1000
       received_money_returned_grid.postUpdate((received_money_returned_grid.state as Number).doubleValue + deltaMoney)
 
       if(tariff.state == "LOW")

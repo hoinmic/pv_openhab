@@ -42,6 +42,6 @@
   replace:
     dest=/etc/grafana/grafana.ini
     regexp='^;default_home_dashboard_path =$'
-    replace='default_home_dashboard_path = /var/lib/grafana/dashboards/day_overview.json'
+    replace='default_home_dashboard_path = /var/lib/grafana/dashboards/overview.json'
     backup=yes
   notify: restart_grafana
