@@ -22,13 +22,13 @@ then
   if((timeOfDay.state.toString == "SUN_RISE") || (timeOfDay.state.toString == "MORNING_SUN") ||
      (timeOfDay.state.toString == "AFTERNOON_SUN") || (timeOfDay.state.toString == "EVENING_SUN"))
   {
-    if(((filtered_power_grid.state as Number).intValue <= -1400) ||
+    if(((filtered_power_grid.state as Number).intValue <= -2000) ||
        (boiler_100_percent_trigger.state.toString == "ON"))
     {
       next_boiler_33_percent_trigger = "ON"
     }
 
-    if((boiler_phase1_switch.state.toString == "ON") && ((filtered_power_grid.state as Number).intValue <= -2700))
+    if((boiler_phase1_switch.state.toString == "ON") && ((filtered_power_grid.state as Number).intValue <= -4000))
     {
       next_boiler_100_percent_trigger = "ON"
     }

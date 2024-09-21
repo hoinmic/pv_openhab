@@ -188,7 +188,20 @@ then
 
   if ((Shelly_Energy_Inverter.state != NULL ) && (Shelly_Energy_Inverter.state != UNDEF))
   {
-    Current_Energy_Inverter = Shelly_Energy_Inverter.state as QuantityType<Energy>
+    // Shelly Addon Bug
+    // Workaround = Calculate Energy out of Power (in rule intervall)
+    // --- Start workaround ----
+    //Current_Energy_Inverter = Shelly_Energy_Inverter.state as QuantityType<Energy>
+    Current_Energy_Inverter = Shelly_Current_Power_Total_Inverter.state as QuantityType<Power> * 1|h / -240
+    if(Current_Energy_Inverter > 0|Wh )
+    {
+      Current_Energy_Inverter = previous_energy_inverter + Current_Energy_Inverter
+    }
+    else
+    {
+      Current_Energy_Inverter = previous_energy_inverter
+    }
+    // --- End workaround ----
   }
 
   // Test energy
@@ -226,7 +239,20 @@ then
 
   if ((Shelly_Energy_Grid.state != NULL ) && (Shelly_Energy_Grid.state != UNDEF))
   {
-    Current_Energy_Grid = Shelly_Energy_Grid.state as QuantityType<Energy>
+    // Shelly Addon Bug
+    // Workaround = Calculate Energy out of Power (in rule intervall)
+    // Current_Energy_Grid = Shelly_Energy_Grid.state as QuantityType<Energy>
+    // --- Start workaround ----
+    Current_Energy_Grid = Shelly_Current_Power_Total_Grid.state as QuantityType<Power> * 1|h / 240
+    if(Current_Energy_Grid > 0|Wh )
+    {
+      Current_Energy_Grid = previous_energy_grid + Current_Energy_Grid
+    }
+    else
+    {
+      Current_Energy_Grid = previous_energy_grid
+    }
+    // --- End workaround ----
   }
 
   // Test energy
@@ -259,11 +285,11 @@ then
   }
   previous_energy_grid = Current_Energy_Grid
 
+  // logInfo(logName, "Shelly_Current_Power_Total_Grid: " + Shelly_Current_Power_Total_Grid.state)
   // logInfo(logName, "TestGrid_Energy: " + TestGrid_Energy.state)
   // logInfo(logName, "Current_Energy_Grid: " + Current_Energy_Grid)
   // logInfo(logName, "delta_grid: " + delta_grid)
-  // logInfo(logName, "Day_Energy_Grid: " + Day_Energy_Grid.state)
-  // logInfo(logName, "Month_Energy_Grid: " + Month_Energy_Grid.state)
+  // logInfo(logName, "Energy_Grid: " + Energy_Grid.state)
 end
 
 rule "Total Energy Grid Returned"
@@ -276,7 +302,20 @@ then
 
   if ((Shelly_Returned_Energy_Grid.state != NULL ) && (Shelly_Returned_Energy_Grid.state != UNDEF))
   {
-    Current_Returned_Energy_Grid = Shelly_Returned_Energy_Grid.state as QuantityType<Energy>
+    // Shelly Addon Bug
+    // Workaround = Calculate Energy out of Power (in rule intervall)
+    // Current_Returned_Energy_Grid = Shelly_Returned_Energy_Grid.state as QuantityType<Energy>
+    // --- Start workaround ----
+    Current_Returned_Energy_Grid = Shelly_Current_Power_Total_Grid.state as QuantityType<Power> * 1|h / -240
+    if(Current_Returned_Energy_Grid > 0|Wh )
+    {
+      Current_Returned_Energy_Grid = previous_energy_grid_returned + Current_Returned_Energy_Grid
+    }
+    else
+    {
+      Current_Returned_Energy_Grid = previous_energy_grid_returned
+    }
+    // --- End workaround ----
   }
 
   // Test energy
@@ -307,13 +346,10 @@ then
       }
     }
   }
+  previous_energy_grid_returned = Current_Returned_Energy_Grid
 
   // logInfo(logName, "Current_Returned_Energy_Grid: " + Current_Returned_Energy_Grid)
   // logInfo(logName, "TestGrid_Energy_Returned: " + TestGrid_Energy_Returned.state)
   // logInfo(logName, "previous_energy_grid_returned: " + previous_energy_grid_returned)
   // logInfo(logName, "delta_grid_returned: " + delta_grid_returned)
-  // logInfo(logName, "Day_Energy_Returned_Grid: " + Day_Energy_Returned_Grid.state)
-  // logInfo(logName, "Month_Energy_Returned_Grid: " + Month_Energy_Returned_Grid.state)
-
-  previous_energy_grid_returned = Current_Returned_Energy_Grid
 end

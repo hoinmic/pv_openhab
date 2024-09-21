@@ -4,7 +4,7 @@ var Number moving_average_power_inverter
 var Number moving_average_power_grid
 var Number moving_average_power_consumption
 
-val FORGETTING_FACTOR = 3
+val FORGETTING_FACTOR = 2
 
 rule "Power Consumption Startup"
 when
@@ -29,6 +29,7 @@ then
   if ((Shelly_Current_Power_Total_Inverter.state != NULL ) && (Shelly_Current_Power_Total_Inverter.state != UNDEF))
   {
     Power_Inverter = Shelly_Current_Power_Total_Inverter.state
+    Power_Inverter = Power_Inverter * -1
   }
   if ( (TestInverter.state != NULL ) && (TestInverter.state != UNDEF) )
   {

@@ -180,4 +180,6 @@ InfluxDB --> Grafana
 This command copies the user data from openhab and grafana. The entire installation of software components does not take place.
 ```sh
 ansible-playbook --ask-become-pass -i ansible/inventory ansible/site.yml --limit staging
+or
+ansible-playbook --ask-become-pass -i ansible/inventory ansible/site.yml --limit productive
 ```
