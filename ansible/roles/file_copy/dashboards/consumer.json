@@ -18,6 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
+  "id": 7,
   "links": [],
   "panels": [
     {
@@ -171,7 +172,7 @@
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "always",
+            "showPoints": "auto",
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -885,6 +886,6 @@
   "timezone": "browser",
   "title": "Consumer",
   "uid": "fdvttsujqpybka",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }
