@@ -19,7 +19,7 @@ then
   //logInfo(logName, "Time of day: " + timeOfDay.state)
   
   // Morning sun + Afternoon sun (No switching on during food preparation at lunchtime)
-  if((timeOfDay.state.toString == "SUN_RISE") || (timeOfDay.state.toString == "MORNING_SUN") ||
+  if((timeOfDay.state.toString == "MORNING_SUN") ||
      (timeOfDay.state.toString == "AFTERNOON_SUN") || (timeOfDay.state.toString == "EVENING_SUN"))
   {
     if(((filtered_power_grid.state as Number).intValue <= -2000) ||
