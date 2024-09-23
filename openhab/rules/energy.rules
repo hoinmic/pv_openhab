@@ -71,6 +71,13 @@ then
   Energy_Inverter_Midnight.postUpdate(Energy_Inverter.state)
   Energy_Grid_Midnight.postUpdate(Energy_Grid.state)
   Energy_Returned_Grid_Midnight.postUpdate(Energy_Returned_Grid.state)
+
+  Energy_Returned_Grid_Low_Tariff.postUpdate(0)
+  Energy_Returned_Grid_High_Tariff.postUpdate(0)
+  Energy_Consumed_Grid_Low_Tariff.postUpdate(0)
+  Energy_Consumed_Grid_High_Tariff.postUpdate(0)
+  received_money_returned_grid.postUpdate(0)
+  paid_money_consumption_grid.postUpdate(0)
 end
 
 rule "Month Energy Counter Reset"
