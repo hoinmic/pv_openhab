@@ -52,9 +52,10 @@ when
 then
   var next_dehumidifier_trigger = "OFF"
 
-  // Morning sun <-> evening sun (No switching on during food preparation at lunchtime)
-  if((timeOfDay.state == "MORNING_SUN") || (timeOfDay.state == "AFTERNOON_SUN") ||
-     (timeOfDay.state == "EVENING_SUN"))
+  // Small consumer that works efficiently when switched on for a long time (over the entire sunny day)
+  if((timeOfDay.state.toString == "SUN_RISE") || (timeOfDay.state.toString == "MORNING_SUN") ||
+     (timeOfDay.state.toString == "MIDDAY_SUN") || (timeOfDay.state.toString == "AFTERNOON_SUN") ||
+     (timeOfDay.state.toString == "EVENING_SUN"))
   {
     next_dehumidifier_trigger = "ON"
   }
