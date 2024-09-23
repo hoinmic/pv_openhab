@@ -10,6 +10,9 @@ Key features:
 
 ## Screenshots
 
+### Overview
+![image info](./Screenshot_overview.png)
+
 ### Daily report
 ![image info](./Screenshot_day_overview.png)
 
