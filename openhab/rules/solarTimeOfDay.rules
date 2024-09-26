@@ -29,7 +29,7 @@ then
 
   // Jump to tomorrow and subtract to avoid problems (summer time / winter time)
   middaySun = now.withHour(0).withMinute(0).withSecond(0).plusDays(1).minusHours(24).plusHours(11)
-  afternoonSun = now.withHour(0).withMinute(0).withSecond(0).plusDays(1).minusHours(24).plusHours(13)
+  afternoonSun = now.withHour(0).withMinute(0).withSecond(0).plusDays(1).minusHours(24).plusHours(12)
 
   // Publish the current state
   logInfo(logName, "Calculated sun rise: " + sunRise)

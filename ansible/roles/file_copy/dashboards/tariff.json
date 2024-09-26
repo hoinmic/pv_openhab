@@ -226,7 +226,7 @@
               },
               {
                 "params": [],
-                "type": "max"
+                "type": "last"
               },
               {
                 "params": [],
@@ -266,7 +266,7 @@
               },
               {
                 "params": [],
-                "type": "max"
+                "type": "last"
               },
               {
                 "params": [],
@@ -386,7 +386,7 @@
               },
               {
                 "params": [],
-                "type": "max"
+                "type": "last"
               },
               {
                 "params": [],
@@ -426,7 +426,7 @@
               },
               {
                 "params": [],
-                "type": "max"
+                "type": "last"
               },
               {
                 "params": [],
@@ -547,7 +547,7 @@
               },
               {
                 "params": [],
-                "type": "max"
+                "type": "last"
               },
               {
                 "params": [],
@@ -668,7 +668,7 @@
               },
               {
                 "params": [],
-                "type": "max"
+                "type": "last"
               },
               {
                 "params": [],
@@ -887,6 +887,6 @@
   "timezone": "browser",
   "title": "Tariff",
   "uid": "fdvttsujqpybkb",
-  "version": 3,
+  "version": 4,
   "weekStart": ""
 }
