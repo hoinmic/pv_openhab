@@ -18,6 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
+  "id": 9,
   "links": [],
   "panels": [
     {
@@ -77,7 +78,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.2.0",
+      "pluginVersion": "11.2.1",
       "targets": [
         {
           "alias": "Inverter",
@@ -165,7 +166,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.2.0",
+      "pluginVersion": "11.2.1",
       "targets": [
         {
           "alias": "Consumption",
@@ -253,7 +254,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.2.0",
+      "pluginVersion": "11.2.1",
       "targets": [
         {
           "alias": "Grid",
@@ -285,7 +286,7 @@
     },
     {
       "datasource": {
-        "default": true,
+        "default": false,
         "type": "influxdb",
         "uid": "P951FEA4DE68E13C5"
       },
@@ -473,7 +474,7 @@
         "sizing": "auto",
         "valueMode": "color"
       },
-      "pluginVersion": "11.2.0",
+      "pluginVersion": "11.2.1",
       "targets": [
         {
           "alias": "Consumption",
@@ -487,16 +488,10 @@
                 "$__interval"
               ],
               "type": "time"
-            },
-            {
-              "params": [
-                "previous"
-              ],
-              "type": "fill"
             }
           ],
           "hide": false,
-          "measurement": "Day_Energy_Household_Consumption",
+          "measurement": "Energy_Household_Consumption",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "Inverter",
@@ -529,16 +524,10 @@
                 "$__interval"
               ],
               "type": "time"
-            },
-            {
-              "params": [
-                "previous"
-              ],
-              "type": "fill"
             }
           ],
           "hide": false,
-          "measurement": "Day_Energy_Self_Consumption",
+          "measurement": "Energy_Self_Consumption",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "Returned",
@@ -571,12 +560,6 @@
                 "$__interval"
               ],
               "type": "time"
-            },
-            {
-              "params": [
-                "previous"
-              ],
-              "type": "fill"
             }
           ],
           "hide": false,
@@ -613,12 +596,6 @@
                 "$__interval"
               ],
               "type": "time"
-            },
-            {
-              "params": [
-                "previous"
-              ],
-              "type": "fill"
             }
           ],
           "hide": false,
@@ -649,7 +626,7 @@
     },
     {
       "datasource": {
-        "default": true,
+        "default": false,
         "type": "influxdb",
         "uid": "P951FEA4DE68E13C5"
       },
@@ -784,7 +761,7 @@
         "sizing": "auto",
         "valueMode": "color"
       },
-      "pluginVersion": "11.2.0",
+      "pluginVersion": "11.2.1",
       "targets": [
         {
           "alias": "Inverter",
@@ -795,19 +772,13 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "1d"
               ],
               "type": "time"
-            },
-            {
-              "params": [
-                "previous"
-              ],
-              "type": "fill"
             }
           ],
           "hide": false,
-          "measurement": "Day_Energy_Inverter",
+          "measurement": "Energy_Inverter",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "Inverter",
@@ -823,6 +794,10 @@
               {
                 "params": [],
                 "type": "last"
+              },
+              {
+                "params": [],
+                "type": "non_negative_difference"
               }
             ]
           ],
@@ -837,19 +812,13 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "1d"
               ],
               "type": "time"
-            },
-            {
-              "params": [
-                "previous"
-              ],
-              "type": "fill"
             }
           ],
           "hide": false,
-          "measurement": "Day_Energy_Returned_Grid",
+          "measurement": "Energy_Returned_Grid",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "Returned",
@@ -865,6 +834,10 @@
               {
                 "params": [],
                 "type": "last"
+              },
+              {
+                "params": [],
+                "type": "non_negative_difference"
               }
             ]
           ],
@@ -879,19 +852,13 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "1d"
               ],
               "type": "time"
-            },
-            {
-              "params": [
-                "previous"
-              ],
-              "type": "fill"
             }
           ],
           "hide": false,
-          "measurement": "Day_Energy_Grid",
+          "measurement": "Energy_Grid",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "Grid",
@@ -907,6 +874,10 @@
               {
                 "params": [],
                 "type": "last"
+              },
+              {
+                "params": [],
+                "type": "non_negative_difference"
               }
             ]
           ],
@@ -931,6 +902,6 @@
   "timezone": "browser",
   "title": "Overview",
   "uid": "ddyll3d2bhmo0c",
-  "version": 5,
+  "version": 8,
   "weekStart": ""
 }

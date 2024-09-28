@@ -1,5 +1,6 @@
 Strategies {
     everyMinute : "0 * * * * ?"
+    everyThreeMinute : "0 */3 * * * ?"
     everyTenMinute : "0 */10 * * * ?"
     everyHour : "0 0 * * * ?"
     everyDay  : "0 0 0 * * ?"
@@ -7,69 +8,53 @@ Strategies {
 
 Items {
     // Consumers Storage
-    dehumidifier_trigger : strategy = everyTenMinute, everyChange
-    dehumidifier_switch : strategy = everyTenMinute, everyChange, restoreOnStartup
-    dehumidifier_power : strategy = everyTenMinute, everyChange
+    dehumidifier_trigger : strategy = everyThreeMinute, everyChange
+    dehumidifier_switch : strategy = everyThreeMinute, everyChange, restoreOnStartup
 
-    boiler_33_percent_trigger : strategy = everyTenMinute, everyChange
-    boiler_100_percent_trigger : strategy = everyTenMinute, everyChange
-    boiler_phase1_switch : strategy = everyTenMinute, everyChange, restoreOnStartup
-    boiler_phase2_switch : strategy = everyTenMinute, everyChange, restoreOnStartup
-    boiler_phase3_switch : strategy = everyTenMinute, everyChange, restoreOnStartup
-
-    // Fronius Storage
-    AC_Power_South : strategy = everyTenMinute
-    IDC_South1 : strategy = everyTenMinute
-    IDC_South2 : strategy = everyTenMinute
-    UDC1_South : strategy = everyTenMinute
-    UDC2_South : strategy = everyTenMinute
-
-    AC_Power_North : strategy = everyTenMinute
-    IDC_North1 : strategy = everyTenMinute
-    IDC_North2 : strategy = everyTenMinute
-    UDC1_North : strategy = everyTenMinute
-    UDC2_North : strategy = everyTenMinute
+    boiler_33_percent_trigger : strategy = everyThreeMinute, everyChange
+    boiler_100_percent_trigger : strategy = everyThreeMinute, everyChange
+    boiler_phase1_switch : strategy = everyThreeMinute, everyChange, restoreOnStartup
+    boiler_phase2_switch : strategy = everyThreeMinute, everyChange, restoreOnStartup
+    boiler_phase3_switch : strategy = everyThreeMinute, everyChange, restoreOnStartup
 
     // Power Storage
-    filtered_power_inverter : strategy = everyTenMinute, everyChange
-    filtered_power_grid : strategy = everyTenMinute, everyChange
-    filtered_power_consumption : strategy = everyTenMinute, everyChange
-    TestGrid : strategy = everyTenMinute, everyChange
-    TestInverter : strategy = everyTenMinute, everyChange
+    filtered_power_inverter : strategy = everyMinute, everyChange
+    filtered_power_grid : strategy = everyMinute, everyChange
+    filtered_power_consumption : strategy = everyMinute, everyChange
 
     // Tariff Storage continous
     tariff : strategy = everyTenMinute, everyChange
-    Energy_Returned_Grid_High_Tariff : strategy = everyTenMinute, everyChange, restoreOnStartup
-    Energy_Returned_Grid_Low_Tariff : strategy = everyTenMinute, everyChange, restoreOnStartup
-    Energy_Consumed_Grid_High_Tariff : strategy = everyTenMinute, everyChange, restoreOnStartup
-    Energy_Consumed_Grid_Low_Tariff : strategy = everyTenMinute, everyChange, restoreOnStartup
-    received_money_returned_grid : strategy = everyTenMinute, everyChange, restoreOnStartup
-    paid_money_consumption_grid : strategy = everyTenMinute, everyChange, restoreOnStartup
+    Energy_Returned_Grid_High_Tariff : strategy = everyThreeMinute, everyChange, restoreOnStartup
+    Energy_Returned_Grid_Low_Tariff : strategy = everyThreeMinute, everyChange, restoreOnStartup
+    Energy_Consumed_Grid_High_Tariff : strategy = everyThreeMinute, everyChange, restoreOnStartup
+    Energy_Consumed_Grid_Low_Tariff : strategy = everyThreeMinute, everyChange, restoreOnStartup
+    received_money_returned_grid : strategy = everyThreeMinute, everyChange, restoreOnStartup
+    paid_money_consumption_grid : strategy = everyThreeMinute, everyChange, restoreOnStartup
 
     // Energy Storage Continuous
-    Energy_Inverter : strategy = everyTenMinute, everyChange, restoreOnStartup
-    Energy_Grid : strategy = everyTenMinute, everyChange, restoreOnStartup
-    Energy_Returned_Grid : strategy = everyTenMinute, everyChange, restoreOnStartup
+    Energy_Inverter : strategy = everyMinute, everyChange, restoreOnStartup
+    Energy_Grid : strategy = everyMinute, everyChange, restoreOnStartup
+    Energy_Returned_Grid : strategy = everyMinute, everyChange, restoreOnStartup
 
-    Energy_Household_Consumption : strategy = everyTenMinute, everyChange, restoreOnStartup
-    Energy_Self_Consumption : strategy = everyTenMinute, everyChange, restoreOnStartup
+    Energy_Household_Consumption : strategy = everyMinute, everyChange, restoreOnStartup
+    Energy_Self_Consumption : strategy = everyMinute, everyChange, restoreOnStartup
 
     // Energy Storage Day
-    Day_Energy_Inverter : strategy = everyTenMinute, everyChange, restoreOnStartup
-    Day_Energy_Grid : strategy = everyTenMinute, everyChange, restoreOnStartup
-    Day_Energy_Returned_Grid : strategy = everyTenMinute, everyChange, restoreOnStartup
+    // Day_Energy_Inverter : strategy = everyThreeMinute, everyChange, restoreOnStartup
+    // Day_Energy_Grid : strategy = everyThreeMinute, everyChange, restoreOnStartup
+    // Day_Energy_Returned_Grid : strategy = everyThreeMinute, everyChange, restoreOnStartup
 
-    Day_Energy_Household_Consumption : strategy = everyTenMinute, everyChange, restoreOnStartup
-    Day_Energy_Self_Consumption : strategy = everyTenMinute, everyChange, restoreOnStartup
+    // Day_Energy_Household_Consumption : strategy = everyThreeMinute, everyChange, restoreOnStartup
+    // Day_Energy_Self_Consumption : strategy = everyThreeMinute, everyChange, restoreOnStartup
 
-    Day_Degree_Of_Autonomy : strategy = everyTenMinute, everyChange, restoreOnStartup
-    Day_Rate_Self_Consumption : strategy = everyTenMinute, everyChange, restoreOnStartup
+    Day_Degree_Of_Autonomy : strategy = everyThreeMinute, everyChange, restoreOnStartup
+    Day_Rate_Self_Consumption : strategy = everyThreeMinute, everyChange, restoreOnStartup
 
-    Energy_Inverter_Midnight : strategy = everyChange, restoreOnStartup
-    Energy_Grid_Midnight : strategy = everyChange, restoreOnStartup
-    Energy_Returned_Grid_Midnight : strategy = everyChange, restoreOnStartup
+    Energy_Inverter_Midnight : strategy = everyHour, everyChange, restoreOnStartup
+    Energy_Grid_Midnight : strategy = everyHour, everyChange, restoreOnStartup
+    Energy_Returned_Grid_Midnight : strategy = everyHour, everyChange, restoreOnStartup
 
-    // Energy Storage Month
+    // Energy Storage Month (Grafana cant compute differences between months)
     Month_Energy_Inverter : strategy = everyTenMinute, everyChange, restoreOnStartup
     Month_Energy_Grid : strategy = everyTenMinute, everyChange, restoreOnStartup
     Month_Energy_Returned_Grid : strategy = everyTenMinute, everyChange, restoreOnStartup
@@ -77,31 +62,21 @@ Items {
     Month_Energy_Household_Consumption : strategy = everyTenMinute, everyChange, restoreOnStartup
     Month_Energy_Self_Consumption : strategy = everyTenMinute, everyChange, restoreOnStartup
 
-    Month_Degree_Of_Autonomy : strategy = everyTenMinute, everyChange, restoreOnStartup
-    Month_Rate_Self_Consumption : strategy = everyTenMinute, everyChange, restoreOnStartup
+    Month_Degree_Of_Autonomy : strategy = everyHour, everyChange, restoreOnStartup
+    Month_Rate_Self_Consumption : strategy = everyHour, everyChange, restoreOnStartup
 
-    Energy_Inverter_Month : strategy = everyChange, restoreOnStartup
-    Energy_Grid_Month : strategy = everyChange, restoreOnStartup
-    Energy_Returned_Grid_Month : strategy = everyChange, restoreOnStartup
+    Energy_Inverter_Month : strategy = everyHour, everyChange, restoreOnStartup
+    Energy_Grid_Month : strategy = everyHour, everyChange, restoreOnStartup
+    Energy_Returned_Grid_Month : strategy = everyHour, everyChange, restoreOnStartup
 
     // Day information
     timeOfDay : strategy = everyTenMinute, everyChange
 
-    // Shelly information
-    Shelly_Uptime_Inverter : strategy = everyHour
-    Shelly_Energy_Inverter : strategy = everyTenMinute
-    Shelly_Current_Power_Total_Inverter : strategy = everyTenMinute
-
-    Shelly_Uptime_Grid : strategy = everyHour
-    Shelly_Energy_Grid : strategy = everyTenMinute
-    Shelly_Returned_Energy_Grid : strategy = everyTenMinute
-    Shelly_Current_Power_Total_Grid : strategy = everyTenMinute
-
     // Dishwasher
-    dishwasherMachineStatus : strategy = everyTenMinute, everyChange
-    dishwasher_trigger : strategy = everyTenMinute, everyChange
+    dishwasherMachineStatus : strategy = everyThreeMinute, everyChange
+    dishwasher_trigger : strategy = everyThreeMinute, everyChange
 
     // Washing Machine
-    washingMachineStatus : strategy = everyTenMinute, everyChange
-    washingMachine_trigger : strategy = everyTenMinute, everyChange
+    washingMachineStatus : strategy = everyThreeMinute, everyChange
+    washingMachine_trigger : strategy = everyThreeMinute, everyChange
 }
