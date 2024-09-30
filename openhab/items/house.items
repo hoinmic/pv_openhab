@@ -9,12 +9,20 @@ DateTime sunset_Time "Sunset [%1$tH:%1$tM]" <sunset> (gHouse) { channel="astro:s
 String tariff "Low Tariff [%s]" <moon> (gHouse)
 Number kWh_price_returned_grid "Price: [%.2f CHF]" <price> (gHouse)
 Number kWh_price_consumption_grid "Price: [%.2f CHF]" <price> (gHouse)
+Number:Energy Energy_Inverter_Low_Tariff "Inverter Energy Low Tariff: [%d kWh]" <energy> (gHouseholdEnergy)
+Number:Energy Energy_Inverter_High_Tariff "Inverter Energy High Tariff: [%d kWh]" <energy> (gHouseholdEnergy)
+Number:Energy Energy_Self_consumption_Low_Tariff "Self Consumed Energy Low Tariff: [%d kWh]" <energy> (gHouseholdEnergy)
+Number:Energy Energy_Self_consumption_High_Tariff "Self Consumed Energy High Tariff: [%d kWh]" <energy> (gHouseholdEnergy)
+Number:Energy Energy_Returned_Grid_Low_Tariff "Grid Energy Returned Low Tariff: [%d kWh]" <energy> (gHouseholdEnergy)
+Number:Energy Energy_Returned_Grid_High_Tariff "Grid Energy Returned High Tariff: [%d kWh]" <energy> (gHouseholdEnergy)
+Number:Energy Energy_Consumed_Grid_Low_Tariff "Grid Energy Consumed Low Tariff: [%d kWh]" <energy> (gHouseholdEnergy)
+Number:Energy Energy_Consumed_Grid_High_Tariff "Grid Energy Consumed High Tariff: [%d kWh]" <energy> (gHouseholdEnergy)
+
+// Money
 Number received_money_returned_grid "Price: [%.2f CHF]" <price> (gHouse)
 Number paid_money_consumption_grid "Price: [%.2f CHF]" <price> (gHouse)
-Number:Energy Energy_Returned_Grid_Low_Tariff "Day Grid Energy Returned Low Tariff: [%d kWh]" <energy> (gHouseholdEnergy)
-Number:Energy Energy_Returned_Grid_High_Tariff "Day Grid Energy Returned High Tariff: [%d kWh]" <energy> (gHouseholdEnergy)
-Number:Energy Energy_Consumed_Grid_Low_Tariff "Day Grid Energy Consumed Low Tariff: [%d kWh]" <energy> (gHouseholdEnergy)
-Number:Energy Energy_Consumed_Grid_High_Tariff "Day Grid Energy Consumed High Tariff: [%d kWh]" <energy> (gHouseholdEnergy)
+Number saved_money_consumption "Price: [%.2f CHF]" <price> (gHouse)
+Number system_profitability ": Price: [%.2f CHF]" <price> (gHouse)
 
 // Electricity consumption
 Number:Power filtered_power_inverter "Power Inverter: [%d W]" <power> (gHouseholdPower)

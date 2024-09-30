@@ -46,10 +46,16 @@ sitemap energyOverview label="Energy Overview"
         Input item=Energy_Returned_Grid_High_Tariff label="Energy Returned High [%.0f %unit%]" staticIcon=energy inputHint="number"
         Input item=Energy_Consumed_Grid_Low_Tariff label="Energy Consumed Low [%.0f %unit%]" staticIcon=energy inputHint="number"
         Input item=Energy_Consumed_Grid_High_Tariff label="Energy Consumed High [%.0f %unit%]" staticIcon=energy inputHint="number"
+        Input item=Energy_Inverter_Low_Tariff label="Energy Inverter Low [%.0f %unit%]" staticIcon=energy inputHint="number"
+        Input item=Energy_Inverter_High_Tariff label="Energy Inverter High [%.0f %unit%]" staticIcon=energy inputHint="number"
+        Input item=Energy_Self_consumption_Low_Tariff label="Energy Self Consumed Low [%.0f %unit%]" staticIcon=energy inputHint="number"
+        Input item=Energy_Self_consumption_High_Tariff label="Energy Self Consumed High [%.0f %unit%]" staticIcon=energy inputHint="number"
 	}
 
         Frame label="Money" icon="price" {
         Input item=received_money_returned_grid label="Received Money [%.0f %unit%]" staticIcon=price inputHint="number"
         Input item=paid_money_consumption_grid label="Paid Money [%.0f %unit%]" staticIcon=price inputHint="number"
+        Input item=saved_money_consumption label="Saved Money [%.0f %unit%]" staticIcon=price inputHint="number"
+        Input item=system_profitability label="System Profitability [%.0f %unit%]" staticIcon=price inputHint="number"
 	}
 }

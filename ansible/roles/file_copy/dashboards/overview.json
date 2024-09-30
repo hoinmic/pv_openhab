@@ -485,7 +485,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "1d"
               ],
               "type": "time"
             }
@@ -507,6 +507,10 @@
               {
                 "params": [],
                 "type": "last"
+              },
+              {
+                "params": [],
+                "type": "non_negative_difference"
               }
             ]
           ],
@@ -521,7 +525,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "1d"
               ],
               "type": "time"
             }
@@ -543,6 +547,10 @@
               {
                 "params": [],
                 "type": "last"
+              },
+              {
+                "params": [],
+                "type": "non_negative_difference"
               }
             ]
           ],
@@ -902,6 +910,6 @@
   "timezone": "browser",
   "title": "Overview",
   "uid": "ddyll3d2bhmo0c",
-  "version": 8,
+  "version": 9,
   "weekStart": ""
 }

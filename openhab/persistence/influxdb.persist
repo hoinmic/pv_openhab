@@ -24,12 +24,21 @@ Items {
 
     // Tariff Storage continous
     tariff : strategy = everyTenMinute, everyChange
+    Energy_Self_consumption_High_Tariff : strategy = everyThreeMinute, everyChange, restoreOnStartup
+    Energy_Self_consumption_Low_Tariff : strategy = everyThreeMinute, everyChange, restoreOnStartup
+    Energy_Inverter_Low_Tariff : strategy = everyThreeMinute, everyChange, restoreOnStartup
+    Energy_Inverter_High_Tariff : strategy = everyThreeMinute, everyChange, restoreOnStartup
+
     Energy_Returned_Grid_High_Tariff : strategy = everyThreeMinute, everyChange, restoreOnStartup
     Energy_Returned_Grid_Low_Tariff : strategy = everyThreeMinute, everyChange, restoreOnStartup
     Energy_Consumed_Grid_High_Tariff : strategy = everyThreeMinute, everyChange, restoreOnStartup
     Energy_Consumed_Grid_Low_Tariff : strategy = everyThreeMinute, everyChange, restoreOnStartup
+
+    // Money
+    saved_money_consumption : strategy = everyThreeMinute, everyChange, restoreOnStartup
     received_money_returned_grid : strategy = everyThreeMinute, everyChange, restoreOnStartup
     paid_money_consumption_grid : strategy = everyThreeMinute, everyChange, restoreOnStartup
+    system_profitability : strategy = everyThreeMinute, everyChange
 
     // Energy Storage Continuous
     Energy_Inverter : strategy = everyMinute, everyChange, restoreOnStartup
