@@ -89,72 +89,70 @@ influx -execute "SHOW USERS"
 
 ```mermaid
 graph TD
-A[Fronius Inverter North Side]
-B[Fronius Inverter South Side]
-C[Shelly Pro EM3]
+Inverter1[Fronius Inverter 1]
+Inverter2[Fronius Inverter 2]
+SHELLYEM3PRO1[Shelly Pro EM3]
 
-F[House Electricity Connection]
-G[Shelly Pro EM3]
+GRID[House Electricity Connection]
+SHELLYEM3PRO2[Shelly Pro EM3]
 
-J[Electricity distribution box]
+DISTRIBUTION[Electricity distribution box]
 
-O[Shelly Pro 3]
-P[Electric boiler]
+SHELLY3PRO[Shelly Pro 3]
+BOILER[Electric boiler]
 
-S[MyStrom]
-T[Dehumidifier]
+MYSTROM[MyStrom]
+DEHUMIDIFIER[Dehumidifier]
 
-U[Heat pump]
+HEATPUMP[Heat pump]
 
-M[Connection box]
-V[Washing machine]
-W[Tumble dryer]
+WASHINGMACHINE[Washing machine]
+TUMBLEDRYER[Tumble dryer]
 
 
-N[Microwave]
-X[Electric cooker]
-Y[Baking oven]
-Z[Dishwasher]
+MICROWAVE[Microwave]
+COOKER[Electric cooker]
+BAKING[Baking oven]
+DISHWASHER[Dishwasher]
 CAR[Car]
 
-A --> C
-B --> C
-C --> J
+Inverter1 --> SHELLYEM3PRO1
+Inverter2 --> SHELLYEM3PRO1
+SHELLYEM3PRO1 --> DISTRIBUTION
 
-F <--> G
-G <--> J
+GRID <--> SHELLYEM3PRO2
+SHELLYEM3PRO2 <--> DISTRIBUTION
 
-J --> O
-J --> S
-J --> V
-J --> Z
+DISTRIBUTION --> SHELLY3PRO
+DISTRIBUTION --> MYSTROM
+DISTRIBUTION --> WASHINGMACHINE
+DISTRIBUTION --> DISHWASHER
 
 subgraph Smart Devices
-    O --> P
-    S --> T
-    V
-    Z
+    SHELLY3PRO --> BOILER
+    MYSTROM --> DEHUMIDIFIER
+    WASHINGMACHINE
+    DISHWASHER
 end
 
-J --> U
-J --> W
-J --> CAR
+DISTRIBUTION --> HEATPUMP
+DISTRIBUTION --> TUMBLEDRYER
+DISTRIBUTION --> CAR
 
 subgraph Future Smart Devices
-    U
-    V
-    W
-    Z
+    HEATPUMP
+    TUMBLEDRYER
+    DISHWASHER
     CAR
 end
 
-J --> N
-J --> X
-J --> Y
+DISTRIBUTION --> MICROWAVE
+DISTRIBUTION --> COOKER
+DISTRIBUTION --> BAKING
 subgraph Non-Smart Devices
-    N
-    X
-    Y
+    MICROWAVE
+    COOKER
+    BAKING
 end
 ```
 
