@@ -6,7 +6,14 @@ val KWH_LOW_TARIFF_RETURNED_GRID = 0.18
 val KWH_HIGH_TARIFF_GRID  = 0.33
 val KWH_LOW_TARIFF_GRID = 0.31
 
-// Check low tariff
+rule "Distribution of tariff price"
+when
+  System started
+then
+  kWh_price_consumption_low.postUpdate(KWH_LOW_TARIFF_GRID)
+  kWh_price_consumption_high.postUpdate(KWH_HIGH_TARIFF_GRID)
+end
+
 rule "calculate electricity tariff"
 when
   System started or

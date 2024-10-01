@@ -121,7 +121,7 @@
             "mode": "thresholds"
           },
           "mappings": [],
-          "max": 7000,
+          "max": 10000,
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -132,7 +132,7 @@
               },
               {
                 "color": "yellow",
-                "value": 2000
+                "value": 2500
               },
               {
                 "color": "red",
@@ -208,9 +208,12 @@
           "color": {
             "mode": "thresholds"
           },
+          "custom": {
+            "neutral": 0
+          },
           "mappings": [],
-          "max": 10000,
-          "min": -10000,
+          "max": 12000,
+          "min": -12000,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -910,6 +913,6 @@
   "timezone": "browser",
   "title": "Overview",
   "uid": "ddyll3d2bhmo0c",
-  "version": 9,
+  "version": 10,
   "weekStart": ""
 }

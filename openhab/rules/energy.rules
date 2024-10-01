@@ -84,8 +84,10 @@ when
   Item Energy_Self_consumption_Low_Tariff changed or
   Item Energy_Self_consumption_High_Tariff changed
 then
-  saved_money_consumption.postUpdate((( Energy_Self_consumption_Low_Tariff.state as Number).doubleValue * 0.31 ) +
-                                     (( Energy_Self_consumption_High_Tariff.state as Number).doubleValue * 0.33 ))
+  saved_money_consumption.postUpdate((( Energy_Self_consumption_Low_Tariff.state as Number).doubleValue *
+                                      (kWh_price_consumption_low.state as Number).doubleValue ) +
+                                     (( Energy_Self_consumption_High_Tariff.state as Number).doubleValue *
+                                      (kWh_price_consumption_high.state as Number).doubleValue ))
 end
 
 rule "Day Energy Calculation"
