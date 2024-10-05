@@ -3,7 +3,7 @@ val logName = "boiler"
 var Timer timer_low = null
 var Timer timer_high = null
 
-val BOILER_LOW_ON_TIME_MIN = 30
+val BOILER_LOW_ON_TIME_MIN = 15
 val BOILER_HIGH_ON_TIME_MIN = 5
 
 rule "Boiler Startup"

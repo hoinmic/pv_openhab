@@ -18,7 +18,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 6,
   "links": [],
   "panels": [
     {
@@ -196,7 +195,7 @@
         "sizing": "auto",
         "valueMode": "color"
       },
-      "pluginVersion": "11.2.1",
+      "pluginVersion": "11.2.2",
       "targets": [
         {
           "alias": "System Profitability",
@@ -317,7 +316,7 @@
         "sizing": "auto",
         "valueMode": "color"
       },
-      "pluginVersion": "11.2.1",
+      "pluginVersion": "11.2.2",
       "targets": [
         {
           "alias": "High Tariff",
@@ -438,7 +437,7 @@
         "sizing": "auto",
         "valueMode": "color"
       },
-      "pluginVersion": "11.2.1",
+      "pluginVersion": "11.2.2",
       "targets": [
         {
           "alias": "High Tariff",
@@ -559,7 +558,7 @@
         "sizing": "auto",
         "valueMode": "color"
       },
-      "pluginVersion": "11.2.1",
+      "pluginVersion": "11.2.2",
       "targets": [
         {
           "alias": "High Tariff",
@@ -679,7 +678,7 @@
         "sizing": "auto",
         "valueMode": "color"
       },
-      "pluginVersion": "11.2.1",
+      "pluginVersion": "11.2.2",
       "targets": [
         {
           "alias": "High Tariff",
@@ -839,7 +838,7 @@
         "sizing": "auto",
         "valueMode": "color"
       },
-      "pluginVersion": "11.2.1",
+      "pluginVersion": "11.2.2",
       "targets": [
         {
           "alias": "High Tariff",
@@ -999,7 +998,7 @@
         "sizing": "auto",
         "valueMode": "color"
       },
-      "pluginVersion": "11.2.1",
+      "pluginVersion": "11.2.2",
       "targets": [
         {
           "alias": "High Tariff",
@@ -1288,8 +1287,8 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "Tariff",
+  "title": "Costs today",
   "uid": "fdvttsujqpybkb",
-  "version": 8,
+  "version": 9,
   "weekStart": ""
 }

@@ -18,9 +18,129 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 9,
   "links": [],
   "panels": [
+    {
+      "datasource": {
+        "default": false,
+        "type": "influxdb",
+        "uid": "P951FEA4DE68E13C5"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "mappings": [],
+          "max": 20,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 50
+              },
+              {
+                "color": "red",
+                "value": 100
+              }
+            ]
+          },
+          "unit": "currencyCHF"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Autonomy"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percent"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 18,
+        "x": 0,
+        "y": 0
+      },
+      "id": 9,
+      "options": {
+        "displayMode": "gradient",
+        "maxVizHeight": 300,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "auto",
+        "valueMode": "color"
+      },
+      "pluginVersion": "11.2.2",
+      "targets": [
+        {
+          "alias": "System Profitability",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P951FEA4DE68E13C5"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "1d"
+              ],
+              "type": "time"
+            }
+          ],
+          "hide": false,
+          "measurement": "system_profitability",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "Grid_High",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [],
+                "type": "non_negative_difference"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "title": "System Profitability Today",
+      "type": "bargauge"
+    },
     {
       "datasource": {
         "default": false,
@@ -60,7 +180,7 @@
         "h": 7,
         "w": 6,
         "x": 0,
-        "y": 0
+        "y": 3
       },
       "id": 1,
       "options": {
@@ -78,7 +198,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.2.1",
+      "pluginVersion": "11.2.2",
       "targets": [
         {
           "alias": "Inverter",
@@ -148,7 +268,7 @@
         "h": 7,
         "w": 6,
         "x": 6,
-        "y": 0
+        "y": 3
       },
       "id": 2,
       "options": {
@@ -166,7 +286,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.2.1",
+      "pluginVersion": "11.2.2",
       "targets": [
         {
           "alias": "Consumption",
@@ -239,7 +359,7 @@
         "h": 7,
         "w": 6,
         "x": 12,
-        "y": 0
+        "y": 3
       },
       "id": 3,
       "options": {
@@ -257,7 +377,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.2.1",
+      "pluginVersion": "11.2.2",
       "targets": [
         {
           "alias": "Grid",
@@ -456,7 +576,7 @@
         "h": 6,
         "w": 18,
         "x": 0,
-        "y": 7
+        "y": 10
       },
       "id": 8,
       "options": {
@@ -477,7 +597,7 @@
         "sizing": "auto",
         "valueMode": "color"
       },
-      "pluginVersion": "11.2.1",
+      "pluginVersion": "11.2.2",
       "targets": [
         {
           "alias": "Consumption",
@@ -751,7 +871,7 @@
         "h": 6,
         "w": 18,
         "x": 0,
-        "y": 13
+        "y": 16
       },
       "id": 7,
       "options": {
@@ -772,7 +892,7 @@
         "sizing": "auto",
         "valueMode": "color"
       },
-      "pluginVersion": "11.2.1",
+      "pluginVersion": "11.2.2",
       "targets": [
         {
           "alias": "Inverter",
@@ -913,6 +1033,6 @@
   "timezone": "browser",
   "title": "Overview",
   "uid": "ddyll3d2bhmo0c",
-  "version": 10,
+  "version": 11,
   "weekStart": ""
 }
