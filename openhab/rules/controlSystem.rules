@@ -22,15 +22,70 @@ then
   if((timeOfDay.state.toString == "MORNING_SUN") ||
      (timeOfDay.state.toString == "AFTERNOON_SUN") || (timeOfDay.state.toString == "EVENING_SUN"))
   {
-    if(((filtered_power_grid.state as Number).intValue <= -1300) ||
-       (boiler_100_percent_trigger.state.toString == "ON"))
+    // Boiler OFF
+    if((boiler_phase1_switch.state.toString == "OFF") &&
+       (boiler_phase3_switch.state.toString == "OFF"))
     {
-      next_boiler_33_percent_trigger = "ON"
+      if((filtered_power_grid.state as Number).intValue <= -1300)
+      {
+        // Turn boiler LOW on
+        next_boiler_33_percent_trigger = "ON"
+        next_boiler_100_percent_trigger = "OFF"
+      }
     }
 
-    if((boiler_phase1_switch.state.toString == "ON") && ((filtered_power_grid.state as Number).intValue <= -4000))
+    // Boiler LOW Power
+    if((boiler_phase1_switch.state.toString == "ON") &&
+       (boiler_phase3_switch.state.toString == "OFF"))
     {
-      next_boiler_100_percent_trigger = "ON"
+      if((filtered_power_grid.state as Number).intValue > 0)
+      {
+        // Turn boiler LOW off
+        next_boiler_33_percent_trigger = "OFF"
+        next_boiler_100_percent_trigger = "OFF"
+      }
+
+      if(((filtered_power_grid.state as Number).intValue <= 0) &&
+         ((filtered_power_grid.state as Number).intValue > -4000))
+      {
+        // Continou boiler LOW
+        next_boiler_33_percent_trigger = "ON"
+        next_boiler_100_percent_trigger = "OFF"
+      }
+
+      if ((filtered_power_grid.state as Number).intValue <= -4000)
+      {
+        // Turn boiler HIGH on
+        next_boiler_33_percent_trigger = "ON"
+        next_boiler_100_percent_trigger = "ON"
+      }
+    }
+
+    // Boiler High Power
+    if((boiler_phase1_switch.state.toString == "ON") &&
+       (boiler_phase3_switch.state.toString == "ON"))
+    {
+      if((filtered_power_grid.state as Number).intValue <= 0)
+      {
+        // Continue boiler HIGH 
+        next_boiler_33_percent_trigger = "ON"
+        next_boiler_100_percent_trigger = "ON"
+      }
+      else
+      {
+        // Turn boiler HIGH off
+        next_boiler_33_percent_trigger = "ON"
+        next_boiler_100_percent_trigger = "OFF"
+      }
+    }
+
+    // Boiler Invalid state
+    if((boiler_phase1_switch.state.toString == "OFF") &&
+       (boiler_phase3_switch.state.toString == "ON"))
+    {
+        logInfo(logName, "Boiler invalid state")
+        next_boiler_33_percent_trigger = "OFF"
+        next_boiler_100_percent_trigger = "OFF"
     }
   }
 
