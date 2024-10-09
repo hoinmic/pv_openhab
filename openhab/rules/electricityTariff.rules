@@ -31,8 +31,8 @@ then
       ((day == 3) && ((hour < 7) || (hour >= 20))) ||  // Wednesday
       ((day == 4) && ((hour < 7) || (hour >= 20))) ||  // Thursday
       ((day == 5) && ((hour < 7) || (hour >= 20))) ||  // Friday
-      ((day == 6) && ((hour < 7) || (hour >= 13))) ||  // Saturday
-      ((day == 7)))                                    // Sunday
+      (day == 6) ||                                    // Saturday
+      (day == 7))                                      // Sunday
   {
     currentTariff = "LOW"
     currentPriceReturnedGrid = KWH_LOW_TARIFF_RETURNED_GRID
