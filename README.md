@@ -184,3 +184,27 @@ ansible-playbook --ask-become-pass -i ansible/inventory ansible/site.yml --limit
 or
 ansible-playbook --ask-become-pass -i ansible/inventory ansible/site.yml --limit productive
 ```
+
+
+### Influx notes
+
+#### Create backup
+```sh
+influxd backup -portable /home/smarthome/backup_$(date '+%Y-%m-%d_%H-%M')
+```
+
+#### Restore backup
+```sh
+systemctl stop openhab
+/usr/bin/influx -execute 'DROP DATABASE openhab'
+influxd restore -portable backup_2024-10-08_21-47/
+influx -execute 'SHOW RETENTION POLICIES ON openhab'
+systemctl start openhab
+```
+
+#### Change Retention Policy
+```sh
+/usr/bin/influx -execute 'ALTER RETENTION POLICY "autogen" ON "openhab" DURATION 365d'
+or
+/usr/bin/influx -execute 'ALTER RETENTION POLICY "autogen" ON "openhab" DURATION INF'
+```

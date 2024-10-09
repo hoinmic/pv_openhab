@@ -38,7 +38,7 @@
   changed_when: False
 
 - name: Create database
-  command: /usr/bin/influx -execute 'CREATE DATABASE openhab WITH DURATION 90d'
+  command: /usr/bin/influx -execute 'CREATE DATABASE openhab WITH DURATION INF'
   when: not result.stdout is search("openhab")
 
 - name: Create InfluxDB user
