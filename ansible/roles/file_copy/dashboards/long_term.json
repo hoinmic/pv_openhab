@@ -713,13 +713,13 @@
     "list": []
   },
   "time": {
-    "from": "now-9d",
+    "from": "now-14d",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "Long term",
   "uid": "fdzzkskqc1k3kd",
-  "version": 2,
+  "version": 4,
   "weekStart": ""
 }

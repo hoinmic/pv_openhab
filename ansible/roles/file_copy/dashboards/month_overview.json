@@ -86,7 +86,7 @@
         "sizing": "auto",
         "valueMode": "color"
       },
-      "pluginVersion": "11.2.0",
+      "pluginVersion": "11.2.2",
       "targets": [
         {
           "alias": "Inverter",
@@ -351,7 +351,7 @@
         "sizing": "auto",
         "valueMode": "color"
       },
-      "pluginVersion": "11.2.0",
+      "pluginVersion": "11.2.2",
       "targets": [
         {
           "alias": "Consumption",
@@ -966,7 +966,7 @@
           "sort": "none"
         },
         "xTickLabelRotation": 0,
-        "xTickLabelSpacing": 0
+        "xTickLabelSpacing": 100
       },
       "pluginVersion": "11.1.4",
       "targets": [
@@ -1202,7 +1202,7 @@
           "sort": "none"
         },
         "xTickLabelRotation": 0,
-        "xTickLabelSpacing": 0
+        "xTickLabelSpacing": 100
       },
       "pluginVersion": "11.1.4",
       "targets": [
@@ -1317,6 +1317,6 @@
   "timezone": "browser",
   "title": "Month Overview",
   "uid": "edvtfh9qyw2rkt",
-  "version": 3,
+  "version": 4,
   "weekStart": ""
 }

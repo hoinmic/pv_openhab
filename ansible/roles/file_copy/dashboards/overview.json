@@ -18,6 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
+  "id": 9,
   "links": [],
   "panels": [
     {
@@ -241,7 +242,7 @@
             "mode": "thresholds"
           },
           "mappings": [],
-          "max": 10000,
+          "max": 20000,
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -252,7 +253,7 @@
               },
               {
                 "color": "yellow",
-                "value": 2500
+                "value": 2000
               },
               {
                 "color": "red",
@@ -332,8 +333,8 @@
             "neutral": 0
           },
           "mappings": [],
-          "max": 12000,
-          "min": -12000,
+          "max": 10000,
+          "min": -10000,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1033,6 +1034,6 @@
   "timezone": "browser",
   "title": "Overview",
   "uid": "ddyll3d2bhmo0c",
-  "version": 11,
+  "version": 12,
   "weekStart": ""
 }
