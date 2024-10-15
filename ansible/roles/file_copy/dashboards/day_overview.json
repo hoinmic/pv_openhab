@@ -126,7 +126,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         },
         {
           "alias": "Grid Returned",
@@ -166,7 +167,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         },
         {
           "alias": "Grid Consumption",
@@ -206,7 +208,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         }
       ],
       "title": "Energy Today",
@@ -385,7 +388,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         },
         {
           "alias": "Direct self-use",
@@ -425,7 +429,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         },
         {
           "alias": "Autonomy",
@@ -467,7 +472,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         },
         {
           "alias": "Self Consumtion",
@@ -509,7 +515,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         }
       ],
       "title": "Household Today",
@@ -1307,6 +1314,6 @@
   "timezone": "browser",
   "title": "Day Overview",
   "uid": "edvtfh9qyw2rkc",
-  "version": 5,
+  "version": 6,
   "weekStart": ""
 }

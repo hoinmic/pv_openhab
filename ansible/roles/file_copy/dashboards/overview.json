@@ -136,7 +136,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         }
       ],
       "title": "System Profitability Today",
@@ -638,7 +639,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         },
         {
           "alias": "Direct self-use",
@@ -678,7 +680,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         },
         {
           "alias": "Autonomy",
@@ -714,7 +717,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         },
         {
           "alias": "Self Consumtion",
@@ -750,7 +754,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         }
       ],
       "title": "Household Today",
@@ -933,7 +938,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         },
         {
           "alias": "Grid Returned",
@@ -973,7 +979,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         },
         {
           "alias": "Grid Consumption",
@@ -1013,7 +1020,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         }
       ],
       "title": "Energy Today",
@@ -1034,6 +1042,6 @@
   "timezone": "browser",
   "title": "Overview",
   "uid": "ddyll3d2bhmo0c",
-  "version": 12,
+  "version": 13,
   "weekStart": ""
 }

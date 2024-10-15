@@ -23,7 +23,7 @@
   "panels": [
     {
       "datasource": {
-        "default": true,
+        "default": false,
         "type": "influxdb",
         "uid": "P951FEA4DE68E13C5"
       },
@@ -128,7 +128,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         },
         {
           "alias": "Grid Returned",
@@ -170,7 +171,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         },
         {
           "alias": "Grid Consumption",
@@ -212,7 +214,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         }
       ],
       "title": "Energy Month",
@@ -220,7 +223,7 @@
     },
     {
       "datasource": {
-        "default": true,
+        "default": false,
         "type": "influxdb",
         "uid": "P951FEA4DE68E13C5"
       },
@@ -393,7 +396,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         },
         {
           "alias": "Direct self-use",
@@ -435,7 +439,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         },
         {
           "alias": "Autonomy",
@@ -477,7 +482,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         },
         {
           "alias": "Self Consumtion",
@@ -519,7 +525,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         }
       ],
       "title": "Household Month",
@@ -1014,7 +1021,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         },
         {
           "alias": "Grid",
@@ -1060,7 +1068,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         },
         {
           "alias": "Returned Grid",
@@ -1106,7 +1115,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         }
       ],
       "title": "Energy",
@@ -1250,7 +1260,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         },
         {
           "alias": "Solar",
@@ -1296,7 +1307,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         }
       ],
       "title": "Household",
@@ -1317,6 +1329,6 @@
   "timezone": "browser",
   "title": "Month Overview",
   "uid": "edvtfh9qyw2rkt",
-  "version": 4,
+  "version": 5,
   "weekStart": ""
 }

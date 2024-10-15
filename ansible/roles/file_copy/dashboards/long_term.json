@@ -196,7 +196,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         },
         {
           "alias": "Energy Self-Use (Saving)",
@@ -242,7 +243,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         },
         {
           "alias": "Energy Sale",
@@ -288,7 +290,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         }
       ],
       "title": "Household Cash Flow",
@@ -478,7 +481,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         }
       ],
       "title": "Energy Inverter",
@@ -653,7 +657,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         },
         {
           "alias": "Energy Self Consumption",
@@ -699,10 +704,133 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         }
       ],
       "title": "Household Energy Consumption",
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "influxdb",
+        "uid": "P951FEA4DE68E13C5"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "dark-orange",
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMax": 100,
+            "axisSoftMin": 0,
+            "fillOpacity": 68,
+            "gradientMode": "hue",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 17,
+        "x": 0,
+        "y": 34
+      },
+      "id": 13,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.96,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "vertical",
+        "showValue": "auto",
+        "stacking": "normal",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": -100
+      },
+      "pluginVersion": "11.1.4",
+      "targets": [
+        {
+          "alias": "Degree of Autonomy",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P951FEA4DE68E13C5"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "1d"
+              ],
+              "type": "time"
+            }
+          ],
+          "hide": false,
+          "measurement": "Day_Degree_Of_Autonomy",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "Inverter",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [],
+          "tz": "Europe/Zurich"
+        }
+      ],
+      "title": "Degree of Autonomy",
       "type": "barchart"
     }
   ],
@@ -720,6 +848,6 @@
   "timezone": "browser",
   "title": "Long term",
   "uid": "fdzzkskqc1k3kd",
-  "version": 4,
+  "version": 6,
   "weekStart": ""
 }

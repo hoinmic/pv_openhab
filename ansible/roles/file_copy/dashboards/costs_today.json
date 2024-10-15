@@ -236,7 +236,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         }
       ],
       "title": "System Profitability Today",
@@ -357,7 +358,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         }
       ],
       "title": "Received Money Today (Energy Sale)",
@@ -478,7 +480,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         }
       ],
       "title": "Paid Money Today (Energy Purchase)",
@@ -599,7 +602,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         }
       ],
       "title": "Saved Money Today (Energy Self-Use)",
@@ -719,7 +723,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         },
         {
           "alias": "Low Tariff",
@@ -759,7 +764,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         }
       ],
       "title": "Returned Energy Today",
@@ -879,7 +885,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         },
         {
           "alias": "Low Tariff",
@@ -919,7 +926,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         }
       ],
       "title": "Consumption Energy Today",
@@ -1039,7 +1047,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         },
         {
           "alias": "Low Tariff",
@@ -1079,7 +1088,8 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "tz": "Europe/Zurich"
         }
       ],
       "title": "Saved Purchase Energy (Self-Use) Today",
@@ -1290,6 +1300,6 @@
   "timezone": "browser",
   "title": "Costs today",
   "uid": "fdvttsujqpybkb",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }
