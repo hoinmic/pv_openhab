@@ -1,7 +1,7 @@
 val logName = "boiler"
 
-var Timer timer_low = null
-var Timer timer_high = null
+var boiler_low_on_time = 0
+var boiler_high_on_time = 0
 
 val BOILER_LOW_ON_TIME_MIN = 15
 val BOILER_HIGH_ON_TIME_MIN = 5
@@ -15,7 +15,7 @@ then
   boiler_phase3_switch.sendCommand(OFF)
 end
 
-rule "Boiler with Timeout"
+rule "Boiler Switch"
 when
   Item boiler_33_percent_trigger changed or     // state change
   Item boiler_100_percent_trigger changed or    // state change
@@ -25,40 +25,56 @@ then
       boiler_100_percent_trigger.state == ON)
   {
     // Turn phase 1+2 on
+    //logInfo(logName, "Boiler phase 1+2 ON")
     boiler_phase1_switch.sendCommand(ON)
     boiler_phase2_switch.sendCommand(ON)
-    //logInfo(logName, "Boiler phase 1+2 ON")
-
-    if (timer_low !== null) {
-      //logInfo(logName, "Timer phase 1+2 rescheduled")
-      timer_low.reschedule(now.plusMinutes(BOILER_LOW_ON_TIME_MIN))
-    } else {
-      timer_low = createTimer(now.plusMinutes(BOILER_LOW_ON_TIME_MIN), [ |
-        boiler_phase1_switch.sendCommand(OFF)
-        boiler_phase2_switch.sendCommand(OFF)
-        //logInfo(logName, "Timer phase 1+2 expiration")
-        timer_low = null
-      ])
-      //logInfo(logName, "Timer phase 1+2 created")
-    }
 
     // Turn phase 3 on
     if (boiler_100_percent_trigger.state == ON)
     {
-      boiler_phase3_switch.sendCommand(ON)
       //logInfo(logName, "Boiler phase 3 ON")
-
-      if (timer_high !== null) {
-        //logInfo(logName, "Timer phase 3 rescheduled")
-        timer_high.reschedule(now.plusMinutes(BOILER_HIGH_ON_TIME_MIN))
-      } else {
-        timer_high = createTimer(now.plusMinutes(BOILER_HIGH_ON_TIME_MIN), [ |
-          boiler_phase3_switch.sendCommand(OFF)
-          //logInfo(logName, "Timer phase 3 expiration")
-          timer_high = null
-        ])
-        //logInfo(logName, "Timer phase 3 created")
-      }
+      boiler_phase3_switch.sendCommand(ON)
     }
   }
+
+  if (boiler_33_percent_trigger.state == OFF &&
+      boiler_low_on_time >= BOILER_LOW_ON_TIME_MIN)
+  {
+    //logInfo(logName, "Boiler phase 1+2+3 OFF")
+    boiler_phase1_switch.sendCommand(OFF)
+    boiler_phase2_switch.sendCommand(OFF)
+    boiler_phase3_switch.sendCommand(OFF)
+  }
+
+  if (boiler_100_percent_trigger.state == OFF &&
+      boiler_high_on_time >= BOILER_HIGH_ON_TIME_MIN)
+  {
+    //logInfo(logName, "Boiler phase 3 OFF")
+    boiler_phase3_switch.sendCommand(OFF)
+  }
+end
+
+rule "Boiler Timekeeping"
+when
+  Time cron "0 0/1 * * * ?"                     // every minute
+then
+  if (boiler_phase1_switch.state.toString == "ON")
+  {
+    boiler_low_on_time = boiler_low_on_time + 1
+  }
+  else
+  {
+    boiler_low_on_time = 0
+  }
+  //logInfo(logName, "boiler_low_on_time: " + boiler_low_on_time)
+
+  if (boiler_phase3_switch.state.toString == "ON")
+  {
+    boiler_high_on_time = boiler_high_on_time + 1
+  }
+  else
+  {
+    boiler_high_on_time = 0
+  }
+  //logInfo(logName, "boiler_high_on_time: " + boiler_high_on_time)
 end
