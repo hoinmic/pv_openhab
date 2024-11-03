@@ -1,8 +1,7 @@
 val logName = "dehumidifier"
 
-var Timer timer = null
-
-val DEHUMIDIFIER_ON_TIME_MIN = 10
+var dehumidifiert_on_time = 0
+val DEHUMIDIFIER_ON_TIME_MIN = 60
 
 rule "Dehumidifier Startup"
 when
@@ -11,26 +10,36 @@ then
   dehumidifier_switch.sendCommand(OFF)
 end
 
-rule "Dehumidifier with Timeout"
+rule "Dehumidifier switch"
 when
   Item dehumidifier_trigger changed or      // state change
   Time cron "0 0/1 * * * ?"                 // every minute
 then
   if (dehumidifier_trigger.state == ON)
   {
-    dehumidifier_switch.sendCommand(ON)
+    // Turn dehumidifier on
     //logInfo(logName, "Dehumidifier ON")
-
-    if (timer !== null) {
-      //logInfo(logName, "Timer rescheduled")
-      timer.reschedule(now.plusMinutes(DEHUMIDIFIER_ON_TIME_MIN))
-    } else {
-      timer = createTimer(now.plusMinutes(DEHUMIDIFIER_ON_TIME_MIN), [ |
-        dehumidifier_switch.sendCommand(OFF)
-        //logInfo(logName, "Timer expiration")
-        timer = null
-      ])
-      //logInfo(logName, "Timer created")
-    }
+    dehumidifier_switch.sendCommand(ON)
   }
+  if (dehumidifier_trigger.state == OFF &&
+      dehumidifiert_on_time >= DEHUMIDIFIER_ON_TIME_MIN)
+  {
+    //logInfo(logName, "Dehumidifiert OFF")
+    dehumidifier_switch.sendCommand(OFF)
+  }
+end
+
+rule "Dehumidifier Timekeeping"
+when
+  Time cron "0 0/1 * * * ?"                     // every minute
+then
+  if (dehumidifier_switch.state.toString == "ON")
+  {
+    dehumidifiert_on_time = dehumidifiert_on_time + 1
+  }
+  else
+  {
+    dehumidifiert_on_time = 0
+  }
+  //logInfo(logName, "dehumidifiert_on_time: " + dehumidifiert_on_time)
 end
