@@ -65,4 +65,9 @@ then
   // logInfo(logName, "filtered_power_inverter: " + filtered_power_inverter.state.toString)
   // logInfo(logName, "filtered_power_grid: " + filtered_power_grid.state.toString)
   // logInfo(logName, "filtered_power_consumption: " + filtered_power_consumption.state.toString)
+
+  // Provide values for LaMetric
+  LaMetric_Inverter.postUpdate((filtered_power_inverter.state as Number).intValue)
+  LaMetric_Grid.postUpdate((filtered_power_grid.state as Number).intValue)
+  LaMetric_Consumption.postUpdate((filtered_power_consumption.state as Number).intValue)
 end

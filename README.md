@@ -208,3 +208,15 @@ systemctl start openhab
 or
 /usr/bin/influx -execute 'ALTER RETENTION POLICY "autogen" ON "openhab" DURATION INF'
 ```
+
+### LaMetric Display
+
+LaMetric Smart Time is used for the visualisation of power measurements. The ‘my Data DIY’ app
+from LaMetric accesses the REST API from openhab for this purpose. The addresses to be used
+are as follows:
+
+```sh
+http://<ip>:8080/rest/items/LaMetric_Inverter
+http://<ip>:8080/rest/items/LaMetric_Inverter
+http://<ip>:8080/rest/items/LaMetric_Inverter
+```
