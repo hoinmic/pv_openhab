@@ -1,0 +1,26 @@
+val logName = "dayInformation"
+
+rule "Calculate the day informations"
+when
+  System started or // run at system start in case the time changed when OH was offline
+  Time cron "0 3 0 * * ? *" // three minutes after midnight, to give Astro time to calculate the new day's times
+then
+  // Day of the Week
+  val String currentDay = now.getDayOfWeek.toString()
+  dayOfTheWeek.postUpdate("currentDay")
+  logInfo(logName, "Current Day: " + currentDay)
+
+  // Weekend
+  var String weekend = "false"
+  if((currentDay == "SATURDAY") || (currentDay == "SUNDAY"))
+  {
+    weekend = "true"
+  }
+  weekendDay.postUpdate(weekend)
+  logInfo(logName, "Weekend: " + weekend)
+
+  // Month
+  val String currentMonth = now.getMonth.toString()
+  monthOfTheYear.postUpdate(currentMonth)
+  logInfo(logName, "Month: " + currentMonth)
+end

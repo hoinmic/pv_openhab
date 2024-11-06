@@ -166,8 +166,10 @@ InfluxDB[InfluxDB]
 Prometheus[Prometheus]
 OS[Operating System]
 Grafana[Grafana]
+LaMetric[LaMetric]
 
 Sensors --> Openhab
+Openhab --> LaMetric
 Openhab --> InfluxDB
 Openhab --> Prometheus
 OS --> Prometheus
@@ -217,6 +219,6 @@ are as follows:
 
 ```sh
 http://<ip>:8080/rest/items/LaMetric_Inverter
-http://<ip>:8080/rest/items/LaMetric_Inverter
-http://<ip>:8080/rest/items/LaMetric_Inverter
+http://<ip>:8080/rest/items/LaMetric_Grid
+http://<ip>:8080/rest/items/LaMetric_Consumption
 ```

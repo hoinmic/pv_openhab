@@ -1,5 +1,8 @@
 // Current time
 String timeOfDay "Current Time of Day [%s]" <time> (gHouse)
+String dayOfTheWeek "Day of the week [%s]" <time> (gHouse)
+String weekendDay "Weekend Day [%s]" <time> (gHouse)
+String monthOfTheYear "Month [%s]" <time> (gHouse)
 
 // Sun times
 DateTime sunrise_Time "Sunrise [%1$tH:%1$tM]" <sunrise> (gHouse) { channel="astro:sun:home:rise#start" }
