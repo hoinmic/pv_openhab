@@ -38,7 +38,8 @@ then
   }
 
   if (boiler_33_percent_trigger.state == OFF &&
-      boiler_low_on_time >= BOILER_LOW_ON_TIME_MIN)
+      boiler_low_on_time >= BOILER_LOW_ON_TIME_MIN &&
+      boiler_high_on_time == 0)
   {
     //logInfo(logName, "Boiler phase 1+2+3 OFF")
     boiler_phase1_switch.sendCommand(OFF)
