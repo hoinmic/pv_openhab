@@ -17,7 +17,7 @@
   },
   "editable": true,
   "fiscalYearStartMonth": 0,
-  "graphTooltip": 0,
+  "graphTooltip": 1,
   "id": 7,
   "links": [],
   "panels": [
@@ -107,6 +107,7 @@
           "sort": "none"
         }
       },
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "alias": "Solar Phase",
@@ -281,7 +282,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.1.4",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "alias": "Inverter",
@@ -500,6 +501,7 @@
           "sort": "none"
         }
       },
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "alias": "Dishwasher",
@@ -732,6 +734,7 @@
           "sort": "none"
         }
       },
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "alias": "Dishwasher",
@@ -872,8 +875,9 @@
       "type": "state-timeline"
     }
   ],
+  "preload": false,
   "refresh": "10s",
-  "schemaVersion": 39,
+  "schemaVersion": 40,
   "tags": [],
   "templating": {
     "list": []
@@ -886,6 +890,6 @@
   "timezone": "browser",
   "title": "Consumer",
   "uid": "fdvttsujqpybka",
-  "version": 2,
+  "version": 3,
   "weekStart": ""
 }
