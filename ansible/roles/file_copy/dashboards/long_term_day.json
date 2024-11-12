@@ -751,8 +751,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -967,8 +966,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -1089,8 +1087,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -1183,8 +1180,8 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "Long term",
+  "title": "Long term day",
   "uid": "fdzzkskqc1k3kd",
-  "version": 11,
+  "version": 12,
   "weekStart": ""
 }
