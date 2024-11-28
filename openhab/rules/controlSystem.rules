@@ -18,9 +18,10 @@ then
 
   //logInfo(logName, "Time of day: " + timeOfDay.state)
   
-  // Morning sun + Afternoon sun (No switching on during food preparation at lunchtime)
+  // Start boiler (No switching on during food preparation at lunchtime)
   if((timeOfDay.state.toString == "MORNING_SUN") ||
-     (timeOfDay.state.toString == "AFTERNOON_SUN") || (timeOfDay.state.toString == "EVENING_SUN"))
+     (timeOfDay.state.toString == "AFTERNOON_SUN") ||
+     (timeOfDay.state.toString == "EVENING_SUN"))
   {
     // Boiler OFF
     if((boiler_phase1_switch.state.toString == "OFF") &&
@@ -33,60 +34,60 @@ then
         next_boiler_100_percent_trigger = "OFF"
       }
     }
+  }
 
-    // Boiler LOW Power
-    if((boiler_phase1_switch.state.toString == "ON") &&
-       (boiler_phase3_switch.state.toString == "OFF"))
+  // Boiler LOW Power
+  if((boiler_phase1_switch.state.toString == "ON") &&
+      (boiler_phase3_switch.state.toString == "OFF"))
+  {
+    if((filtered_power_grid.state as Number).intValue > 0)
     {
-      if((filtered_power_grid.state as Number).intValue > 0)
-      {
-        // Turn boiler LOW off
-        next_boiler_33_percent_trigger = "OFF"
-        next_boiler_100_percent_trigger = "OFF"
-      }
-
-      if(((filtered_power_grid.state as Number).intValue <= 0) &&
-         ((filtered_power_grid.state as Number).intValue > -2800))
-      {
-        // Continou boiler LOW
-        next_boiler_33_percent_trigger = "ON"
-        next_boiler_100_percent_trigger = "OFF"
-      }
-
-      if ((filtered_power_grid.state as Number).intValue <= -2800)
-      {
-        // Turn boiler HIGH on
-        next_boiler_33_percent_trigger = "ON"
-        next_boiler_100_percent_trigger = "ON"
-      }
+      // Turn boiler LOW off
+      next_boiler_33_percent_trigger = "OFF"
+      next_boiler_100_percent_trigger = "OFF"
     }
 
-    // Boiler High Power
-    if((boiler_phase1_switch.state.toString == "ON") &&
-       (boiler_phase3_switch.state.toString == "ON"))
+    if(((filtered_power_grid.state as Number).intValue <= 0) &&
+        ((filtered_power_grid.state as Number).intValue > -2800))
     {
-      if((filtered_power_grid.state as Number).intValue <= 0)
-      {
-        // Continue boiler HIGH 
-        next_boiler_33_percent_trigger = "ON"
-        next_boiler_100_percent_trigger = "ON"
-      }
-      else
-      {
-        // Turn boiler HIGH off
-        next_boiler_33_percent_trigger = "ON"
-        next_boiler_100_percent_trigger = "OFF"
-      }
+      // Continou boiler LOW
+      next_boiler_33_percent_trigger = "ON"
+      next_boiler_100_percent_trigger = "OFF"
     }
 
-    // Boiler Invalid state
-    if((boiler_phase1_switch.state.toString == "OFF") &&
-       (boiler_phase3_switch.state.toString == "ON"))
+    if ((filtered_power_grid.state as Number).intValue <= -2800)
     {
-        logInfo(logName, "Boiler invalid state")
-        next_boiler_33_percent_trigger = "OFF"
-        next_boiler_100_percent_trigger = "OFF"
+      // Turn boiler HIGH on
+      next_boiler_33_percent_trigger = "ON"
+      next_boiler_100_percent_trigger = "ON"
     }
+  }
+
+  // Boiler High Power
+  if((boiler_phase1_switch.state.toString == "ON") &&
+      (boiler_phase3_switch.state.toString == "ON"))
+  {
+    if((filtered_power_grid.state as Number).intValue <= 0)
+    {
+      // Continue boiler HIGH
+      next_boiler_33_percent_trigger = "ON"
+      next_boiler_100_percent_trigger = "ON"
+    }
+    else
+    {
+      // Turn boiler HIGH off
+      next_boiler_33_percent_trigger = "ON"
+      next_boiler_100_percent_trigger = "OFF"
+    }
+  }
+
+  // Boiler Invalid state
+  if((boiler_phase1_switch.state.toString == "OFF") &&
+      (boiler_phase3_switch.state.toString == "ON"))
+  {
+      logInfo(logName, "Boiler invalid state")
+      next_boiler_33_percent_trigger = "OFF"
+      next_boiler_100_percent_trigger = "OFF"
   }
 
   if((boiler_33_percent_trigger.state.toString != next_boiler_33_percent_trigger))
