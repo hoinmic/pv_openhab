@@ -1,7 +1,7 @@
 val logName = "dehumidifier"
 
 var dehumidifiert_on_time = 0
-val DEHUMIDIFIER_ON_TIME_MIN = 60
+val DEHUMIDIFIER_ON_TIME_MIN = 180
 
 rule "Dehumidifier Startup"
 when
