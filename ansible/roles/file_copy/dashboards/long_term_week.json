@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 13,
+  "id": 14,
   "links": [],
   "panels": [
     {
@@ -144,7 +144,7 @@
         "xTickLabelRotation": 0,
         "xTickLabelSpacing": -100
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.3.1",
       "targets": [
         {
           "alias": "Energy purchasing",
@@ -155,7 +155,7 @@
           "groupBy": [
             {
               "params": [
-                "1d"
+                "1w,4d"
               ],
               "type": "time"
             },
@@ -208,7 +208,7 @@
           "groupBy": [
             {
               "params": [
-                "1d"
+                "1w,4d"
               ],
               "type": "time"
             },
@@ -255,7 +255,7 @@
           "groupBy": [
             {
               "params": [
-                "1d"
+                "1w,4d"
               ],
               "type": "time"
             },
@@ -435,7 +435,7 @@
         "xTickLabelRotation": 0,
         "xTickLabelSpacing": -100
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.3.1",
       "targets": [
         {
           "alias": "Energy Inverter",
@@ -446,7 +446,7 @@
           "groupBy": [
             {
               "params": [
-                "1d"
+                "1w,4d"
               ],
               "type": "time"
             },
@@ -611,7 +611,7 @@
         "xTickLabelRotation": 0,
         "xTickLabelSpacing": -100
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.3.1",
       "targets": [
         {
           "alias": "Energy Grid",
@@ -622,7 +622,7 @@
           "groupBy": [
             {
               "params": [
-                "1d"
+                "1w,4d"
               ],
               "type": "time"
             },
@@ -669,7 +669,7 @@
           "groupBy": [
             {
               "params": [
-                "1d"
+                "1w,4d"
               ],
               "type": "time"
             },
@@ -829,7 +829,7 @@
           "groupBy": [
             {
               "params": [
-                "1d"
+                "1w,4d"
               ],
               "type": "time"
             },
@@ -882,7 +882,7 @@
           "groupBy": [
             {
               "params": [
-                "1d"
+                "1w,4d"
               ],
               "type": "time"
             },
@@ -923,248 +923,6 @@
       ],
       "title": "Energy Grid",
       "type": "barchart"
-    },
-    {
-      "datasource": {
-        "default": false,
-        "type": "influxdb",
-        "uid": "P951FEA4DE68E13C5"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "fixedColor": "dark-orange",
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "axisSoftMax": 100,
-            "axisSoftMin": 0,
-            "fillOpacity": 68,
-            "gradientMode": "hue",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineWidth": 1,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "fieldMinMax": false,
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
-          },
-          "unit": "percent"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 10,
-        "w": 17,
-        "x": 0,
-        "y": 44
-      },
-      "id": 13,
-      "options": {
-        "barRadius": 0,
-        "barWidth": 0.96,
-        "fullHighlight": false,
-        "groupWidth": 0.7,
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": false
-        },
-        "orientation": "vertical",
-        "showValue": "auto",
-        "stacking": "normal",
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        },
-        "xTickLabelRotation": 0,
-        "xTickLabelSpacing": -100
-      },
-      "pluginVersion": "11.3.0",
-      "targets": [
-        {
-          "alias": "Degree of Autonomy",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "P951FEA4DE68E13C5"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "1d"
-              ],
-              "type": "time"
-            }
-          ],
-          "hide": false,
-          "measurement": "Day_Degree_Of_Autonomy",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "Inverter",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [],
-          "tz": "Europe/Zurich"
-        }
-      ],
-      "title": "Degree of Autonomy",
-      "type": "barchart"
-    },
-    {
-      "datasource": {
-        "default": false,
-        "type": "influxdb",
-        "uid": "P951FEA4DE68E13C5"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "fixedColor": "dark-orange",
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "axisSoftMax": 100,
-            "axisSoftMin": 0,
-            "fillOpacity": 68,
-            "gradientMode": "hue",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineWidth": 1,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "fieldMinMax": false,
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
-          },
-          "unit": "percent"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 10,
-        "w": 17,
-        "x": 0,
-        "y": 54
-      },
-      "id": 14,
-      "options": {
-        "barRadius": 0,
-        "barWidth": 0.96,
-        "fullHighlight": false,
-        "groupWidth": 0.7,
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": false
-        },
-        "orientation": "vertical",
-        "showValue": "auto",
-        "stacking": "normal",
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        },
-        "xTickLabelRotation": 0,
-        "xTickLabelSpacing": -100
-      },
-      "pluginVersion": "11.3.0",
-      "targets": [
-        {
-          "alias": "Self Consumption",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "P951FEA4DE68E13C5"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "1d"
-              ],
-              "type": "time"
-            }
-          ],
-          "hide": false,
-          "measurement": "Day_Rate_Self_Consumption",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "Inverter",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [],
-          "tz": "Europe/Zurich"
-        }
-      ],
-      "title": "Self Consumption",
-      "type": "barchart"
     }
   ],
   "preload": false,
@@ -1175,13 +933,13 @@
     "list": []
   },
   "time": {
-    "from": "now-16d",
+    "from": "now-6M",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "Long term day",
-  "uid": "fdzzkskqc1k3kd",
-  "version": 24,
+  "title": "Long term week",
+  "uid": "fdzzkskqc1k3ks",
+  "version": 13,
   "weekStart": ""
 }
