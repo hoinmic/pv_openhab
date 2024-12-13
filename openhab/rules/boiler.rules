@@ -3,8 +3,8 @@ val logName = "boiler"
 var boiler_low_on_time = 0
 var boiler_high_on_time = 0
 
-val BOILER_LOW_ON_TIME_MIN = 60
-val BOILER_HIGH_ON_TIME_MIN = 5
+var minimum_boiler_low_on_time = 0
+var minimum_boiler_high_on_time = 0
 
 rule "Boiler Startup"
 when
@@ -13,6 +13,31 @@ then
   boiler_phase1_switch.sendCommand(OFF)
   boiler_phase2_switch.sendCommand(OFF)
   boiler_phase3_switch.sendCommand(OFF)
+end
+
+rule "Calculate the boiler times"
+when
+  System started or
+  Item monthOfTheYear changed
+then
+  minimum_boiler_low_on_time = 15
+  minimum_boiler_high_on_time = 5
+
+  if(monthOfTheYear.state.toString == "DECEMBER")
+  {
+    minimum_boiler_low_on_time = 60
+    minimum_boiler_high_on_time = 10
+  }
+
+  if((monthOfTheYear.state.toString == "NOVEMBER") ||
+     (monthOfTheYear.state.toString == "JANUARY"))
+  {
+    minimum_boiler_low_on_time = 30
+    minimum_boiler_high_on_time = 5
+  }
+
+  logInfo(logName, "minimum_boiler_low_on_time: " + minimum_boiler_low_on_time)
+  logInfo(logName, "minimum_boiler_high_on_time: " + minimum_boiler_high_on_time)
 end
 
 rule "Boiler Switch"
@@ -38,7 +63,7 @@ then
   }
 
   if (boiler_33_percent_trigger.state == OFF &&
-      boiler_low_on_time >= BOILER_LOW_ON_TIME_MIN &&
+      boiler_low_on_time >= minimum_boiler_low_on_time &&
       boiler_high_on_time == 0)
   {
     //logInfo(logName, "Boiler phase 1+2+3 OFF")
@@ -48,7 +73,7 @@ then
   }
 
   if (boiler_100_percent_trigger.state == OFF &&
-      boiler_high_on_time >= BOILER_HIGH_ON_TIME_MIN)
+      boiler_high_on_time >= minimum_boiler_high_on_time)
   {
     //logInfo(logName, "Boiler phase 3 OFF")
     boiler_phase3_switch.sendCommand(OFF)
