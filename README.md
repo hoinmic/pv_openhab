@@ -13,11 +13,14 @@ Key features:
 ### Overview
 ![image info](./Screenshot_overview.png)
 
-### Daily report
-![image info](./Screenshot_day_overview.png)
+### Long term overview
+![image info](./Screenshot_longterm.png)
 
 ### Consumer monitoring
 ![image info](./Screenshot_consumer.png)
+
+### Daily report
+![image info](./Screenshot_day_overview.png)
 
 ## Installation with Ansible
 
@@ -193,6 +196,10 @@ ansible-playbook --ask-become-pass -i ansible/inventory ansible/site.yml --limit
 #### Create backup
 ```sh
 influxd backup -portable /home/smarthome/backup_$(date '+%Y-%m-%d_%H-%M')
+```
+#### Copy backup
+```sh
+scp -r smarthome@<ip>:/home/smarthome/backup_2025-01-02_14-19 .
 ```
 
 #### Restore backup
