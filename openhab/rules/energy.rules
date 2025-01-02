@@ -3,6 +3,7 @@ val logName = "energy"
 var QuantityType<Energy> previous_energy_inverter = 0|Wh
 var QuantityType<Energy> previous_energy_grid = 0|Wh
 var QuantityType<Energy> previous_energy_grid_returned = 0|Wh
+var previous_saved_money_consumption = 1000000.0
 
 rule "Energy Consumption Startup"
 when
@@ -79,15 +80,28 @@ then
                                                  ( Energy_Returned_Grid_High_Tariff.state as QuantityType<Energy> ))
 end
 
-rule "Money Saving Calculation"
+rule "Continous Money Saving Calculation"
 when
-  Item Energy_Self_consumption_Low_Tariff changed or
-  Item Energy_Self_consumption_High_Tariff changed
+  Time cron "0/15 * * * * ?" // every 15 seconds
 then
-  saved_money_consumption.postUpdate((( Energy_Self_consumption_Low_Tariff.state as Number).doubleValue *
-                                      (kWh_price_consumption_low.state as Number).doubleValue ) +
-                                     (( Energy_Self_consumption_High_Tariff.state as Number).doubleValue *
-                                      (kWh_price_consumption_high.state as Number).doubleValue ))
+  var current_saved_money_consumption = (( Energy_Self_consumption_Low_Tariff.state as Number).doubleValue *
+                                         (kWh_price_consumption_low.state as Number).doubleValue ) +
+                                        (( Energy_Self_consumption_High_Tariff.state as Number).doubleValue *
+                                         (kWh_price_consumption_high.state as Number).doubleValue )
+
+  if( current_saved_money_consumption > previous_saved_money_consumption )
+  {
+    var delta_saved_money_consumption = current_saved_money_consumption - previous_saved_money_consumption
+    var next_saved_money_consumption = (saved_money_consumption.state as Number).doubleValue + delta_saved_money_consumption
+    saved_money_consumption.postUpdate(next_saved_money_consumption)
+    // logInfo(logName, "delta_saved_money_consumption: " + delta_saved_money_consumption)
+    // logInfo(logName, "next_saved_money_consumption: " + next_saved_money_consumption)
+  }
+  // logInfo(logName, "saved_money_consumption: " + saved_money_consumption.state)
+  // logInfo(logName, "current_saved_money_consumption: " + current_saved_money_consumption)
+  // logInfo(logName, "previous_saved_money_consumption: " + previous_saved_money_consumption)
+
+  previous_saved_money_consumption = current_saved_money_consumption
 end
 
 rule "Day Energy Calculation"
