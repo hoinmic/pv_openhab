@@ -18,8 +18,8 @@ then
 
   //logInfo(logName, "Time of day: " + timeOfDay.state)
   
-  // Start boiler (No switching on during food preparation at lunchtime)
   if((timeOfDay.state.toString == "MORNING_SUN") ||
+     (timeOfDay.state.toString == "MIDDAY_SUN") ||
      (timeOfDay.state.toString == "AFTERNOON_SUN") ||
      (timeOfDay.state.toString == "EVENING_SUN"))
   {
