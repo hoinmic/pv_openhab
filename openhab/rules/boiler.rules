@@ -26,14 +26,15 @@ then
   if(monthOfTheYear.state.toString == "DECEMBER")
   {
     minimum_boiler_low_on_time = 60
-    minimum_boiler_high_on_time = 10
+    minimum_boiler_high_on_time = 15
   }
 
   if((monthOfTheYear.state.toString == "NOVEMBER") ||
-     (monthOfTheYear.state.toString == "JANUARY"))
+     (monthOfTheYear.state.toString == "JANUARY") ||
+     (monthOfTheYear.state.toString == "FEBRUARY"))
   {
     minimum_boiler_low_on_time = 30
-    minimum_boiler_high_on_time = 5
+    minimum_boiler_high_on_time = 10
   }
 
   logInfo(logName, "minimum_boiler_low_on_time: " + minimum_boiler_low_on_time)
