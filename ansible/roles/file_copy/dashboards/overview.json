@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 9,
+  "id": 19,
   "links": [],
   "panels": [
     {
@@ -102,7 +102,7 @@
         "sizing": "auto",
         "valueMode": "color"
       },
-      "pluginVersion": "11.3.0+security-01",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "alias": "System Profitability",
@@ -206,7 +206,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.3.0+security-01",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "alias": "Inverter",
@@ -294,7 +294,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.3.0+security-01",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "alias": "Consumption",
@@ -385,7 +385,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.3.0+security-01",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "alias": "Grid",
@@ -428,7 +428,7 @@
             "mode": "thresholds"
           },
           "mappings": [],
-          "max": 30,
+          "max": 60,
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -611,7 +611,7 @@
         "sizing": "auto",
         "valueMode": "color"
       },
-      "pluginVersion": "11.3.0+security-01",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "alias": "Consumption",
@@ -916,7 +916,7 @@
         "sizing": "auto",
         "valueMode": "color"
       },
-      "pluginVersion": "11.3.0+security-01",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "alias": "Inverter",
@@ -1061,6 +1061,6 @@
   "timezone": "browser",
   "title": "Overview",
   "uid": "ddyll3d2bhmo0c",
-  "version": 14,
+  "version": 1,
   "weekStart": ""
 }
