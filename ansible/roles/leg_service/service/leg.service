@@ -1,0 +1,5 @@
+[Unit]
+Description=LEG Script Service
+
+[Service]
+ExecStart=/usr/local/bin/leg.sh

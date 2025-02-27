@@ -31,3 +31,6 @@
 
     - role: file_copy
       tags: copy
+
+    - role: leg_service
+      tags: leg
